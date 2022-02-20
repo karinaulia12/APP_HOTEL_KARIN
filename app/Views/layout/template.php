@@ -55,11 +55,11 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="#">Fasilitas Hotel</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modelLogout">Logout</a>
-                                        </li>
+                                    <?php } ?>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modelLogout">Logout</a>
+                                    </li>
                                     </ul>
-                                <?php } ?>
                                 </div>
                         </div>
                         <!-- </div> -->

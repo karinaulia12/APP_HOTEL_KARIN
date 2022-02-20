@@ -33,7 +33,7 @@
                                     Fasilitas Kamar
                                 </h5>
                                 <div class="card-body">
-                                    <p class="card-text"><?= $dataKamar[0]['deskripsi']; ?></p>
+                                    <p class="card-text"><?= $data_fkamar[0]['nama_fkamar']; ?></p>
                                 </div>
                             </div>
                         </div>

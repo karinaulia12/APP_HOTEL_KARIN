@@ -39,4 +39,10 @@ class Kamar extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    // public function kamarjoin_fkamar($id_kamar) {
+    //     // $this->db->select('*');
+    //     $this->db->join('fasilitas_kamar', 'kamar.id_kamar = fasilitas_kamar.id_kamar')->where('id_kamar', $id_kamar)->get()->result();
+
+    // }
 }
