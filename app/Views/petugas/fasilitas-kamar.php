@@ -6,7 +6,7 @@
         <div class="col">
             <h1 class="fw-lighter display-6"> Data Fasilitas Kamar</h1>
             <hr>
-            <a href="/petugas/kamar/tambah" class="btn btn-primary mb-3"><i class="fa fa-plus" aria-hidden="true"></i> Fasilitas Kamar</a>
+            <a href="/petugas/fkamar/tambah" class="btn btn-primary mb-3"><i class="fa fa-plus" aria-hidden="true"></i> Fasilitas Kamar</a>
             <table class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr class="text-center">

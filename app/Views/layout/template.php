@@ -41,7 +41,7 @@
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                             <?php if (session()->get('level') == 'admin') { ?>
-                                <div class="navbar collapse" id="collapseExample" id="navbarNav">
+                                <div class="navbar navbar-collapse" id="collapseExample" id="navbarNav">
                                     <ul class="navbar-nav">
                                         <li class="nav-item">
                                             <a class="nav-link active" aria-current="page" href="/petugas/dashboard">Home</a>

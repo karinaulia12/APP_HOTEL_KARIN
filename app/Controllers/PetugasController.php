@@ -102,12 +102,12 @@ class PetugasController extends BaseController
             exit;
         }
 
-        $join_fkamar = $this->kamarModel->join('fasilitas_kamar', 'kamar.id_kamar = fasilitas_kamar.id_kamar')->where('id_kamar', $id_kamar)->get()->result();
+        // $join_fkamar = $this->kamarModel->join('fasilitas_kamar', 'kamar.id_kamar = fasilitas_kamar.id_kamar')->where('id_kamar', $id_kamar)->get()->result();
 
         $data = [
             'title' => 'Detail Kamar AuHotelia',
-            'dataKamar' => $this->kamarModel->where('id_kamar', $id_kamar)->findAll(),
-            'data_fkamar' => $join_fkamar
+            'dataKamar' => $this->kamarModel->where('id_kamar', $id_kamar)->findAll()
+            // 'data_fkamar' => $join_fkamar
         ];
         session()->set($data);
         return view('petugas/detail-kamar', $data);
@@ -187,6 +187,34 @@ class PetugasController extends BaseController
         ];
 
         return view('petugas/fasilitas-kamar', $data);
+    }
+
+    public function tampiltambah_fkamar()
+    {
+        if (!session()->get('sudahkahLogin')) {
+            return redirect('/petugas');
+            exit;
+        }
+
+        if (session()->get('level' != 'admin')) {
+            return redirect('/petugas');
+            exit;
+        }
+
+        if (session()->get('level' != 'admin')) {
+            return redirect('/petugas/dashboard');
+            exit;
+        }
+        // $join = $this->kamarModel->join('fasilitas_kamar', 'kamar.id_kamar = fasilitas_kamar.id_kamar')->getResultArray();
+        // $join = $this->fKamarModel->join('kamar', 'fasilitas_kamar.id_kamar = kamar.id_kamar')->get();
+
+        $data = [
+            'title' => 'Tambah Fasilitas Kamar AuHotelia',
+            'validasi' => \Config\Services::validation(),
+            'data_noKamar' => $this->kamarModel->findAll()
+            // 'data_noKamar' => $join
+        ];
+        return view('petugas/tambah-fkamar', $data);
     }
 
     // crud kamar
@@ -325,5 +353,38 @@ class PetugasController extends BaseController
         $this->kamarModel->where('id_kamar', $id_kamar)->delete();
         session()->setFlashdata('hapusKamar', 'Data Kamar berhasil dihapus');
         return redirect()->to('/petugas/kamar');
+    }
+
+    public function tambah_fkamar()
+    {
+        if (!$this->validate([
+            'nama_fkamar' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Fasilitas Kamar harus diisi.'
+                ]
+            ],
+            'no_kamar' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Nomor Kamar harus diisi.',
+                ]
+            ]
+        ])) {
+            $validation = \Config\Services::validation();
+            return redirect()->to('/petugas/kamar/tambah')->with('validation', $validation);
+        }
+
+        helper(['form']);
+
+        $inputdata = [
+            'nama_fkamar' => $this->request->getPost('nama_fkamar'),
+            'no_kamar' => $this->request->getPost('no_kamar')
+        ];
+
+        session()->set($inputdata);
+        $this->fKamarModel->insert($inputdata);
+        session()->setFlashdata('tambahFkamar', 'Data fasilitas kamar berhasil ditambahkan');
+        return redirect()->to('/petugas/fkamar');
     }
 }

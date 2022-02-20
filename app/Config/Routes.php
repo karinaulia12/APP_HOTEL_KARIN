@@ -49,7 +49,11 @@ $routes->post('/petugas/kamar/update', 'PetugasController::editKamar', ['filter'
 $routes->get('/petugas/kamar/edit-foto/(:num)', 'PetugasController::tampileditfotokamar/$1', ['filter' => 'otentifikasi']);
 $routes->post('/petugas/kamar/update-foto', 'PetugasController::editFotoKamar', ['filter' => 'otentifikasi']);
 $routes->get('/petugas/kamar/hapus/(:num)', 'PetugasController::hapuskamar/$1', ['filter' => 'otentifikasi']);
+
+// crud fasilitas kamar
 $routes->get('/petugas/fkamar', 'PetugasController::tampilfasilitaskamar', ['filter' => 'otentifikasi']);
+$routes->get('/petugas/fkamar/tambah', 'PetugasController::tampiltambah_fkamar', ['filter' => 'otentifikasi']);
+$routes->post('/petugas/fkamar/add', 'PetugasController::tambah_fkamar', ['filter' => 'otentifikasi']);
 
 
 
