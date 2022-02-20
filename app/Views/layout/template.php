@@ -53,7 +53,7 @@
                                             <a class="nav-link" href="/petugas/fkamar">Fasilitas Kamar</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Fasilitas Hotel</a>
+                                            <a class="nav-link" href="/petugas/fumum">Fasilitas Hotel</a>
                                         </li>
                                     <?php } ?>
                                     <li class="nav-item">

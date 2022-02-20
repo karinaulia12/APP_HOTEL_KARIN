@@ -217,6 +217,54 @@ class PetugasController extends BaseController
         return view('petugas/tambah-fkamar', $data);
     }
 
+    public function tampil_fumum()
+    {
+        if (!session()->get('sudahkahLogin')) {
+            return redirect('/petugas');
+            exit;
+        }
+
+        if (session()->get('level' != 'admin')) {
+            return redirect('/petugas');
+            exit;
+        }
+
+        if (session()->get('level' != 'admin')) {
+            return redirect('/petugas/dashboard');
+            exit;
+        }
+
+        $data = [
+            'title' => 'Fasilitas Hotel AuHotelia',
+            'data_fumum' => $this->fUmumModel->findAll()
+        ];
+        return view('petugas/fasilitas-umum', $data);
+    }
+
+    public function tampiltambah_fumum()
+    {
+        if (!session()->get('sudahkahLogin')) {
+            return redirect('/petugas');
+            exit;
+        }
+
+        if (session()->get('level' != 'admin')) {
+            return redirect('/petugas');
+            exit;
+        }
+
+        if (session()->get('level' != 'admin')) {
+            return redirect('/petugas/dashboard');
+            exit;
+        }
+
+        $data = [
+            'title' => 'Tambah Fasilitas Hotel AuHotelia',
+            'validasi' => \Config\Services::validation()
+        ];
+        return view('petugas/tambah-fumum', $data);
+    }
+
     // crud kamar
     public function tampilKamar()
     {
@@ -386,5 +434,46 @@ class PetugasController extends BaseController
         $this->fKamarModel->insert($inputdata);
         session()->setFlashdata('tambahFkamar', 'Data fasilitas kamar berhasil ditambahkan');
         return redirect()->to('/petugas/fkamar');
+    }
+
+    public function tambah_fumum()
+    {
+        if (!$this->validate([
+            'nama_fumum' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Fasilitas Kamar harus diisi.'
+                ]
+            ],
+            'foto' => [
+                'rules' => 'uploaded[foto]',
+                'errors' => [
+                    'uploaded' => 'Foto harus diisi.',
+                ]
+            ],
+            'deskripsi' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Deskripsi harus diisi.'
+                ]
+            ]
+        ])) {
+            $validation = \Config\Services::validation();
+            return redirect()->to('/petugas/kamar/tambah')->with('validation', $validation);
+        }
+
+        helper(['form']);
+        $fileFoto = $this->request->getFile('foto');
+        $fileFoto->move(WRITEPATH . '../public/gambar');
+        $inputdata = [
+            'nama_fumum' => $this->request->getPost('nama_fumum'),
+            'foto' => $fileFoto->getName(),
+            'deskripsi' => $this->request->getPost('deskripsi')
+        ];
+
+        session()->set($inputdata);
+        $this->fUmumModel->insert($inputdata);
+        session()->setFlashdata('tambah_fumum', 'Data fasilitas hotel berhasil ditambahkan');
+        return redirect()->to('/petugas/fumum');
     }
 }
