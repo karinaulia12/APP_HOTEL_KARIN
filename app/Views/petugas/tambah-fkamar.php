@@ -28,7 +28,7 @@
                             <label for="" class="form-label">No Kamar</label>
                             <select class=" form-control <?= ($validasi->hasError('no_kamar')) ? 'is-invalid' : ''; ?>" name="no_kamar" id="">
                                 <?php foreach ($data_noKamar as $row) : ?>
-                                    <option value="<?= $row['id_kamar']; ?>"><?= $row['no_kamar']; ?> - <?= $row['type_kamar']; ?></option>
+                                    <option value="<?= $row['id_kamar']; ?>"><?= $row['no_kamar']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <div id="validationServer03Feedback" class="invalid-feedback">

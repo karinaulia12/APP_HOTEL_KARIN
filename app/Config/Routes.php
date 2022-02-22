@@ -59,6 +59,8 @@ $routes->post('/petugas/fkamar/add', 'PetugasController::tambah_fkamar', ['filte
 $routes->get('/petugas/fumum', 'PetugasController::tampil_fumum', ['filter' => 'otentifikasi']);
 $routes->get('/petugas/fumum/tambah', 'PetugasController::tampiltambah_fumum', ['filter' => 'otentifikasi']);
 $routes->post('/petugas/fumum/add', 'PetugasController::tambah_fumum', ['filter' => 'otentifikasi']);
+$routes->get('/petugas/fumum/edit/(:num)', 'PetugasController::tampiledit_fumum/$1', ['filter' => 'otentifikasi']);
+$routes->post('/petugas/fumum/update', 'PetugasController::edit_fumum', ['filter' => 'otentifikasi']);
 
 
 // resepsionis

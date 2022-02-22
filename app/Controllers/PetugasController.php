@@ -265,6 +265,31 @@ class PetugasController extends BaseController
         return view('petugas/tambah-fumum', $data);
     }
 
+    public function tampiledit_fumum($id_fumum)
+    {
+        if (!session()->get('sudahkahLogin')) {
+            return redirect('/petugas');
+            exit;
+        }
+
+        if (session()->get('level' != 'admin')) {
+            return redirect('/petugas');
+            exit;
+        }
+
+        if (session()->get('level' != 'admin')) {
+            return redirect('/petugas/dashboard');
+            exit;
+        }
+        $data = [
+            'title' => 'Edit Fasilitas Hotel AuHotelia',
+            'data_fumum' => $this->fUmumModel->where('id_fumum', $id_fumum)->findAll(),
+            'validasi' => \Config\Services::validation()
+        ];
+
+        return view('petugas/edit-fumum', $data);
+    }
+
     // crud kamar
     public function tampilKamar()
     {
@@ -349,7 +374,6 @@ class PetugasController extends BaseController
             $this->kamarModel->update($this->request->getPost('no_kamar'), $inputdata);
             session()->setFlashdata('editKamar', 'Data kamar berhasil diupdate');
             return redirect()->to('/petugas/kamar');
-            session()->setFlashdata('editKamar', 'Data kamar berhasil diupdate');
         }
     }
 
@@ -475,5 +499,26 @@ class PetugasController extends BaseController
         $this->fUmumModel->insert($inputdata);
         session()->setFlashdata('tambah_fumum', 'Data fasilitas hotel berhasil ditambahkan');
         return redirect()->to('/petugas/fumum');
+    }
+
+    public function edit_fumum()
+    {
+        helper(['form']);
+        $syarat = $this->request->getPost('foto');
+        unlink('gambar/' . $syarat);
+        $upload = $this->request->getFile('foto');
+        $upload->move(WRITEPATH . '..public/gambar/');
+
+        if ($this->request->getPost('nama_fumum') || $syarat) {
+            $inputdata = [
+                'nama_fumum' => $this->request->getPost('nama_fumum'),
+                'foto' => $upload->getName(),
+                'deskripsi' => $this->request->getPost('deskripsi')
+            ];
+            session()->set($inputdata);
+            $this->fUmumModel->update($this->request->getPost('nama_fumum'), $inputdata);
+            session()->setFlashdata('edit_fumum', 'Data fasilitas hotel berhasil diupdate');
+            return redirect()->to('/petugas/fumum');
+        }
     }
 }

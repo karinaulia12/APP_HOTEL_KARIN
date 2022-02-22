@@ -35,8 +35,8 @@
                             </td>
                             <td><?= $row['deskripsi']; ?></td>
                             <td class="text-center">
-                                <a href="" class="btn btn-warning btn-sm mx-1 my-1">Edit</a>
-                                <a href="" class="btn btn-danger  btn-sm mx-1 my-1">Hapus</a>
+                                <a href="/petugas/fumum/edit/<?= $row['id_fumum']; ?>" class="btn btn-warning btn-sm mx-1 my-1">Edit</a>
+                                <a href="/petugas/fumum/hapus/<?= $row['id_fumum']; ?>" class="btn btn-danger  btn-sm mx-1 my-1">Hapus</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
