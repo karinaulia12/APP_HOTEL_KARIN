@@ -470,9 +470,10 @@ class PetugasController extends BaseController
                 ]
             ],
             'foto' => [
-                'rules' => 'uploaded[foto]',
+                'rules' => 'uploaded[foto]|is_image[foto]',
                 'errors' => [
                     'uploaded' => 'Foto harus diisi.',
+                    'is_image' => 'File yang Anda upload bukan gambar'
                 ]
             ],
             'deskripsi' => [
@@ -483,7 +484,7 @@ class PetugasController extends BaseController
             ]
         ])) {
             $validation = \Config\Services::validation();
-            return redirect()->to('/petugas/kamar/tambah')->with('validation', $validation);
+            return redirect()->to('/petugas/fumum/tambah')->with('validation', $validation);
         }
 
         helper(['form']);

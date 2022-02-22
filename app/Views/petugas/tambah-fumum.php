@@ -32,10 +32,10 @@
 
                     <div class="col mt-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
-                        <textarea class="form-control <?= ($validasi->hasError('Deskripsi')) ? 'is-invalid' : ''; ?>" id="exampleFormControlTextarea1" rows="3" placeholder="Tambahkan deskripsi" name="deskripsi"></textarea>
+                        <textarea class="form-control <?= ($validasi->hasError('deskripsi')) ? 'is-invalid' : ''; ?>" id="exampleFormControlTextarea1" rows="3" placeholder="Tambahkan deskripsi" name="deskripsi"></textarea>
                     </div>
                     <div id="validationServer03Feedback" class="invalid-feedback">
-                        <?= $validasi->getError('Deskripsi'); ?>
+                        <?= $validasi->getError('deskripsi'); ?>
                     </div>
                     <!-- </div> -->
                     <button type="submit" class="btn btn-primary my-3">Kirim</button>
