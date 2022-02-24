@@ -45,4 +45,9 @@ class Kamar extends Model
     //     $this->db->join('fasilitas_kamar', 'kamar.id_kamar = fasilitas_kamar.id_kamar')->where('id_kamar', $id_kamar)->get()->result();
 
     // }
+
+    public function hitung_kamar()
+    {
+        return $this->db->table('kamar')->countAll();
+    }
 }

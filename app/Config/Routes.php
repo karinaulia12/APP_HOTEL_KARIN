@@ -54,6 +54,8 @@ $routes->get('/petugas/kamar/hapus/(:num)', 'PetugasController::hapuskamar/$1', 
 $routes->get('/petugas/fkamar', 'PetugasController::tampilfasilitaskamar', ['filter' => 'otentifikasi']);
 $routes->get('/petugas/fkamar/tambah', 'PetugasController::tampiltambah_fkamar', ['filter' => 'otentifikasi']);
 $routes->post('/petugas/fkamar/add', 'PetugasController::tambah_fkamar', ['filter' => 'otentifikasi']);
+$routes->get('/petugas/fkamar/edit/(:num)', 'PetugasController::tampiledit_fkamar/$1', ['filter' => 'otentifikasi']);
+$routes->post('/petugas/fkamar/update', 'PetugasController::edit_fkamar', ['filter' => 'otentifikasi']);
 
 // crud fasilitas hotel
 $routes->get('/petugas/fumum', 'PetugasController::tampil_fumum', ['filter' => 'otentifikasi']);

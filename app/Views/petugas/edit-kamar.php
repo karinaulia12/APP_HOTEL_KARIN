@@ -24,9 +24,9 @@
                         <div class="col-6">
                             <label for="" class="form-label">Tipe Kamar</label>
                             <select class=" form-control <?= ($validasi->hasError('type_kamar')) ? 'is-invalid' : ''; ?>" name="type_kamar" id="">
-                                <option value="">Pilih tipe kamar</option>
-                                <option value="Superior">Superior</option>
-                                <option value="Deluxe">Deluxe</option>
+                                <!-- <option value="">Pilih tipe kamar</option> -->
+                                <option <?= $dataKamar[0]['type_kamar'] == 'superior' ? 'selected' : ''; ?> value="superior">Superior</option>
+                                <option <?= $dataKamar[0]['type_kamar'] == 'deluxe' ? 'selected' : ''; ?> value="deluxe">Deluxe</option>
                             </select>
                             <div id="validationServer03Feedback" class="invalid-feedback">
                                 <?= $validasi->getError('type_kamar'); ?>
