@@ -180,6 +180,7 @@ class PetugasController extends BaseController
             return redirect('/petugas/dashboard');
             exit;
         }
+        // $tabeljoin = $this->kamarModel->join('fasilitas_kamar', 'kamar.id_kamar = fasilitas_kamar.id_kamar')->get()->getResultArray();
         $tabeljoin = $this->kamarModel->join('fasilitas_kamar', 'kamar.id_kamar = fasilitas_kamar.id_kamar')->get()->getResultArray();
 
         $data = [
@@ -264,7 +265,9 @@ class PetugasController extends BaseController
 
         $data = [
             'title' => 'Fasilitas Hotel AuHotelia',
-            'data_fumum' => $this->fUmumModel->findAll()
+            // 'data_fumum' => $this->fUmumModel->findAll()
+            'data_fumum' => $this->fUmumModel->paginate(10, 'fasilitas_umum'),
+            'pager' => $this->fUmumModel->pager
         ];
         return view('petugas/fasilitas-umum', $data);
     }
@@ -321,10 +324,13 @@ class PetugasController extends BaseController
     // crud kamar
     public function tampilKamar()
     {
+        $pager = \Config\Services::pager();
         $data = [
             'title' => 'Kamar AuHotelia',
-            'dataKamar' => $this->kamarModel->findAll(),
-            'users' => $this->kamarModel->paginate(6)
+            // 'dataKamar' => $this->kamarModel->findAll(),
+            'dataKamar' => $this->kamarModel->paginate(8, 'kamar'),
+            'pager' => $this->kamarModel->pager,
+            // 'users' => $this->kamarModel->paginate(6)
         ];
 
         return view('petugas/tampil-kamar', $data);

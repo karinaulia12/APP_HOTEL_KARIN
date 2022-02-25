@@ -2,7 +2,7 @@
 
 <?= $this->section('content') ?>
 
-<div class="container-sm">
+<div class="container-fluid">
     <div class="row ">
         <div class="col">
             <h1 class="fw-lighter display-6"> Data Kamar</h1>
@@ -36,7 +36,7 @@
             <div class="row">
                 <?php $no = 1;
                 foreach ($dataKamar as $kamar) : ?>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="card mb-4" style="width: 18rem;">
                             <img src="/gambar/<?= $kamar['foto']; ?>" class="card-img-top" alt="Kamar">
                             <div class="card-body">
@@ -74,6 +74,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="text-center col-6">
+                <?= $pager->links('kamar', 'kamar_pagination'); ?>
             </div>
         </div>
     </div>
