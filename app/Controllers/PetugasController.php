@@ -324,7 +324,6 @@ class PetugasController extends BaseController
     // crud kamar
     public function tampilKamar()
     {
-        $pager = \Config\Services::pager();
         $data = [
             'title' => 'Kamar AuHotelia',
             // 'dataKamar' => $this->kamarModel->findAll(),
