@@ -4,11 +4,13 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-6">
+        <div class="col-8">
             <h1 class="fw-lighter display-6"> Data Kamar</h1>
+        </div>
+        <div class="col-4">
             <form action="" method="get">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control <?= $keyword ? $keyword : ''; ?>" placeholder="Cari Kamar..." name="keyword">
+                    <input type="text" class="form-control" value="<?= $keyword ? $keyword : ''; ?>" placeholder="Cari Kamar..." name="keyword">
                     <button class="btn btn-outline-primary" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>
             </form>
@@ -58,6 +60,7 @@
                                         <a href="/petugas/kamar/edit/<?= $kamar['id_kamar']; ?>" class="btn btn-warning"><i class="fa fa-pen" aria-hidden="true"></i></a>
                                         <a href="/petugas/kamar/edit-foto/<?= $kamar['id_kamar']; ?>" class="btn btn-primary"><i class="fa fa-pen" aria-hidden="true"></i> Foto</a>
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#modelHapus" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                        <!-- <a href="/petugas/kamar/hapus/<?= $kamar['id_kamar']; ?>" type="button" class="btn btn-danger">Hapus</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +73,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Hapus Data Kamar <?= $dataKamar[0]['no_kamar']; ?></h5>
+                                <h5 class="modal-title">Hapus Data Kamar</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
