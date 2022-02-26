@@ -9,12 +9,6 @@
             <form action="/petugas/fkamar/update" method="post">
                 <?= csrf_field(); ?>
                 <div class="form-group">
-                    <?php if (session()->getFlashdata('tambahFkamar')) : ?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            <?= session()->getFlashdata('tambahFkamar'); ?>
-                        </div>
-                    <?php endif; ?>
                     <div class="row">
                         <div class="col-6">
                             <label for="NoKamar" class="form-label">Fasilitas Kamar</label>
@@ -28,7 +22,7 @@
                             <label for="" class="form-label">No Kamar</label>
                             <select class=" form-control <?= ($validasi->hasError('no_kamar')) ? 'is-invalid' : ''; ?>" name="no_kamar" id="" value="">
                                 <?php foreach ($data_noKamar as $row) : ?>
-                                    <option value="<?= $row['id_kamar']; ?>"><?= $row['no_kamar']; ?></option>
+                                    <option <?= $data_noKamar[0]['no_kamar'] == $row['no_kamar'] ? 'selected' : ''; ?> value="<?= $row['id_kamar']; ?>"><?= $row['no_kamar']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <div id="validationServer03Feedback" class="invalid-feedback">
