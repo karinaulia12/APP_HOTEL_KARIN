@@ -55,6 +55,12 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="/petugas/fumum">Fasilitas Hotel</a>
                                         </li>
+                                        <!-- <li>
+                                            <div class="input-group col-6">
+                                                <input type="text" class="form-control" placeholder="Cari Kamar..." name="keyword">
+                                                <button class="btn btn-outline-light" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                            </div>
+                                        </li> -->
                                     <?php } ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modelLogout">Logout</a>

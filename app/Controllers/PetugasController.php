@@ -324,12 +324,20 @@ class PetugasController extends BaseController
     // crud kamar
     public function tampilKamar()
     {
+        // d($this->request->getVar('keyword'));
+        $keyword = $this->request->getVar('keyword');
+        if ($keyword) {
+            $kamar = $this->kamarModel->search($keyword);
+        } else {
+            $kamar = $this->kamarModel;
+        }
+        // $halaman = $this->request->getVar('page_kamar') ? $this->request->getVar('page_kamar') : 1;
         $data = [
             'title' => 'Kamar AuHotelia',
             // 'dataKamar' => $this->kamarModel->findAll(),
-            'dataKamar' => $this->kamarModel->paginate(8, 'kamar'),
+            'dataKamar' => $kamar->paginate(8, 'kamar'),
             'pager' => $this->kamarModel->pager,
-            // 'users' => $this->kamarModel->paginate(6)
+            'keyword' => $keyword
         ];
 
         return view('petugas/tampil-kamar', $data);

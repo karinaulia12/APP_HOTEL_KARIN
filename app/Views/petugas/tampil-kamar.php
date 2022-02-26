@@ -3,9 +3,19 @@
 <?= $this->section('content') ?>
 
 <div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <h1 class="fw-lighter display-6"> Data Kamar</h1>
+            <form action="" method="get">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control <?= $keyword ? $keyword : ''; ?>" placeholder="Cari Kamar..." name="keyword">
+                    <button class="btn btn-outline-primary" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="row ">
         <div class="col">
-            <h1 class="fw-lighter display-6"> Data Kamar</h1>
             <hr>
             <a href="/petugas/kamar/tambah" class="btn btn-primary mb-3"><i class="fa fa-plus" aria-hidden="true"></i> Kamar</a>
 
@@ -34,8 +44,7 @@
                 </div>
             <?php endif; ?>
             <div class="row">
-                <?php $no = 1;
-                foreach ($dataKamar as $kamar) : ?>
+                <?php foreach ($dataKamar as $kamar) : ?>
                     <div class="col-sm-3">
                         <div class="card mb-4" style="width: 18rem;">
                             <img src="/gambar/<?= $kamar['foto']; ?>" class="card-img-top" alt="Kamar">
@@ -82,5 +91,6 @@
         </div>
     </div>
 </div>
+
 
 <?= $this->endSection(); ?>

@@ -50,4 +50,11 @@ class Kamar extends Model
     {
         return $this->db->table('kamar')->countAll();
     }
+
+    public function search($keyword)
+    {
+        $builder = $this->table('kamar');
+        $builder->like('no_kamar', $keyword);
+        return $builder;
+    }
 }
