@@ -180,13 +180,21 @@ class PetugasController extends BaseController
             return redirect('/petugas/dashboard');
             exit;
         }
-        // $tabeljoin = $this->kamarModel->join('fasilitas_kamar', 'kamar.id_kamar = fasilitas_kamar.id_kamar')->get()->getResultArray();
+
+        $keyword = $this->request->getVar('keyword');
+        if ($keyword) {
+            $fkamar = $this->fKamarModel->search($keyword);
+        } else {
+            $fkamar = $this->fKamarModel;
+        }
+
         $tabeljoin = $this->kamarModel->join('fasilitas_kamar', 'kamar.id_kamar = fasilitas_kamar.id_kamar')->get()->getResultArray();
 
         $data = [
             'title' => 'Fasilitas Kamar AuHotelia',
             'dataKamar' => $tabeljoin,
-            'fkamar' => $this->fKamarModel->findAll()
+            'fkamar' => $fkamar->findAll(),
+            'keyword' => $keyword
         ];
 
         return view('petugas/fasilitas-kamar', $data);

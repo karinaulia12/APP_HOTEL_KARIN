@@ -10,15 +10,15 @@
             <div class="row">
                 <div class="col">
                     <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Kamar</div>
+                        <div class="card-header">Kamar
+                        </div>
                         <div class="card-body">
                             <div class="row">
                                 <h5 class="card-title col-8">Jumlah Kamar</h5>
-                                <!-- <div class="col-3"> -->
-                                <i class="fa fa-bed fa-3x" aria-hidden="true"></i>
-                                <!-- </div> -->
-                                <h6 class="card-text display-6 col-4"><?= $hitung_kamar; ?></h6>
-                                <a href="/petugas/kamar" class="col-8 mt-3 text-white">Lihat Kamar <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                                <h1 class="card-text display-5 col-4"><strong><?= $hitung_kamar; ?></strong></h1>
+                                <div class="row">
+                                    <a href="/petugas/kamar" class="text-white">Lihat Kamar <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -39,4 +39,9 @@ class FKamar extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function search($keyword)
+    {
+        return $this->table('fasilitas_kamar')->like('nama_fkamar', $keyword);
+    }
 }
