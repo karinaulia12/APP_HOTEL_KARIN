@@ -31,7 +31,8 @@ class PetugasController extends BaseController
             session()->set($session_data);
             return redirect()->to('/petugas/dashboard');
         } else {
-            return redirect('/petugas');
+            session()->setFlashdata('salahLogin', 'Username atau Password Anda salah.');
+            return redirect()->to('/petugas');
         }
     }
 
@@ -332,6 +333,20 @@ class PetugasController extends BaseController
     // crud kamar
     public function tampilKamar()
     {
+        if (!session()->get('sudahkahLogin')) {
+            return redirect('/petugas');
+            exit;
+        }
+
+        if (session()->get('level' != 'admin')) {
+            return redirect('/petugas');
+            exit;
+        }
+
+        if (session()->get('level' != 'admin')) {
+            return redirect('/petugas/dashboard');
+            exit;
+        }
         $keyword = $this->request->getVar('keyword');
         if ($keyword) {
             $kamar = $this->kamarModel->search($keyword);
