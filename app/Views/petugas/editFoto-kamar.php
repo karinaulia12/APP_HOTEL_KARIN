@@ -4,7 +4,7 @@
 <div class="container-sm">
     <div class="row">
         <div class="col">
-            <form action="/petugas/kamar/update-foto" method="post">
+            <form action="/petugas/kamar/update-foto" method="post" enctype="multipart/form-data">
                 <?= csrf_field(); ?>
                 <div class="form-group">
                     <div class="row">

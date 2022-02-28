@@ -2,10 +2,10 @@
 
 <?= $this->section('content') ?>
 
-<div class="container-fluid">
+<div class="container-sm">
     <div class="row">
         <div class="col-8">
-            <h1 class="fw-lighter display-6"> Data Kamar</h1>
+            <h1 class="fw-lighter display-6"> <i class="fa fa-bed text-primary" aria-hidden="true"></i> Data Kamar</h1>
         </div>
         <div class="col-4">
             <form action="" method="get">
@@ -47,7 +47,7 @@
             <?php endif; ?>
             <div class="row">
                 <?php foreach ($dataKamar as $kamar) : ?>
-                    <div class="col-sm-3">
+                    <div class="col mx-auto">
                         <div class="card mb-4" style="width: 18rem;">
                             <img src="/gambar/<?= $kamar['foto']; ?>" class="card-img-top" alt="Kamar">
                             <div class="card-body">

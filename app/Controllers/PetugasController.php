@@ -460,7 +460,8 @@ class PetugasController extends BaseController
 
         helper(['form']);
         $syarat = $this->request->getPost('foto');
-        unlink('gambar/' . $syarat);
+        $alamat = 'gambar/' . $syarat;
+        unlink($alamat);
         $upload = $this->request->getFile('foto');
         $upload->move(WRITEPATH . '..public/gambar/');
         $data = [
