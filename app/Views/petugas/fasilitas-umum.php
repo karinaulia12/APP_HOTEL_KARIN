@@ -3,8 +3,20 @@
 
 <div class="container-sm">
     <div class="row">
-        <div class="col">
+        <div class="col-8">
             <h1 class="fw-lighter display-6"> Fasilitas Hotel</h1>
+        </div>
+        <div class="col-4">
+            <form action="" method="get">
+                <div class="input-group">
+                    <input type="text" class="form-control" value="<?= $keyword ? $keyword : ''; ?>" placeholder="Cari Fasilitas Hotel..." name="keyword">
+                    <button class="btn btn-outline-primary" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
             <hr>
             <a href="/petugas/fumum/tambah" class="btn btn-primary mb-3"><i class="fa fa-plus" aria-hidden="true"></i> Fasilitas Hotel</a>
             <?php if (session()->getFlashdata('tambah_fumum')) : ?>

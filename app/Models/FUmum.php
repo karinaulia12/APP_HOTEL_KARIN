@@ -39,4 +39,14 @@ class FUmum extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function hitung_fumum()
+    {
+        return $this->table('fasilitas_umum')->countAll();
+    }
+
+    public function search($keyword)
+    {
+        return $this->table('fasilitas_umum')->like('nama_fumum', $keyword)->orLike('deskripsi', $keyword);
+    }
 }

@@ -16,9 +16,9 @@
                             <div class="row">
                                 <h5 class="card-title col-8">Jumlah Kamar</h5>
                                 <h1 class="card-text display-5 col-4"><strong><?= $hitung_kamar; ?></strong></h1>
-                                <div class="row">
-                                    <a href="/petugas/kamar" class="text-white">Lihat Kamar <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-                                </div>
+                                <!-- <div class="row"> -->
+                                <a href="/petugas/kamar" class="text-white">Lihat Kamar <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                                <!-- </div> -->
                             </div>
                         </div>
                     </div>
@@ -26,20 +26,26 @@
 
                 <div class="col">
                     <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Kamar</div>
+                        <div class="card-header">Fasilitas Kamar</div>
                         <div class="card-body">
-                            <h5 class="card-title">Jumlah Kamar</h5>
-                            <p class="card-text"><?= $hitung_kamar; ?></p>
+                            <div class="row">
+                                <h5 class="card-title col-9">Jumlah Fasilitas Kamar</h5>
+                                <p class="card-text display-5 col-3"><?= $hitung_fkamar; ?></p>
+                                <a href="/petugas/fkamar" class="text-white">Lihat Fasilitas Kamar <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="col">
                     <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Kamar</div>
+                        <div class="card-header">Fasilitas Hotel</div>
                         <div class="card-body">
-                            <h5 class="card-title">Jumlah Kamar</h5>
-                            <p class="card-text"><?= $hitung_kamar; ?></p>
+                            <div class="row">
+                                <h5 class="card-title col-9">Jumlah Fasilitas Hotel</h5>
+                                <p class="card-text display-5 col-3"><?= $hitung_fumum; ?></p>
+                                <a href="/petugas/fumum" class="text-white">Lihat Fasilitas Hotel <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>

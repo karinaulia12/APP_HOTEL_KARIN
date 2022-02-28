@@ -56,7 +56,9 @@ class PetugasController extends BaseController
 
         $data = [
             'title' => 'Dashboard Petugas | AuHotelia',
-            'hitung_kamar' => $this->kamarModel->hitung_kamar()
+            'hitung_kamar' => $this->kamarModel->hitung_kamar(),
+            'hitung_fkamar' => $this->fKamarModel->hitung_fkamar(),
+            'hitung_fumum' => $this->fUmumModel->hitung_fumum()
         ];
         return view('petugas/dashboard', $data);
     }
@@ -262,21 +264,29 @@ class PetugasController extends BaseController
             exit;
         }
 
-        if (session()->get('level' != 'admin')) {
+        if (session()->get('level' !== 'admin')) {
             return redirect('/petugas');
             exit;
         }
 
-        if (session()->get('level' != 'admin')) {
+        if (session()->get('level' !== 'admin')) {
             return redirect('/petugas/dashboard');
             exit;
+        }
+
+        $keyword = $this->request->getVar('keyword');
+        if ($keyword) {
+            $fumum = $this->fUmumModel->search($keyword);
+        } else {
+            $fumum = $this->fUmumModel;
         }
 
         $data = [
             'title' => 'Fasilitas Hotel AuHotelia',
             // 'data_fumum' => $this->fUmumModel->findAll()
-            'data_fumum' => $this->fUmumModel->paginate(10, 'fasilitas_umum'),
-            'pager' => $this->fUmumModel->pager
+            'data_fumum' => $fumum->paginate(10, 'fasilitas_umum'),
+            'pager' => $this->fUmumModel->pager,
+            'keyword' => $keyword
         ];
         return view('petugas/fasilitas-umum', $data);
     }
@@ -357,7 +367,7 @@ class PetugasController extends BaseController
         $data = [
             'title' => 'Kamar AuHotelia',
             // 'dataKamar' => $this->kamarModel->findAll(),
-            'dataKamar' => $kamar->paginate(8, 'kamar'),
+            'dataKamar' => $kamar->orderBy('no_kamar', 'asc')->paginate(9, 'kamar'),
             'pager' => $this->kamarModel->pager,
             'keyword' => $keyword
         ];

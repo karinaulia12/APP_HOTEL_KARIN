@@ -23,7 +23,7 @@
                         <!-- <div class="row"> -->
                         <div class="col-6">
                             <label for="" class="form-label">Tipe Kamar</label>
-                            <select class=" form-control <?= ($validasi->hasError('type_kamar')) ? 'is-invalid' : ''; ?>" name="type_kamar" id="">
+                            <select class="form-select <?= ($validasi->hasError('type_kamar')) ? 'is-invalid' : ''; ?>" name="type_kamar" id="">
                                 <!-- <option value="">Pilih tipe kamar</option> -->
                                 <option <?= $dataKamar[0]['type_kamar'] == 'superior' ? 'selected' : ''; ?> value="superior">Superior</option>
                                 <option <?= $dataKamar[0]['type_kamar'] == 'deluxe' ? 'selected' : ''; ?> value="deluxe">Deluxe</option>
@@ -34,16 +34,16 @@
                         </div>
                         <!-- </div> -->
 
-                        <div class="col-6">
+                        <!-- <div class="col-6">
                             <label for="" class="form-label mt-3">Foto</label>
-                            <input type="file" class="form-control <?= ($validasi->hasError('foto')) ? 'is-invalid' : ''; ?>" name="foto" id="" placeholder="" value="<?= $dataKamar[0]['foto']; ?>">
+                            <input type="file" class="form-control <?= ($validasi->hasError('foto')) ? 'is-invalid' : ''; ?>" name="foto" id="" placeholder="" value="<?= $dataKamar[0]['foto'] ? $dataKamar[0]['foto']  : '' ?>" readonly>
                             <div class="col-6">
                                 <img src="/gambar/<?= $dataKamar[0]['foto']; ?>" alt="" class="img-thumbnail mt-1 img-preview">
                             </div>
                             <div id="validationServer03Feedback" class="invalid-feedback">
                                 <?= $validasi->getError('foto'); ?>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="col-6">
                             <label for="" class="form-label mt-3">Harga</label>

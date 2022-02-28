@@ -23,18 +23,21 @@
                 <thead>
                     <tr class="text-center">
                         <th>#</th>
-                        <th>No Kamar</th>
+                        <!-- <th>No Kamar</th> -->
+                        <th>Tipe Kamar</th>
                         <th>Nama Fasilitas</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $no = 1;
-                    foreach ($dataKamar as $row) : ?>
+                    foreach ($fkamar as $row) : ?>
                         <tr>
                             <td class="text-center"><?= $no++; ?></td>
                             <td class="text-center">
-                                <a class="btn btn-info btn-sm rounded-pill text-white" href="/petugas/kamar/detail/<?= $row['id_kamar']; ?>"><?= $row['no_kamar']; ?></a>
+                                <a class="btn btn-info btn-sm rounded-pill text-white" href="/petugas/fkamar/detail/<?= $row['id_fkamar']; ?>">
+                                    <?= $row['type_kamar']; ?>
+                                </a>
                             </td>
                             <td><?= $row['nama_fkamar']; ?></td>
                             <td class="text-center">

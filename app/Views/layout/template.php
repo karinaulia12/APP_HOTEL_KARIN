@@ -40,9 +40,9 @@
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
-                            <?php if (session()->get('level') == 'admin') { ?>
-                                <div class="navbar navbar-collapse" id="collapseExample" id="navbarNav">
-                                    <ul class="navbar-nav">
+                            <div class="navbar navbar-collapse" id="collapseExample" id="navbarNav">
+                                <ul class="navbar-nav">
+                                    <?php if (session()->get('level') == 'admin') { ?>
                                         <li class="nav-item">
                                             <a class="nav-link active" aria-current="page" href="/petugas/dashboard">Home</a>
                                         </li>
@@ -55,18 +55,20 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="/petugas/fumum">Fasilitas Hotel</a>
                                         </li>
-                                        <!-- <li>
-                                            <div class="input-group col-6">
-                                                <input type="text" class="form-control" placeholder="Cari Kamar..." name="keyword">
-                                                <button class="btn btn-outline-light" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                                            </div>
-                                        </li> -->
+                                    <?php } elseif (session()->get('level') == 'resepsionis') { ?>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/petugas/fkamar">Reservasi</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/petugas/fumum">Tamu</a>
+                                        </li>
+
                                     <?php } ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modelLogout">Logout</a>
                                     </li>
-                                    </ul>
-                                </div>
+                                </ul>
+                            </div>
                         </div>
                         <!-- </div> -->
                     </nav>

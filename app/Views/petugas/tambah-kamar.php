@@ -21,8 +21,8 @@
 
                         <div class="col-6">
                             <label for="" class="form-label">Tipe Kamar</label>
-                            <select class=" form-control <?= ($validasi->hasError('type_kamar')) ? 'is-invalid' : ''; ?>" name="type_kamar" id="">
-                                <option value="">Pilih tipe kamar</option>
+                            <select class=" form-select <?= ($validasi->hasError('type_kamar')) ? 'is-invalid' : ''; ?>" name="type_kamar" id="">
+                                <option selected>Pilih tipe kamar</option>
                                 <option value="Superior">Superior</option>
                                 <option value="Deluxe">Deluxe</option>
                             </select>

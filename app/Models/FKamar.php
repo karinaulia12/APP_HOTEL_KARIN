@@ -42,6 +42,11 @@ class FKamar extends Model
 
     public function search($keyword)
     {
-        return $this->table('fasilitas_kamar')->like('nama_fkamar', $keyword);
+        return $this->table('fasilitas_kamar')->like('nama_fkamar', $keyword)->orLike('type_kamar', $keyword);
+    }
+
+    public function hitung_fkamar()
+    {
+        return $this->table('fasilitas_kamar')->countAll();
     }
 }
