@@ -191,16 +191,41 @@ class PetugasController extends BaseController
             $fkamar = $this->fKamarModel;
         }
 
-        $tabeljoin = $this->kamarModel->join('fasilitas_kamar', 'kamar.id_kamar = fasilitas_kamar.id_kamar')->get()->getResultArray();
+        // $tabeljoin = $this->kamarModel->join('fasilitas_kamar', 'kamar.id_kamar = fasilitas_kamar.id_kamar')->get()->getResultArray();
 
         $data = [
             'title' => 'Fasilitas Kamar AuHotelia',
-            'dataKamar' => $tabeljoin,
+            // 'dataKamar' => $tabeljoin,
             'fkamar' => $fkamar->findAll(),
             'keyword' => $keyword
         ];
 
         return view('petugas/fasilitas-kamar', $data);
+    }
+
+    public function tampildetail_fkamar($id_fkamar)
+    {
+        if (!session()->get('sudahkahLogin')) {
+            return redirect('/petugas');
+            exit;
+        }
+
+        if (session()->get('level' != 'admin')) {
+            return redirect('/petugas');
+            exit;
+        }
+
+        if (session()->get('level' != 'admin')) {
+            return redirect('/petugas/dashboard');
+            exit;
+        }
+
+        $data = [
+            'title' => 'Detail Fasilitas Kamar AuHotelia',
+            'dataFkamar' => $this->fKamarModel->where('id_fkamar', $id_fkamar)->findAll()
+        ];
+
+        return view('petugas/detail-fkamar', $data);
     }
 
     public function tampiltambah_fkamar()
@@ -219,14 +244,11 @@ class PetugasController extends BaseController
             return redirect('/petugas/dashboard');
             exit;
         }
-        // $join = $this->kamarModel->join('fasilitas_kamar', 'kamar.id_kamar = fasilitas_kamar.id_kamar')->getResultArray();
-        // $join = $this->fKamarModel->join('kamar', 'fasilitas_kamar.id_kamar = kamar.id_kamar')->get();
 
         $data = [
             'title' => 'Tambah Fasilitas Kamar AuHotelia',
             'validasi' => \Config\Services::validation(),
-            'data_noKamar' => $this->kamarModel->findAll()
-            // 'data_noKamar' => $join
+            'data_typeKamar' => $this->fKamarModel->findAll()
         ];
         return view('petugas/tambah-fkamar', $data);
     }
@@ -469,15 +491,14 @@ class PetugasController extends BaseController
         }
 
         helper(['form']);
-        $syarat = $this->request->getPost('foto');
-        $alamat = 'gambar/' . $syarat;
-        unlink($alamat);
         $upload = $this->request->getFile('foto');
-        $upload->move(WRITEPATH . '..public/gambar/');
+        $upload->move(WRITEPATH . '../public/gambar');
         $data = [
-            'foto' => $upload->getName(),
+            'foto' => $upload->getName()
         ];
-        $this->kamarModel->update($this->request->getPost('no_kamar'), $data);
+        $this->kamarModel->update($this->request->getPost('nama_foto'), $data);
+        $syarat = $this->request->getPost('nama_foto');
+        unlink('gambar/' . $syarat);
         session()->setFlashdata('editFotoKamar', 'Foto Kamar berhasil diupdate.');
         return redirect()->to('/petugas/kamar');
     }
@@ -505,6 +526,21 @@ class PetugasController extends BaseController
     // crud fasilitas kamar
     public function tambah_fkamar()
     {
+        if (!session()->get('sudahkahLogin')) {
+            return redirect('/petugas');
+            exit;
+        }
+
+        if (session()->get('level' != 'admin')) {
+            return redirect('/petugas');
+            exit;
+        }
+
+        if (session()->get('level' != 'admin')) {
+            return redirect('/petugas/dashboard');
+            exit;
+        }
+
         if (!$this->validate([
             'nama_fkamar' => [
                 'rules' => 'required',
@@ -512,7 +548,7 @@ class PetugasController extends BaseController
                     'required' => 'Fasilitas Kamar harus diisi.'
                 ]
             ],
-            'no_kamar' => [
+            'type_kamar' => [
                 'rules' => 'required',
                 'errors' => [
                     'required' => 'Nomor Kamar harus diisi.',
@@ -520,14 +556,12 @@ class PetugasController extends BaseController
             ]
         ])) {
             $validation = \Config\Services::validation();
-            return redirect()->to('/petugas/kamar/tambah')->with('validation', $validation);
+            return redirect()->to('/petugas/fkamar/tambah')->with('validation', $validation);
         }
-
         helper(['form']);
-
         $inputdata = [
             'nama_fkamar' => $this->request->getPost('nama_fkamar'),
-            'no_kamar' => $this->request->getPost('no_kamar')
+            'type_kamar' => $this->request->getPost('type_kamar')
         ];
 
         session()->set($inputdata);

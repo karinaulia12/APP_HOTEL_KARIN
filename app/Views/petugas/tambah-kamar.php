@@ -44,7 +44,10 @@
 
                         <div class="col-6 mt-3">
                             <label for="" class="form-label">Harga</label>
-                            <input type="text" class="form-control <?= ($validasi->hasError('harga')) ? 'is-invalid' : ''; ?>" name="harga" id="" placeholder="Masukkan harga kamar">
+                            <div class="input-group flex-nowrap">
+                                <span class="input-group-text" id="basic-addon1">Rp. </span>
+                                <input type="text" class="form-control <?= ($validasi->hasError('harga')) ? 'is-invalid' : ''; ?>" name="harga" id="" placeholder="Masukkan harga kamar">
+                            </div>
                             <div id="validationServer03Feedback" class="invalid-feedback">
                                 <?= $validasi->getError('harga'); ?>
                             </div>

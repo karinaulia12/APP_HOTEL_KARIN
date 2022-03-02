@@ -25,10 +25,10 @@
                         </div>
 
                         <div class="col-6">
-                            <label for="" class="form-label">No Kamar</label>
-                            <select class=" form-control <?= ($validasi->hasError('no_kamar')) ? 'is-invalid' : ''; ?>" name="no_kamar" id="">
-                                <?php foreach ($data_noKamar as $row) : ?>
-                                    <option value="<?= $row['id_kamar']; ?>"><?= $row['no_kamar']; ?></option>
+                            <label for="" class="form-label">Tipe Kamar</label>
+                            <select class="form-select text-capitalize <?= ($validasi->hasError('no_kamar')) ? 'is-invalid' : ''; ?>" name="type_kamar" id="">
+                                <?php foreach ($data_typeKamar as $row) : ?>
+                                    <option class="text-capitalize" value="<?= $row['type_kamar']; ?>"><?= $row['type_kamar']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <div id="validationServer03Feedback" class="invalid-feedback">

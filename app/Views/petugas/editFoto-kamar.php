@@ -18,10 +18,12 @@
                     <hr>
                     <div class="col-6">
                         <label for="" class="form-label mt-3">Foto</label>
-                        <input type="file" class="form-control" value="<?= $dataKamar[0]['foto']; ?>">
+                        <input type="file" name="foto" class="form-control">
                         <div class="col-6">
                             <img src="/gambar/<?= $dataKamar[0]['foto']; ?>" alt="" class="img-thumbnail mt-1 img-preview">
                         </div>
+
+                        <input type="text" name="nama_foto" value="<?= $dataKamar[0]['foto']; ?>">
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Simpan</button>
             </form>

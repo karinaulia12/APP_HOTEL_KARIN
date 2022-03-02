@@ -49,4 +49,9 @@ class FKamar extends Model
     {
         return $this->table('fasilitas_kamar')->countAll();
     }
+
+    public function get_typeKamar()
+    {
+        return $this->table('fasilitas_kamar')->select('type_kamar')->get();
+    }
 }

@@ -32,22 +32,13 @@
                                 <?= $validasi->getError('type_kamar'); ?>
                             </div>
                         </div>
-                        <!-- </div> -->
-
-                        <!-- <div class="col-6">
-                            <label for="" class="form-label mt-3">Foto</label>
-                            <input type="file" class="form-control <?= ($validasi->hasError('foto')) ? 'is-invalid' : ''; ?>" name="foto" id="" placeholder="" value="<?= $dataKamar[0]['foto'] ? $dataKamar[0]['foto']  : '' ?>" readonly>
-                            <div class="col-6">
-                                <img src="/gambar/<?= $dataKamar[0]['foto']; ?>" alt="" class="img-thumbnail mt-1 img-preview">
-                            </div>
-                            <div id="validationServer03Feedback" class="invalid-feedback">
-                                <?= $validasi->getError('foto'); ?>
-                            </div>
-                        </div> -->
 
                         <div class="col-6">
                             <label for="" class="form-label mt-3">Harga</label>
-                            <input type="text" class="form-control <?= ($validasi->hasError('harga')) ? 'is-invalid' : ''; ?>" name="harga" id="" placeholder="Masukkan harga kamar" value="<?= $dataKamar[0]['harga']; ?>">
+                            <div class="input-group flex-nowrap">
+                                <span class="input-group-text" id="basic-addon1">Rp. </span>
+                                <input type="text" class="form-control <?= ($validasi->hasError('harga')) ? 'is-invalid' : ''; ?>" name="harga" id="" placeholder="Masukkan harga kamar" value="<?= $dataKamar[0]['harga']; ?>">
+                            </div>
                             <div id="validationServer03Feedback" class="invalid-feedback">
                                 <?= $validasi->getError('harga'); ?>
                             </div>
