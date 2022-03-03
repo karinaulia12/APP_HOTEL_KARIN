@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="row g-0">
                     <div class="col-md-6">
-                        <img src="/gambar/<?= $dataKamar[0]['foto']; ?>" class="img-fluid rounded-start" alt="...">
+                        <img src="/gambar/<?= $dataKamar[0]['foto']; ?>" class="img-fluid rounded-start" alt="<?= $dataKamar[0]['foto']; ?>">
                     </div>
                     <div class="col-md-6">
                         <div class="card-body">

@@ -24,6 +24,7 @@
                         </div>
 
                         <input type="text" name="nama_foto" value="<?= $dataKamar[0]['foto']; ?>">
+                        <input type="text" name="id_kamar" value="<?= $dataKamar[0]['id_kamar']; ?>">
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Simpan</button>
             </form>

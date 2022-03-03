@@ -46,13 +46,21 @@
                 </div>
             <?php endif; ?>
             <div class="row">
+                <?php if (!$dataKamar) : ?>
+                    <div class="alert alert-info" role="alert">
+                        <h1 class="display-4">Data Kamar tidak ditemukan</h1>
+                    </div>
+                <?php endif; ?>
                 <?php foreach ($dataKamar as $kamar) : ?>
                     <div class="col mx-auto">
                         <div class="card mb-4" style="width: 18rem;">
-                            <img src="/gambar/<?= $kamar['foto']; ?>" class="card-img-top" alt="Kamar">
+                            <?php if (!$kamar['foto']) : ?>
+                                <img src="/gambar/noimage.jpg" class="card-img-top" alt="noimage.jpg">
+                            <?php endif; ?>
+                            <img src="/gambar/<?= $kamar['foto']; ?>" class="card-img-top" alt="<?= $kamar['foto']; ?>">
                             <div class="card-body">
                                 <h5 class="card-title text-center fs-3 fw-bold"><?= $kamar['no_kamar']; ?></h5>
-                                <p class="card-text fs-5 fw-lighter">Tipe Kamar: <strong><?= $kamar['type_kamar']; ?></strong></p>
+                                <p class="card-text fs-5 fw-lighter text-capitalize">Tipe Kamar: <?= $kamar['type_kamar']; ?></p>
                                 <p class="card-text fs-5 fw-lighter">Harga: <strong>Rp. <?= $kamar['harga']; ?></strong></p>
                                 <div class="text-center">
                                     <div class="btn-group" role="group" aria-label="Basic example">

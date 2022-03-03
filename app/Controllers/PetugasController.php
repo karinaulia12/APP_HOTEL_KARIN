@@ -491,14 +491,15 @@ class PetugasController extends BaseController
         }
 
         helper(['form']);
+        $syarat = $this->request->getPost('nama_foto');
+        unlink('gambar/' . $syarat);
         $upload = $this->request->getFile('foto');
+        // $namaBaru = $upload->getName();
         $upload->move(WRITEPATH . '../public/gambar');
         $data = [
             'foto' => $upload->getName()
         ];
         $this->kamarModel->update($this->request->getPost('nama_foto'), $data);
-        $syarat = $this->request->getPost('nama_foto');
-        unlink('gambar/' . $syarat);
         session()->setFlashdata('editFotoKamar', 'Foto Kamar berhasil diupdate.');
         return redirect()->to('/petugas/kamar');
     }
