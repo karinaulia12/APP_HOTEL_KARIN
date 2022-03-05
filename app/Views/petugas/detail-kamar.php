@@ -24,9 +24,9 @@
                                 <p class="card-text col-6">Harga : <strong>Rp. <?= $dataKamar[0]['harga']; ?></strong></p>
                             </div>
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col">
                                     <div class="card mt-3">
-                                        <h5 class="card-header">
+                                        <h5 class="card-header text-center">
                                             Deskripsi Kamar
                                         </h5>
                                         <div class="card-body">
@@ -35,7 +35,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <!-- <div class="col-6">
                                     <div class="card mt-3">
                                         <h5 class="card-header">
                                             Fasilitas Kamar
@@ -44,12 +44,13 @@
                                             <p class="card-text"><?= $dataKamar[0]['deskripsi']; ?></p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="row">
                                 <div class="col mt-4 text-center">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a href="/petugas/kamar/edit/<?= $dataKamar[0]['id_kamar']; ?>" class="btn btn-warning"><i class="fa fa-pen" aria-hidden="true"></i> Edit</a>
+                                        <a href="/petugas/kamar/edit-foto/<?= $dataKamar[0]['id_kamar']; ?>" class="btn btn-primary"><i class="fa fa-pen" aria-hidden="true"></i> Foto</a>
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#modelHapus" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Hapus</a>
                                     </div>
                                 </div>

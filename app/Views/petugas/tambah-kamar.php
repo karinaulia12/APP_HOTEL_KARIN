@@ -26,7 +26,7 @@
                                 <option value="Superior">Superior</option>
                                 <option value="Deluxe">Deluxe</option>
                             </select>
-                            <div id="validationServer03Feedback" class="invalid-feedback">
+                            <div class="invalid-feedback">
                                 <?= $validasi->getError('type_kamar'); ?>
                             </div>
                         </div>
@@ -34,22 +34,22 @@
                         <div class="col-6">
                             <label for="" class="form-label mt-3">Foto</label>
                             <input type="file" onChange="previewImage" class="form-control <?= ($validasi->hasError('foto')) ? 'is-invalid' : ''; ?>" name="foto" id="" placeholder="">
+                            <div class="invalid-feedback">
+                                <?= $validasi->getError('foto'); ?>
+                            </div>
                             <div class="col-sm-4">
                                 <img src="/gambar/noimage.jpg" onChange="previewImage" alt="" class="img-thumbnail mt-1 img-preview">
                             </div>
                         </div>
-                        <div id="validationServer03Feedback" class="invalid-feedback">
-                            <?= $validasi->getError('foto'); ?>
-                        </div>
 
                         <div class="col-6 mt-3">
                             <label for="" class="form-label">Harga</label>
-                            <div class="input-group flex-nowrap">
+                            <div class="input-group ">
                                 <span class="input-group-text" id="basic-addon1">Rp. </span>
-                                <input type="text" class="form-control <?= ($validasi->hasError('harga')) ? 'is-invalid' : ''; ?>" name="harga" id="" placeholder="Masukkan harga kamar">
-                            </div>
-                            <div id="validationServer03Feedback" class="invalid-feedback">
-                                <?= $validasi->getError('harga'); ?>
+                                <input type="text" class="form-control <?= ($validasi->hasError('harga')) ? 'is-invalid' : ''; ?>" name="harga" id="" placeholder="Masukkan harga kamar"><br>
+                                <div class="invalid-feedback">
+                                    <?= $validasi->getError('harga'); ?>
+                                </div>
                             </div>
                         </div>
 

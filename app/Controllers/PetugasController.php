@@ -432,21 +432,22 @@ class PetugasController extends BaseController
             ]
         ])) {
             $validation = \Config\Services::validation();
-            return redirect()->to('/petugas/kamar/tambah')->with('validation', $validation);
+            session()->setFlashdata('error', $this->validator->listErrors());
+            return redirect()->to('/petugas/kamar/tambah')->withInput('validation', $validation);
         }
 
         helper(['form']);
         //  ambil gambar
         $fileFoto = $this->request->getFile('foto');
-        // pindahkan file ke folder public/gambar
-        $fileFoto->move(WRITEPATH . '../public/gambar');
         //  ambil nama file
-        $namaFoto = $fileFoto->getName();
+        $namaFoto = $fileFoto->getRandomName();
+        // pindahkan file ke folder public/gambar
+        $fileFoto->move(WRITEPATH . '../public/gambar', $namaFoto);
 
         $inputdata = [
             'no_kamar' => $this->request->getPost('no_kamar'),
             'type_kamar' => $this->request->getPost('type_kamar'),
-            'foto' => $namaFoto,
+            'foto' => $fileFoto,
             'deskripsi' => $this->request->getPost('deskripsi'),
             'harga' => $this->request->getPost('harga')
         ];
@@ -491,15 +492,15 @@ class PetugasController extends BaseController
         }
 
         helper(['form']);
+        $id = $this->request->getPost('id_kamar');
         $syarat = $this->request->getPost('nama_foto');
-        unlink('gambar/' . $syarat);
         $upload = $this->request->getFile('foto');
-        // $namaBaru = $upload->getName();
-        $upload->move(WRITEPATH . '../public/gambar');
         $data = [
-            'foto' => $upload->getName()
+            'foto' => $upload
         ];
-        $this->kamarModel->update($this->request->getPost('nama_foto'), $data);
+        $upload->move('public/gambar', $upload->getRandomName());
+        unlink('gambar/' . $syarat);
+        $this->kamarModel->update($id, $data);
         session()->setFlashdata('editFotoKamar', 'Foto Kamar berhasil diupdate.');
         return redirect()->to('/petugas/kamar');
     }

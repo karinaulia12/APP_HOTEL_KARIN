@@ -10,7 +10,20 @@
                 <?= csrf_field(); ?>
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-5">
+                            <label for="" class="form-label">Tipe Kamar</label>
+                            <select class=" form-select <?= ($validasi->hasError('no_kamar')) ? 'is-invalid' : ''; ?>" name="type_kamar" id="" value="">
+                                <option <?= $data_fkamar[0]['type_kamar'] == 'superior' ? 'selected' : ''; ?> value="superior">Superior</option>
+                                <option <?= $data_fkamar[0]['type_kamar'] == 'deluxe' ? 'selected' : ''; ?> value="deluxe">Deluxe</option>
+                            </select>
+                            <div id="validationServer03Feedback" class="invalid-feedback">
+                                <?= $validasi->getError('no_kamar'); ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col">
                             <label for="NoKamar" class="form-label">Fasilitas Kamar</label>
                             <input class=" form-control <?= ($validasi->hasError('nama_fkamar')) ? 'is-invalid' : ''; ?>" name="nama_fkamar" id="" cols="30" rows="10" value="<?= $data_fkamar[0]['nama_fkamar']; ?>">
                             <div class="invalid-feedback">
@@ -18,17 +31,6 @@
                             </div>
                         </div>
 
-                        <div class="col-6">
-                            <label for="" class="form-label">No Kamar</label>
-                            <select class=" form-control <?= ($validasi->hasError('no_kamar')) ? 'is-invalid' : ''; ?>" name="no_kamar" id="" value="">
-                                <?php foreach ($data_noKamar as $row) : ?>
-                                    <option <?= $data_noKamar[0]['no_kamar'] == $row['no_kamar'] ? 'selected' : ''; ?> value="<?= $row['id_kamar']; ?>"><?= $row['no_kamar']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <div id="validationServer03Feedback" class="invalid-feedback">
-                                <?= $validasi->getError('no_kamar'); ?>
-                            </div>
-                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary my-3">Kirim</button>
                 </div>
