@@ -45,12 +45,12 @@ class PetugasController extends BaseController
     public function dashboard()
     {
         if (!session()->get('sudahkahLogin')) {
-            return redirect('/petugas');
+            return redirect()->to('/petugas');
             exit;
         }
 
         if (session()->get('level' != 'admin')) {
-            return redirect('/petugas');
+            return redirect()->to('/petugas');
             exit;
         }
 
@@ -67,17 +67,17 @@ class PetugasController extends BaseController
     public function tampiltambahkamar()
     {
         if (!session()->get('sudahkahLogin')) {
-            return redirect('/petugas');
+            return redirect()->to('/petugas');
             exit;
         }
 
         if (session()->get('level' != 'admin')) {
-            return redirect('/petugas');
+            return redirect()->to('/petugas');
             exit;
         }
 
         if (session()->get('level' != 'admin')) {
-            return redirect('/petugas/dashboard');
+            return redirect()->to('/petugas/dashboard');
             exit;
         }
         $data = [
@@ -92,17 +92,17 @@ class PetugasController extends BaseController
     public function tampildetailkamar($id_kamar)
     {
         if (!session()->get('sudahkahLogin')) {
-            return redirect('/petugas');
+            return redirect()->to('/petugas');
             exit;
         }
 
         if (session()->get('level' != 'admin')) {
-            return redirect('/petugas');
+            return redirect()->to('/petugas');
             exit;
         }
 
         if (session()->get('level' != 'admin')) {
-            return redirect('/petugas/dashboard');
+            return redirect()->to('/petugas/dashboard');
             exit;
         }
 
@@ -120,17 +120,17 @@ class PetugasController extends BaseController
     public function tampileditkamar($id_kamar)
     {
         if (!session()->get('sudahkahLogin')) {
-            return redirect('/petugas');
+            return redirect()->to('/petugas');
             exit;
         }
 
         if (session()->get('level' != 'admin')) {
-            return redirect('/petugas');
+            return redirect()->to('/petugas');
             exit;
         }
 
         if (session()->get('level' != 'admin')) {
-            return redirect('/petugas/dashboard');
+            return redirect()->to('/petugas/dashboard');
             exit;
         }
         $data = [
@@ -145,17 +145,17 @@ class PetugasController extends BaseController
     public function tampileditfotokamar($id_kamar)
     {
         if (!session()->get('sudahkahLogin')) {
-            return redirect('/petugas');
+            return redirect()->to('/petugas');
             exit;
         }
 
         if (session()->get('level' != 'admin')) {
-            return redirect('/petugas');
+            return redirect()->to('/petugas');
             exit;
         }
 
         if (session()->get('level' != 'admin')) {
-            return redirect('/petugas/dashboard');
+            return redirect()->to('/petugas/dashboard');
             exit;
         }
 
@@ -170,17 +170,17 @@ class PetugasController extends BaseController
     public function tampilfasilitaskamar()
     {
         if (!session()->get('sudahkahLogin')) {
-            return redirect('/petugas');
+            return redirect()->to('/petugas');
             exit;
         }
 
         if (session()->get('level' != 'admin')) {
-            return redirect('/petugas');
+            return redirect()->to('/petugas');
             exit;
         }
 
         if (session()->get('level' != 'admin')) {
-            return redirect('/petugas/dashboard');
+            return redirect()->to('/petugas/dashboard');
             exit;
         }
 
@@ -206,17 +206,17 @@ class PetugasController extends BaseController
     public function tampildetail_fkamar($id_fkamar)
     {
         if (!session()->get('sudahkahLogin')) {
-            return redirect('/petugas');
+            return redirect()->to('/petugas');
             exit;
         }
 
         if (session()->get('level' != 'admin')) {
-            return redirect('/petugas');
+            return redirect()->to('/petugas');
             exit;
         }
 
         if (session()->get('level' != 'admin')) {
-            return redirect('/petugas/dashboard');
+            return redirect()->to('/petugas/dashboard');
             exit;
         }
 
@@ -399,7 +399,7 @@ class PetugasController extends BaseController
 
     public function tambahKamar()
     {
-        // variabel untuk validasi
+        // pengkondisian untuk validasi
         if (!$this->validate([
             'no_kamar' => [
                 'rules' => 'required|max_length[10]|is_unique[kamar.no_kamar]',
@@ -432,7 +432,6 @@ class PetugasController extends BaseController
             ]
         ])) {
             $validation = \Config\Services::validation();
-            session()->setFlashdata('error', $this->validator->listErrors());
             return redirect()->to('/petugas/kamar/tambah')->withInput('validation', $validation);
         }
 
@@ -447,7 +446,7 @@ class PetugasController extends BaseController
         $inputdata = [
             'no_kamar' => $this->request->getPost('no_kamar'),
             'type_kamar' => $this->request->getPost('type_kamar'),
-            'foto' => $fileFoto,
+            'foto' => $namaFoto,
             'deskripsi' => $this->request->getPost('deskripsi'),
             'harga' => $this->request->getPost('harga')
         ];
@@ -460,9 +459,44 @@ class PetugasController extends BaseController
 
     public function editKamar()
     {
+        if (!$this->validate([
+            'no_kamar' => [
+                'rules' => 'required|max_length[10]|is_unique[kamar.no_kamar]',
+                'errors' => [
+                    'required' => 'Nomor Kamar harus diisi.',
+                    'max_length' => 'Nomor Kamar terlalu panjang',
+                    'is_unique' => 'Nomor Kamar sudah terdaftar.'
+                ]
+            ],
+            'type_kamar' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Tipe Kamar harus diisi.',
+                ]
+            ],
+            'foto' => [
+                'rules' => 'uploaded[foto]|is_image[foto]|mime_in[foto,image/jpg,image/png,image/jpeg]',
+                'errors' => [
+                    'uploaded' => 'Foto harus diisi.',
+                    'is_image' => 'File yang Anda pilih bukan gambar.',
+                    'mime_in' => 'Foto yang Anda pilih harus memiliki ekstensi .jpg, .png, atau .jpeg.'
+                ]
+            ],
+            'harga' => [
+                'rules' => 'required|is_numeric',
+                'errors' => [
+                    'required' => 'Harga harus diisi.',
+                    'is_numeric' => 'Harga tidak boleh mengandung huruf'
+                ]
+            ]
+        ])) {
+            $id_kamar = $this->request->getPost('id_kamar');
+            $validation = \Config\Services::validation();
+            return redirect()->to('/petugas/kamar/edit/' . $id_kamar)->withInput('validation', $validation);
+        }
+
         if ($this->request->getPost('no_kamar')) {
             $inputdata = [
-                // 'no_kamar' => $this->request->getPost('no_kamar'),
                 'type_kamar' => $this->request->getPost('type_kamar'),
                 'harga' => $this->request->getPost('harga'),
                 'deskripsi' => $this->request->getPost('deskripsi')
@@ -477,29 +511,30 @@ class PetugasController extends BaseController
     public function editFotoKamar()
     {
         if (!session()->get('sudahkahLogin')) {
-            return redirect('/petugas');
+            return redirect()->to('/petugas');
             exit;
         }
 
         if (session()->get('level' != 'admin')) {
-            return redirect('/petugas');
+            return redirect()->to('/petugas');
             exit;
         }
 
         if (session()->get('level' != 'admin')) {
-            return redirect('/petugas/dashboard');
+            return redirect()->to('/petugas/dashboard');
             exit;
         }
 
         helper(['form']);
         $id = $this->request->getPost('id_kamar');
         $syarat = $this->request->getPost('nama_foto');
-        $upload = $this->request->getFile('foto');
-        $data = [
-            'foto' => $upload
-        ];
-        $upload->move('public/gambar', $upload->getRandomName());
         unlink('gambar/' . $syarat);
+        $upload = $this->request->getFile('foto');
+        // $namaFoto = $upload->getRandomName();
+        $upload->move(WRITEPATH . '../public/gambar');
+        $data = [
+            'foto' => $upload->getName()
+        ];
         $this->kamarModel->update($id, $data);
         session()->setFlashdata('editFotoKamar', 'Foto Kamar berhasil diupdate.');
         return redirect()->to('/petugas/kamar');
@@ -575,15 +610,16 @@ class PetugasController extends BaseController
     public function edit_fkamar()
     {
         helper(['form']);
+        $id_fkamar = $this->request->getPost('id_fkamar');
 
-        if ($this->request->getPost('nama_fkamar')) {
+        if ($this->request->getPost('id_fkamar')) {
             $inputdata = [
                 'nama_fkamar' => $this->request->getPost('nama_fkamar'),
                 // 'foto' => $upload->getName(),
-                'id_kamar' => $this->request->getPost('id_kamar')
+                'type_kamar' => $this->request->getPost('type_kamar')
             ];
             session()->set($inputdata);
-            $this->fKamarModel->update($this->request->getPost('nama_fkamar'), $inputdata);
+            $this->fKamarModel->update($id_fkamar, $inputdata);
             session()->setFlashdata('edit_fkamar', 'Data fasilitas hotel berhasil diupdate');
             return redirect()->to('/petugas/fkamar');
         }
@@ -601,9 +637,7 @@ class PetugasController extends BaseController
             exit;
         }
         $syarat = ['id_fkamar' => $id_fkamar];
-        $dataFkamar = $this->fKamarModel->where($syarat)->find();
-        // hapus foto
-        unlink('gambar/' . $dataFkamar[0]['foto']);
+        $this->fKamarModel->where($syarat)->find();
         $this->fKamarModel->where('id_fkamar', $id_fkamar)->delete();
         session()->setFlashdata('hapus_fkamar', 'Data Kamar berhasil dihapus');
         return redirect()->to('/petugas/fkamar');
@@ -655,21 +689,41 @@ class PetugasController extends BaseController
     public function edit_fumum()
     {
         helper(['form']);
+        $id_fumum = $this->request->getPost('id_fumum');
         $syarat = $this->request->getPost('foto');
-        unlink('gambar/' . $syarat);
+        // unlink('gambar/' . $syarat);
         $upload = $this->request->getFile('foto');
-        $upload->move(WRITEPATH . '..public/gambar/');
+        $upload->move(WRITEPATH . '../public/gambar/', $upload->getRandomName());
 
-        if ($this->request->getPost('nama_fumum') || $syarat) {
+        if ($id_fumum) {
             $inputdata = [
                 'nama_fumum' => $this->request->getPost('nama_fumum'),
-                'foto' => $upload->getName(),
+                'foto' => $upload,
                 'deskripsi' => $this->request->getPost('deskripsi')
             ];
             session()->set($inputdata);
-            $this->fUmumModel->update($this->request->getPost('nama_fumum'), $inputdata);
+            $this->fUmumModel->update($id_fumum, $inputdata);
             session()->setFlashdata('edit_fumum', 'Data fasilitas hotel berhasil diupdate');
             return redirect()->to('/petugas/fumum');
         }
+    }
+
+    public function hapus_fumum($id_fumum)
+    {
+        if (!session()->get('sudahkahLogin')) {
+            return redirect()->to('/petugas');
+            exit;
+        }
+
+        if (session()->get('level') != 'admin') {
+            return redirect()->to('/petugas');
+            exit;
+        }
+        helper(['form']);
+        $syarat = ['id_fumum' => $id_fumum];
+        $data_fumum = $this->fUmumModel->where($syarat)->find();
+        unlink('gambar/', $data_fumum[0]['foto']);
+        $this->fUmumModel->where('id_fumum', $id_fumum)->delete();
+        session()->setFlashdata('hapus_fumum', 'Data fasilitas hotel berhasil dihapus');
     }
 }

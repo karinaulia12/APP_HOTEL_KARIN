@@ -16,9 +16,7 @@
                             <div class="row">
                                 <h5 class="card-title col-8">Jumlah Kamar</h5>
                                 <h1 class="card-text display-5 col-4"><strong><?= $hitung_kamar; ?></strong></h1>
-                                <!-- <div class="row"> -->
                                 <a href="/petugas/kamar" class="text-white">Lihat Kamar <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-                                <!-- </div> -->
                             </div>
                         </div>
                     </div>

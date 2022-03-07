@@ -52,11 +52,8 @@
                     </div>
                 <?php endif; ?>
                 <?php foreach ($dataKamar as $kamar) : ?>
-                    <div class="col mx-auto">
+                    <div class="col mx-4">
                         <div class="card mb-4" style="width: 18rem;">
-                            <?php if (!$kamar['foto']) : ?>
-                                <img src="/gambar/noimage.jpg" class="card-img-top" alt="noimage.jpg">
-                            <?php endif; ?>
                             <img src="/gambar/<?= $kamar['foto']; ?>" class="card-img-top" alt="<?= $kamar['foto']; ?>">
                             <div class="card-body">
                                 <h5 class="card-title text-center fs-3 fw-bold"><?= $kamar['no_kamar']; ?></h5>

@@ -8,9 +8,19 @@
     <title>Login Petugas</title>
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .huruf1 {
+            font-family: 'Quicksand', sans-serif;
+        }
+    </style>
 </head>
 
-<body class="bg-primary">
+<body class="bg-primary huruf1">
     <div class="container mt-5 pt-5 mb-5">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6 col-xl-6">

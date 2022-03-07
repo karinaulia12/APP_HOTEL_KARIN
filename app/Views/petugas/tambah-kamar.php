@@ -21,7 +21,7 @@
 
                         <div class="col-6">
                             <label for="" class="form-label">Tipe Kamar</label>
-                            <select class=" form-select <?= ($validasi->hasError('type_kamar')) ? 'is-invalid' : ''; ?>" name="type_kamar" id="">
+                            <select value="<?= old('type_kamar'); ?>" class=" form-select <?= ($validasi->hasError('type_kamar')) ? 'is-invalid' : ''; ?>" name="type_kamar" id="">
                                 <option selected>Pilih tipe kamar</option>
                                 <option value="Superior">Superior</option>
                                 <option value="Deluxe">Deluxe</option>
@@ -33,7 +33,7 @@
                         <!-- </div> -->
                         <div class="col-6">
                             <label for="" class="form-label mt-3">Foto</label>
-                            <input type="file" onChange="previewImage" class="form-control <?= ($validasi->hasError('foto')) ? 'is-invalid' : ''; ?>" name="foto" id="" placeholder="">
+                            <input type="file" onChange="previewImage" class="form-control <?= ($validasi->hasError('foto')) ? 'is-invalid' : ''; ?>" value="<?= old('foto'); ?>" name="foto" id="" placeholder="">
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('foto'); ?>
                             </div>
@@ -46,7 +46,7 @@
                             <label for="" class="form-label">Harga</label>
                             <div class="input-group ">
                                 <span class="input-group-text" id="basic-addon1">Rp. </span>
-                                <input type="text" class="form-control <?= ($validasi->hasError('harga')) ? 'is-invalid' : ''; ?>" name="harga" id="" placeholder="Masukkan harga kamar"><br>
+                                <input type="text" class="form-control <?= ($validasi->hasError('harga')) ? 'is-invalid' : ''; ?>" value="<?= old('harga'); ?>" name="harga" id="" placeholder="Masukkan harga kamar"><br>
                                 <div class="invalid-feedback">
                                     <?= $validasi->getError('harga'); ?>
                                 </div>
@@ -55,7 +55,7 @@
 
                         <div class="col-8 mt-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Tambahkan deskripsi" name="deskripsi"></textarea>
+                            <textarea class="form-control" value="<?= old('deskripsi'); ?>" id="exampleFormControlTextarea1" rows="3" placeholder="Tambahkan deskripsi" name="deskripsi"></textarea>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary my-3">Kirim</button>

@@ -12,11 +12,9 @@
                     <hr>
                     <div class="row">
                         <div class="col-6">
+                            <input type="hidden" name="id_kamar" value="<?= $dataKamar[0]['id_kamar']; ?>">
                             <label for="NoKamar" class="form-label">No. Kamar</label>
-                            <input type="text" class="form-control <?= ($validasi->hasError('no_kamar')) ? 'is-invalid' : ''; ?>" name="no_kamar" id="" placeholder="Masukkan nomor kamar" value="<?= $dataKamar[0]['no_kamar']; ?>" readonly>
-                            <div class="invalid-feedback">
-                                <?= $validasi->getError('no_kamar'); ?>
-                            </div>
+                            <input type="text" class="form-control" name="no_kamar" id="" placeholder="Masukkan nomor kamar" value="<?= $dataKamar[0]['no_kamar']; ?>" readonly>
                         </div>
                         <!-- </div> -->
 
@@ -37,9 +35,9 @@
                             <label for="" class="form-label mt-3">Harga</label>
                             <div class="input-group flex-nowrap">
                                 <span class="input-group-text" id="basic-addon1">Rp. </span>
-                                <input type="text" class="form-control <?= ($validasi->hasError('harga')) ? 'is-invalid' : ''; ?>" name="harga" id="" placeholder="Masukkan harga kamar" value="<?= $dataKamar[0]['harga']; ?>">
+                                <input type="text" class="form-control <?= ($validasi->hasError('harga')) ? 'is-invalid' : ''; ?>" name="harga" id="" placeholder="Masukkan harga kamar" value="<?= old('harga'); ?>">
                             </div>
-                            <div id="validationServer03Feedback" class="invalid-feedback">
+                            <div class="invalid-feedback">
                                 <?= $validasi->getError('harga'); ?>
                             </div>
                         </div>

@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="col-6">
                             <label for="NoKamar" class="form-label">Fasilitas Kamar</label>
-                            <textarea class=" form-control <?= ($validasi->hasError('nama_fkamar')) ? 'is-invalid' : ''; ?>" name="nama_fkamar" id="" cols="30" rows="10"></textarea>
+                            <textarea class="form-control <?= ($validasi->hasError('nama_fkamar')) ? 'is-invalid' : ''; ?>" placeholder="Masukkan fasilitas kamar" name="nama_fkamar" id="" cols="30" rows="10"></textarea>
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('nama_fkamar'); ?>
                             </div>
@@ -27,9 +27,9 @@
                         <div class="col-6">
                             <label for="" class="form-label">Tipe Kamar</label>
                             <select class="form-select text-capitalize <?= ($validasi->hasError('no_kamar')) ? 'is-invalid' : ''; ?>" name="type_kamar" id="">
-                                <?php foreach ($data_typeKamar as $row) : ?>
-                                    <option class="text-capitalize" value="<?= $row['type_kamar']; ?>"><?= $row['type_kamar']; ?></option>
-                                <?php endforeach; ?>
+                                <option selected>Pilih Tipe Kamar</option>
+                                <option class="text-capitalize" value="superior">superior</option>
+                                <option class="text-capitalize" value="deluxe">deluxe</option>
                             </select>
                             <div id="validationServer03Feedback" class="invalid-feedback">
                                 <?= $validasi->getError('no_kamar'); ?>
