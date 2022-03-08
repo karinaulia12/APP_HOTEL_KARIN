@@ -39,4 +39,9 @@ class Tamu extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function jml_tamu()
+    {
+        return $this->db->table('tamu')->countAll();
+    }
 }

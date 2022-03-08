@@ -39,4 +39,9 @@ class Reservasi extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function jml_reservasi()
+    {
+        return $this->table('reservasi')->countAll();
+    }
 }

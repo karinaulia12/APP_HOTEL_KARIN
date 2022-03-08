@@ -39,6 +39,10 @@ $routes->post('/petugas/login', 'PetugasController::login');
 $routes->get('/petugas/dashboard', 'PetugasController::dashboard', ['filter' => 'otentifikasi']);
 $routes->get('/petugas/logout', 'PetugasController::logout');
 
+// resepsionis
+$routes->get('/resepsionis/dashboard', 'ResepsionisController::dashboard', ['filter' => 'otentifikasi']);
+$routes->get('/resepsionis/reservasi', 'ResepsionisController::tampil_reservasi');
+
 // crud kamar
 $routes->get('/petugas/kamar', 'PetugasController::tampilKamar', ['filter' => 'otentifikasi']);
 $routes->get('/petugas/kamar/tambah', 'PetugasController::tampiltambahkamar', ['filter' => 'otentifikasi']);
@@ -66,11 +70,6 @@ $routes->post('/petugas/fumum/add', 'PetugasController::tambah_fumum', ['filter'
 $routes->get('/petugas/fumum/edit/(:num)', 'PetugasController::tampiledit_fumum/$1', ['filter' => 'otentifikasi']);
 $routes->post('/petugas/fumum/update', 'PetugasController::edit_fumum', ['filter' => 'otentifikasi']);
 
-
-// resepsionis
-
-
-// tamu
 
 /*
  * --------------------------------------------------------------------

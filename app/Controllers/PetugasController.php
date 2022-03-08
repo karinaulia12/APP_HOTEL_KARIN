@@ -29,7 +29,11 @@ class PetugasController extends BaseController
                 'sudahkahLogin' => true
             ];
             session()->set($session_data);
-            return redirect()->to('/petugas/dashboard');
+            if (session()->get('level') == 'admin') {
+                return redirect()->to('/petugas/dashboard');
+            } else {
+                return redirect()->to('/resepsionis/dashboard');
+            }
         } else {
             session()->setFlashdata('salahLogin', 'Username atau Password Anda salah.');
             return redirect()->to('/petugas');
@@ -498,8 +502,8 @@ class PetugasController extends BaseController
         if ($this->request->getPost('no_kamar')) {
             $inputdata = [
                 'type_kamar' => $this->request->getPost('type_kamar'),
-                'harga' => $this->request->getPost('harga'),
-                'deskripsi' => $this->request->getPost('deskripsi')
+                'harga'      => $this->request->getPost('harga'),
+                'deskripsi'  => $this->request->getPost('deskripsi')
             ];
             session()->set($inputdata);
             $this->kamarModel->update($this->request->getPost('no_kamar'), $inputdata);

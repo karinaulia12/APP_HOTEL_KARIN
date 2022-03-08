@@ -44,7 +44,7 @@
 
                         <div class="mt-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" value="<?= $dataKamar[0]['deskripsi']; ?>" placeholder="Tambahkan deskripsi" name="deskripsi"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" placeholder="Tambahkan deskripsi" name="deskripsi"><?= $dataKamar[0]['deskripsi']; ?></textarea>
                         </div>
 
                     </div>

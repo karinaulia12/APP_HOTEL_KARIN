@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col-6">
                             <label for="NoKamar" class="form-label">Fasilitas Hotel</label>
-                            <textarea class="form-control <?= ($validasi->hasError('nama_fumum')) ? 'is-invalid' : ''; ?>" id="exampleFormControlTextarea1" rows="4" value="<?= $data_fumum[0]['nama_fumum']; ?>" placeholder="Tambahkan fasilitas hotel" name="nama_fumum"></textarea>
+                            <textarea class="form-control <?= ($validasi->hasError('nama_fumum')) ? 'is-invalid' : ''; ?>" id="exampleFormControlTextarea1" rows="4" placeholder="Tambahkan fasilitas hotel" name="nama_fumum"><?= $data_fumum[0]['nama_fumum']; ?></textarea>
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('nama_fumum'); ?>
                             </div>
@@ -33,7 +33,7 @@
 
                         <div class="mt-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
-                            <textarea class="form-control <?= ($validasi->hasError('deskripsi')) ? 'is-invalid' : ''; ?>" id="exampleFormControlTextarea1" rows="4" value="<?= $data_fumum[0]['deskripsi']; ?>" placeholder="Tambahkan deskripsi" name="deskripsi"></textarea>
+                            <textarea class="form-control <?= ($validasi->hasError('deskripsi')) ? 'is-invalid' : ''; ?>" id="exampleFormControlTextarea1" rows="4" placeholder="Tambahkan deskripsi" name="deskripsi"><?= $data_fumum[0]['deskripsi']; ?></textarea>
                             <div id="validationServer03Feedback" class="invalid-feedback">
                                 <?= $validasi->getError('deskripsi'); ?>
                             </div>

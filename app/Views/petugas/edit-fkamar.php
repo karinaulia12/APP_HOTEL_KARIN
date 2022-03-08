@@ -26,7 +26,7 @@
                         <div class="col">
                             <label for="NoKamar" class="form-label">Fasilitas Kamar</label>
                             <input type="hidden" name="id_fkamar" value="<?= $data_fkamar[0]['id_fkamar']; ?>">
-                            <input class=" form-control <?= ($validasi->hasError('nama_fkamar')) ? 'is-invalid' : ''; ?>" name="nama_fkamar" id="" cols="30" rows="10" value="<?= $data_fkamar[0]['nama_fkamar']; ?>">
+                            <textarea class=" form-control <?= ($validasi->hasError('nama_fkamar')) ? 'is-invalid' : ''; ?>" name="nama_fkamar" id="" cols="30" rows="10"><?= $data_fkamar[0]['nama_fkamar']; ?></textarea>
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('nama_fkamar'); ?>
                             </div>

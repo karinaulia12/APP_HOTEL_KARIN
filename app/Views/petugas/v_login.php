@@ -17,10 +17,14 @@
         .huruf1 {
             font-family: 'Quicksand', sans-serif;
         }
+
+        .bg-pink {
+            background-color: #9E426B;
+        }
     </style>
 </head>
 
-<body class="bg-primary huruf1">
+<body class="bg-pink huruf1">
     <div class="container mt-5 pt-5 mb-5">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6 col-xl-6">
