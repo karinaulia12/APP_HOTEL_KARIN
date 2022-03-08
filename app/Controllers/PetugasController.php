@@ -512,37 +512,64 @@ class PetugasController extends BaseController
         }
     }
 
-    public function editFotoKamar()
+    public function editKamar1()
     {
-        if (!session()->get('sudahkahLogin')) {
-            return redirect()->to('/petugas');
-            exit;
+        $no_kamar = $this->request->getPost('no_kamar');
+        $nama_foto_lama = $this->request->getPost('nama_foto');
+
+        $file = $this->request->getFile('foto');
+        if ($file->isValid() && !$file->hasMoved()) {
+            if (file_exists('gambar/' . $nama_foto_lama)) {
+                unlink('gambar/' . $nama_foto_lama);
+            }
+            $nama_foto = $file->getRandomName();
+            $file->move(WRITEPATH . '../public/gambar', $nama_foto);
+        } else {
+            $nama_foto = $nama_foto_lama;
         }
 
-        if (session()->get('level' != 'admin')) {
-            return redirect()->to('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect()->to('/petugas/dashboard');
-            exit;
-        }
-
-        helper(['form']);
-        $id = $this->request->getPost('id_kamar');
-        $syarat = $this->request->getPost('nama_foto');
-        unlink('gambar/' . $syarat);
-        $upload = $this->request->getFile('foto');
-        // $namaFoto = $upload->getRandomName();
-        $upload->move(WRITEPATH . '../public/gambar');
         $data = [
-            'foto' => $upload->getName()
+            'type_kamar' => $this->request->getPost('type_kamar'),
+            'foto' => $nama_foto,
+            'deskripsi' => $this->request->getPost('deskripsi'),
+            'harga' => $this->request->getPost('harga')
         ];
-        $this->kamarModel->update($id, $data);
-        session()->setFlashdata('editFotoKamar', 'Foto Kamar berhasil diupdate.');
-        return redirect()->to('/petugas/kamar');
+
+        $this->kamarModel->update($no_kamar, $data);
+        return redirect()->to('/petugas/kamar')->with('editKamar', 'Data kamar berhasil diupdate');
     }
+
+    // public function editFotoKamar()
+    // {
+    //     if (!session()->get('sudahkahLogin')) {
+    //         return redirect()->to('/petugas');
+    //         exit;
+    //     }
+
+    //     if (session()->get('level' != 'admin')) {
+    //         return redirect()->to('/petugas');
+    //         exit;
+    //     }
+
+    //     if (session()->get('level' != 'admin')) {
+    //         return redirect()->to('/petugas/dashboard');
+    //         exit;
+    //     }
+
+    //     helper(['form']);
+    //     $id = $this->request->getPost('id_kamar');
+    //     $syarat = $this->request->getPost('nama_foto');
+    //     unlink('gambar/' . $syarat);
+    //     $upload = $this->request->getFile('foto');
+    //     // $namaFoto = $upload->getRandomName();
+    //     $upload->move(WRITEPATH . '../public/gambar');
+    //     $data = [
+    //         'foto' => $upload->getName()
+    //     ];
+    //     $this->kamarModel->update($id, $data);
+    //     session()->setFlashdata('editFotoKamar', 'Foto Kamar berhasil diupdate.');
+    //     return redirect()->to('/petugas/kamar');
+    // }
 
     public function hapusKamar($id_kamar)
     {
@@ -692,24 +719,29 @@ class PetugasController extends BaseController
 
     public function edit_fumum()
     {
-        helper(['form']);
         $id_fumum = $this->request->getPost('id_fumum');
-        $syarat = $this->request->getPost('foto');
-        // unlink('gambar/' . $syarat);
-        $upload = $this->request->getFile('foto');
-        $upload->move(WRITEPATH . '../public/gambar/', $upload->getRandomName());
+        $nama_foto_lama = $this->request->getPost('nama_foto_fumum');
 
-        if ($id_fumum) {
-            $inputdata = [
-                'nama_fumum' => $this->request->getPost('nama_fumum'),
-                'foto' => $upload,
-                'deskripsi' => $this->request->getPost('deskripsi')
-            ];
-            session()->set($inputdata);
-            $this->fUmumModel->update($id_fumum, $inputdata);
-            session()->setFlashdata('edit_fumum', 'Data fasilitas hotel berhasil diupdate');
-            return redirect()->to('/petugas/fumum');
+        $file = $this->request->getFile('foto');
+        if ($file->isValid() && !$file->hasMoved()) {
+            if (file_exists('gambar/' . $nama_foto_lama)) {
+                unlink('gambar/' . $nama_foto_lama);
+            }
+            $nama_foto_fumum = $file->getRandomName();
+            $file->move(WRITEPATH . '../public/gambar', $nama_foto_fumum);
+        } else {
+            $nama_foto_fumum = $nama_foto_lama;
         }
+
+        $data = [
+            'nama_fumum' => $this->request->getPost('nama_fumum'),
+            'foto' => $nama_foto_fumum,
+            'deskripsi' => $this->request->getPost('deskripsi')
+        ];
+
+        $this->fUmumModel->update($id_fumum, $data);
+        session()->setFlashdata('edit_fumum', 'Data fasilitas hotel berhasil diupdate');
+        return redirect()->to('/petugas/fumum');
     }
 
     public function hapus_fumum($id_fumum)
