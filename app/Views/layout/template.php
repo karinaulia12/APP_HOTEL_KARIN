@@ -38,7 +38,7 @@
         <div class="container-fluid mb-5">
             <div class="row mb-5">
                 <div class="col mb-5">
-                    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-pink" data-bs-toggle=" collapse" href="#collapseExample">
+                    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary" data-bs-toggle=" collapse" href="#collapseExample">
                         <div class=" container-sm">
                             <a class="navbar-brand" role="button" aria-expanded="false" aria-controls="collapseExample" href="/petugas/dashboard"> <i class="fa-solid fa-hotel"></i> AuHotelia</a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

@@ -14,7 +14,7 @@ class Reservasi extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_reservasi', 'id_kamar', 'nik', 'checkin', 'checkout', 'jml_kamar', 'total'];
+    protected $allowedFields    = ['id_reservasi', 'nik', 'checkin', 'checkout', 'jml_kamar', 'total', 'status'];
 
     // Dates
     protected $useTimestamps = false;

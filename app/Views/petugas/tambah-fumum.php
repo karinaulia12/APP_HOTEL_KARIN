@@ -13,7 +13,7 @@
                     <!-- <div class="row"> -->
                     <div class="col-8">
                         <label for="NoKamar" class="form-label">Nama Fasilitas</label>
-                        <input type="text" class="form-control <?= ($validasi->hasError('nama_fumum')) ? 'is-invalid' : ''; ?>" name="nama_fumum" id="" placeholder="Masukkan nomor kamar" value="<?= old('nama_fumum'); ?>">
+                        <textarea type="text" rows="4" class="form-control <?= ($validasi->hasError('nama_fumum')) ? 'is-invalid' : ''; ?>" name="nama_fumum" id="" placeholder="Masukkan fasilitas hotel" value=""><?= old('nama_fumum'); ?></textarea>
                         <div class="invalid-feedback">
                             <?= $validasi->getError('nama_fumum'); ?>
                         </div>

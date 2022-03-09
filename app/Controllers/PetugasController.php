@@ -704,10 +704,11 @@ class PetugasController extends BaseController
 
         helper(['form']);
         $fileFoto = $this->request->getFile('foto');
-        $fileFoto->move(WRITEPATH . '../public/gambar');
+        $nama_foto = $fileFoto->getRandomName();
+        $fileFoto->move(WRITEPATH . '../public/gambar', $nama_foto);
         $inputdata = [
             'nama_fumum' => $this->request->getPost('nama_fumum'),
-            'foto' => $fileFoto->getName(),
+            'foto' => $nama_foto,
             'deskripsi' => $this->request->getPost('deskripsi')
         ];
 

@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Kamar extends Model
+class ReservasiKamar extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'kamar';
-    protected $primaryKey       = 'no_kamar';
+    protected $table            = 'reservasi_kamar';
+    protected $primaryKey       = 'id_reservasi_kamar';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_kamar', 'no_kamar', 'id_type_kamar', 'foto', 'harga', 'deskripsi'];
+    protected $allowedFields    = ['id_reservasi_kamar', 'id_kamar', 'id_reservasi'];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,24 +39,4 @@ class Kamar extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-
-    // public function kamarjoin_fkamar($id_kamar) {
-    //     // $this->db->select('*');
-    //     $this->db->join('fasilitas_kamar', 'kamar.id_kamar = fasilitas_kamar.id_kamar')->where('id_kamar', $id_kamar)->get()->result();
-
-    // }
-
-    public function hitung_kamar()
-    {
-        return $this->db->table('kamar')->countAll();
-    }
-
-    public function search($keyword)
-    {
-        // $builder = $this->table('kamar');
-        // $builder->like('no_kamar', $keyword);
-        // return $builder;
-
-        return $this->table('kamar')->like('no_kamar', $keyword)->orLike('type_kamar', $keyword)->orLike('deskripsi', $keyword)->orLike('harga', $keyword);
-    }
 }

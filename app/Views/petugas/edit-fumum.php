@@ -10,7 +10,7 @@
                 <div class="form-group">
                     <h1 class="display-6"><i class="fa fa-pen text-primary" aria-hidden="true"></i> Edit Fasilitas Hotel</h1>
                     <hr>
-                    <?php if (session()->getFlashdata('edit_fumum')) : ?>
+                    <?php if (!empty(session()->getFlashdata('edit_fumum'))) : ?>
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             <?= session()->getFlashdata('edit_fumum'); ?>
