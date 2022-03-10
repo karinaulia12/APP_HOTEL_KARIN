@@ -19,8 +19,20 @@
                         <div class="col-6">
                             <label for="" class="form-label">Tipe Kamar</label>
                             <select value="<?= old('type_kamar'); ?>" class=" form-select <?= ($validasi->hasError('type_kamar')) ? 'is-invalid' : ''; ?>" name="type_kamar">
-                                <option <?= $dataKamar[0]['type_kamar'] == 'superior' ? 'selected' : ''; ?> value="superior">Superior</option>
-                                <option <?= $dataKamar[0]['type_kamar'] == 'deluxe' ? 'selected' : ''; ?> value="deluxe">Deluxe</option>
+                                <option <?= $dataKamar[0]['id_type_kamar'] == '1' ? 'selected' : ''; ?> value="1">Standard Room - Rp. <?= $data_typekamar[0]['harga']; ?></option>
+                                <option <?= $dataKamar[0]['id_type_kamar'] == '2' ? 'selected' : ''; ?> value="2">Superior Room - Rp. <?= $data_typekamar[0]['harga']; ?></option>
+                                <option <?= $dataKamar[0]['id_type_kamar'] == '3' ? 'selected' : ''; ?> value="3">Deluxe Room - Rp. <?= $data_typekamar[0]['harga']; ?></option>
+                                <option <?= $dataKamar[0]['id_type_kamar'] == '4' ? 'selected' : ''; ?> value="4">Junior Suite Room - Rp. <?= $data_typekamar[0]['harga']; ?></option>
+                                <option <?= $dataKamar[0]['id_type_kamar'] == '5' ? 'selected' : ''; ?> value="5">Suite Room - Rp. <?= $data_typekamar[0]['harga']; ?></option>
+                                <option <?= $dataKamar[0]['id_type_kamar'] == '6' ? 'selected' : ''; ?> value="6">Presidential Room - Rp. <?= $data_typekamar[0]['harga']; ?></option>
+
+
+                                <!-- <option <?= $data_typekamar[0]['type_kamar'] == 'Standard Room' ? 'selected' : ''; ?> value="Standard Room">Standard Room - Rp. <?= $data_typekamar[0]['harga']; ?></option>
+                                <option <?= $data_typekamar[0]['type_kamar'] == 'Superior Room' ? 'selected' : ''; ?> value="Superior Room">Superior Room - Rp. <?= $data_typekamar[0]['harga']; ?></option>
+                                <option <?= $data_typekamar[0]['type_kamar'] == 'Deluxe Room' ? 'selected' : ''; ?> value="Deluxe Room">Deluxe Room - Rp. <?= $data_typekamar[0]['harga']; ?></option>
+                                <option <?= $data_typekamar[0]['type_kamar'] == 'Junior Suite Room' ? 'selected' : ''; ?> value="Junior Suite Room">Junior Suite Room - Rp. <?= $data_typekamar[0]['harga']; ?></option>
+                                <option <?= $data_typekamar[0]['type_kamar'] == 'Suite Room' ? 'selected' : ''; ?> value="Suite Room">Suite Room - Rp. <?= $data_typekamar[0]['harga']; ?></option>
+                                <option <?= $data_typekamar[0]['type_kamar'] == 'Presidential Room' ? 'selected' : ''; ?> value="Presidential Room">Presidential Room - Rp. <?= $data_typekamar[0]['harga']; ?></option> -->
                             </select>
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('type_kamar'); ?>
@@ -47,7 +59,7 @@
                             <label for="" class="form-label">Harga</label>
                             <div class="input-group ">
                                 <span class="input-group-text" id="basic-addon1">Rp. </span>
-                                <input type="text" class="form-control <?= ($validasi->hasError('harga')) ? 'is-invalid' : ''; ?>" value="<?= $dataKamar[0]['harga']; ?>" name="harga" placeholder="Masukkan harga kamar"><br>
+                                <input type="text" class="form-control <?= ($validasi->hasError('harga')) ? 'is-invalid' : ''; ?>" value="<?= $data_typeKamar[0]['harga']; ?>" name="harga" placeholder="Masukkan harga kamar" readonly><br>
                                 <div class="invalid-feedback">
                                     <?= $validasi->getError('harga'); ?>
                                 </div>

@@ -39,4 +39,18 @@ class TypeKamar extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function join_fasilitas()
+    {
+        return $this->db->table('type_kamar')->join('fasilitas_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')->get()->getResultArray();
+    }
+
+    public function join_kamar_utkDetail($id_kamar)
+    {
+        return $this->db->table('type_kamar')
+            ->select('*')
+            ->where('id_kamar', $id_kamar)
+            ->join('kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+            ->get();
+    }
 }

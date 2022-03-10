@@ -47,8 +47,8 @@
             <?php endif; ?>
             <div class="row">
                 <?php if (!$dataKamar) : ?>
-                    <div class="alert alert-info" role="alert">
-                        <h1 class="display-4">Data Kamar tidak ditemukan</h1>
+                    <div class="alert alert-danger" role="alert">
+                        <h6 class="text-center display-6">Data Kamar tidak ditemukan!</h6>
                     </div>
                 <?php endif; ?>
                 <?php foreach ($dataKamar as $kamar) : ?>
@@ -93,9 +93,7 @@
                 </div>
             </div>
 
-            <div class="text-center col-6">
-                <?= $pager->links('kamar', 'kamar_pagination'); ?>
-            </div>
+
         </div>
     </div>
 </div>

@@ -52,6 +52,19 @@ class FKamar extends Model
 
     public function get_typeKamar()
     {
-        return $this->table('fasilitas_kamar')->select('type_kamar')->get();
+        return $this->db->table('fasilitas_kamar')
+            ->select('*')
+            ->join('type_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')
+            ->get()->getResultArray();
+    }
+
+    public function typeKamar_inDetail($id)
+    {
+        return $this->db->table('fasilitas_kamar')
+            ->select('*')
+            ->where('id_kamar', $id)
+            ->join('type_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')
+            ->join('kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+            ->get()->getResultArray();
     }
 }

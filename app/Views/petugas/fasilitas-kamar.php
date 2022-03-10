@@ -31,7 +31,7 @@
                 </thead>
                 <tbody>
                     <?php $no = 1;
-                    foreach ($fkamar as $row) : ?>
+                    foreach ($data_tk as $row) : ?>
                         <tr>
                             <td class="text-center"><?= $no++; ?></td>
                             <td class="text-center">

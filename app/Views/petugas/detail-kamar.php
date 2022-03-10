@@ -20,8 +20,8 @@
                             <h5 class="card-title display-6 text-center"><?= $dataKamar[0]['no_kamar']; ?></h5>
                             <hr>
                             <div class="row">
-                                <p class="card-text col-6">Tipe Kamar : <strong><?= $dataKamar[0]['type_kamar']; ?></strong></p>
-                                <p class="card-text col-6">Harga : <strong>Rp. <?= $dataKamar[0]['harga']; ?></strong></p>
+                                <p class="card-text col-6">Tipe Kamar : <strong><?= $data_typeKamar[0]['type_kamar']; ?></strong></p>
+                                <p class="card-text col-6">Harga : <strong>Rp. <?= $data_typeKamar[0]['harga']; ?></strong></p>
                             </div>
                             <div class="row">
                                 <div class="col">
@@ -35,22 +35,22 @@
                                     </div>
                                 </div>
 
-                                <!-- <div class="col-6">
+                                <div class="col-6">
                                     <div class="card mt-3">
                                         <h5 class="card-header">
                                             Fasilitas Kamar
                                         </h5>
                                         <div class="card-body">
-                                            <p class="card-text"><?= $dataKamar[0]['deskripsi']; ?></p>
+                                            <p class="card-text"><?= $nama_fasilitas[0]['nama_fkamar']; ?></p>
                                         </div>
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col mt-4 text-center">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a href="/petugas/kamar/edit/<?= $dataKamar[0]['id_kamar']; ?>" class="btn btn-warning"><i class="fa fa-pen" aria-hidden="true"></i> Edit</a>
-                                        <a href="/petugas/kamar/edit-foto/<?= $dataKamar[0]['id_kamar']; ?>" class="btn btn-primary"><i class="fa fa-pen" aria-hidden="true"></i> Foto</a>
+                                        <!-- <a href="/petugas/kamar/edit-foto/<?= $dataKamar[0]['id_kamar']; ?>" class="btn btn-primary"><i class="fa fa-pen" aria-hidden="true"></i> Foto</a> -->
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#modelHapus" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Hapus</a>
                                     </div>
                                 </div>

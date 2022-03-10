@@ -21,10 +21,18 @@
 
                         <div class="col-6">
                             <label for="" class="form-label">Tipe Kamar</label>
-                            <select value="<?= old('type_kamar'); ?>" class=" form-select <?= ($validasi->hasError('type_kamar')) ? 'is-invalid' : ''; ?>" name="type_kamar" id="">
-                                <option selected>Pilih tipe kamar</option>
-                                <option value="Superior">Superior</option>
-                                <option value="Deluxe">Deluxe</option>
+                            <select value="<?= old('type_kamar'); ?>" class=" form-select <?= ($validasi->hasError('type_kamar')) ? 'is-invalid' : ''; ?>" name="id_type_kamar" id="">
+                                <?php $no = 1;
+                                foreach ($dataTypeKamar as $tk) : ?>
+                                    <option value="<?= $no++; ?>"><?= $tk['type_kamar']; ?> - <?= $tk['harga']; ?></option>
+                                <?php endforeach; ?>
+                                <!-- <option selected>Pilih tipe kamar</option>
+                                <option value="1">Standard Room - </option>
+                                <option value="2">Superior Room - </option>
+                                <option value="3">Deluxe Room - </option>
+                                <option value="4">Junior Suite Room - </option>
+                                <option value="5">Suite Room - </option>
+                                <option value="6">Presidential Room - </option> -->
                             </select>
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('type_kamar'); ?>
@@ -42,7 +50,7 @@
                             </div>
                         </div>
 
-                        <div class="col-6 mt-3">
+                        <!-- <div class="col-6 mt-3">
                             <label for="" class="form-label">Harga</label>
                             <div class="input-group ">
                                 <span class="input-group-text" id="basic-addon1">Rp. </span>
@@ -51,7 +59,7 @@
                                     <?= $validasi->getError('harga'); ?>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="col-8 mt-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
