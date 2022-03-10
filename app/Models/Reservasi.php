@@ -44,4 +44,18 @@ class Reservasi extends Model
     {
         return $this->table('reservasi')->countAll();
     }
+
+    public function join_rsvKamar()
+    {
+        return $this->db->table('reservasi')
+            ->select('*')
+            ->join('reservasi_kamar', 'reservasi.id_reservasi = reservasi_kamar.id_reservasi')
+            ->join('kamar', 'kamar.id_kamar = reservasi_kamar.id_kamar')
+            ->get()->getResultArray();
+    }
+
+    public function search($keyword)
+    {
+        return $this->table('reservasi')->like('nik', $keyword)->orLike('checkout', $keyword)->orLike('checkin', $keyword)->orLike('jml_kamar', $keyword)->orLike('total', $keyword)->orLike('status', $keyword);
+    }
 }

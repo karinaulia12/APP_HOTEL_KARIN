@@ -40,7 +40,11 @@
                 <div class="col mb-5">
                     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary" data-bs-toggle=" collapse" href="#collapseExample">
                         <div class=" container-sm">
-                            <a class="navbar-brand" role="button" aria-expanded="false" aria-controls="collapseExample" href="/petugas/dashboard"> <i class="fa-solid fa-hotel"></i> AuHotelia</a>
+                            <?php if (session()->get('level') == 'admin') { ?>
+                                <a class="navbar-brand" role="button" aria-expanded="false" aria-controls="collapseExample" href="/petugas/dashboard"> <i class="fa-solid fa-hotel"></i> AuHotelia</a>
+                            <?php } else { ?>
+                                <a class="navbar-brand" role="button" aria-expanded="false" aria-controls="collapseExample" href="/resepsionis/dashboard"> <i class="fa-solid fa-hotel"></i> AuHotelia</a>
+                            <?php } ?>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
@@ -61,7 +65,7 @@
                                         </li>
                                     <?php } elseif (session()->get('level') == 'resepsionis') { ?>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/petugas/fkamar">Reservasi</a>
+                                            <a class="nav-link" href="/resepsionis/reservasi">Reservasi</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="/petugas/fumum">Tamu</a>
