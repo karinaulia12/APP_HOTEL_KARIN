@@ -19,6 +19,13 @@
         <div class="col">
             <hr>
             <a href="/petugas/fkamar/tambah" class="btn btn-primary mb-3"><i class="fa fa-plus" aria-hidden="true"></i> Fasilitas Kamar</a>
+            <?php if (session()->getFlashdata('tambahFkamar')) : ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <?= session()->getFlashdata('tambahFkamar'); ?>
+                </div>
+
+            <?php endif; ?>
             <table class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr class="text-center">

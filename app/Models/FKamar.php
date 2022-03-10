@@ -67,4 +67,13 @@ class FKamar extends Model
             ->join('kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
             ->get()->getResultArray();
     }
+
+    public function detail_fkamar($id)
+    {
+        return $this->db->table('fasilitas_kamar')
+            ->select('*')
+            ->where('id_fkamar', $id)
+            ->join('type_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')
+            ->get()->getResultArray();
+    }
 }

@@ -26,10 +26,14 @@
 
                         <div class="col-6">
                             <label for="" class="form-label">Tipe Kamar</label>
-                            <select class="form-select text-capitalize <?= ($validasi->hasError('no_kamar')) ? 'is-invalid' : ''; ?>" name="type_kamar" id="">
+                            <select class="form-select text-capitalize <?= ($validasi->hasError('no_kamar')) ? 'is-invalid' : ''; ?>" name="id_type_kamar" id="">
                                 <option selected>Pilih Tipe Kamar</option>
-                                <option class="text-capitalize" value="superior">superior</option>
-                                <option class="text-capitalize" value="deluxe">deluxe</option>
+                                <?php $no = 1;
+                                foreach ($dataTypeKamar as $tk) : ?>
+                                    <option value="<?= $no++; ?>"><?= $tk['type_kamar']; ?> - <?= $tk['harga']; ?></option>
+                                <?php endforeach; ?>
+                                <!-- <option class="text-capitalize" value="superior">superior</option>
+                                <option class="text-capitalize" value="deluxe">deluxe</option> -->
                             </select>
                             <div id="validationServer03Feedback" class="invalid-feedback">
                                 <?= $validasi->getError('no_kamar'); ?>

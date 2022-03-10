@@ -233,7 +233,8 @@ class PetugasController extends BaseController
 
         $data = [
             'title' => 'Detail Fasilitas Kamar AuHotelia',
-            'dataFkamar' => $this->fKamarModel->where('id_fkamar', $id_fkamar)->findAll()
+            // 'dataFkamar' => $this->fKamarModel->where('id_fkamar', $id_fkamar)->findAll()
+            'dataFkamar' => $this->fKamarModel->detail_fkamar($id_fkamar)
         ];
 
         return view('petugas/detail-fkamar', $data);
@@ -259,7 +260,8 @@ class PetugasController extends BaseController
         $data = [
             'title' => 'Tambah Fasilitas Kamar AuHotelia',
             'validasi' => \Config\Services::validation(),
-            'data_typeKamar' => $this->fKamarModel->findAll()
+            'dataTypeKamar' => $this->typeKamarModel->findAll()
+            // 'data_typeKamar' => $this->fKamarModel->findAll()
         ];
         return view('petugas/tambah-fkamar', $data);
     }
@@ -625,7 +627,7 @@ class PetugasController extends BaseController
                     'required' => 'Fasilitas Kamar harus diisi.'
                 ]
             ],
-            'type_kamar' => [
+            'id_type_kamar' => [
                 'rules' => 'required',
                 'errors' => [
                     'required' => 'Nomor Kamar harus diisi.',
@@ -638,7 +640,7 @@ class PetugasController extends BaseController
         helper(['form']);
         $inputdata = [
             'nama_fkamar' => $this->request->getPost('nama_fkamar'),
-            'type_kamar' => $this->request->getPost('type_kamar')
+            'id_type_kamar' => $this->request->getPost('id_type_kamar')
         ];
 
         session()->set($inputdata);
