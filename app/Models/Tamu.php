@@ -44,4 +44,9 @@ class Tamu extends Model
     {
         return $this->db->table('tamu')->countAll();
     }
+
+    public function search($keyword)
+    {
+        return $this->table('tamu')->like('nik', $keyword)->orLike('no_telp', $keyword)->orLike('nama_tamu', $keyword)->orLike('email', $keyword)->orLike('username', $keyword);
+    }
 }

@@ -60,10 +60,38 @@ class ResepsionisController extends BaseController
 
         $data = [
             'title' =>  'Data Reservasi | AuHotelia',
-            'reservasi' => $this->reservasiModel->join_rsvKamar(),
+            'reservasi' => $this->reservasiModel->join_tabel(),
             'keyword' => $keyword
         ];
 
         return view('resepsionis/tampil-reservasi', $data);
+    }
+
+    public function detail_reservasi($id_reservasi)
+    {
+        $data = [
+            'title' =>  'Detail Reservasi | AuHotelia',
+            'reservasi' => $this->reservasiModel->detail_rsv($id_reservasi)
+        ];
+
+        return view('resepsionis/detail-reservasi', $data);
+    }
+
+    public function tampil_tamu()
+    {
+        $keyword = $this->request->getVar('keyword');
+        if ($keyword) {
+            $tamu = $this->tamuModel->search($keyword);
+        } else {
+            $tamu = $this->tamuModel;
+        }
+
+        $data = [
+            'title' => 'Data Tamu | AuHotelia',
+            'data_tamu' => $this->tamuModel->findAll(),
+            'keyword' => $keyword
+        ];
+
+        return view('resepsionis/tampil-tamu', $data);
     }
 }

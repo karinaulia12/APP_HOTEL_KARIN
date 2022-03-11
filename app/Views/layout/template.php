@@ -12,6 +12,9 @@
 
     <link rel="stylesheet" href="/font-awesome/css/all.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/6.0.0/css/font-awesome.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&display=swap" rel="stylesheet">
@@ -45,10 +48,10 @@
                             <?php } else { ?>
                                 <a class="navbar-brand" role="button" aria-expanded="false" aria-controls="collapseExample" href="/resepsionis/dashboard"> <i class="fa-solid fa-hotel"></i> AuHotelia</a>
                             <?php } ?>
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <button class="navbar-toggler" type="button" aria-expanded="false" aria-controls="collapseExample" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
-                            <div class="navbar navbar-collapse" id="collapseExample" id="navbarNav">
+                            <div class="navbar navbar-collapse collapse" id="collapseExample">
                                 <ul class="navbar-nav">
                                     <?php if (session()->get('level') == 'admin') { ?>
                                         <li class="nav-item">
@@ -68,7 +71,7 @@
                                             <a class="nav-link" href="/resepsionis/reservasi">Reservasi</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/petugas/fumum">Tamu</a>
+                                            <a class="nav-link" href="/resepsionis/tamu">Tamu</a>
                                         </li>
 
                                     <?php } ?>
@@ -113,6 +116,8 @@
     </header>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/bootstrap.js"></script>
+    <script src="/js/bootstrap.bundle.js"></script>
+    <script src="/js/jquery-3.6.0.js"></script>
     <script src="/font-awesome/js/all.js"></script>
     <script>
         function previewImage() {
@@ -129,6 +134,15 @@
                 imgPreview.src = e.target.result;
             }
         }
+
+        function confirmToDelete(el) {
+            $("#delete-button").attr("href", el.dataset.href);
+            $("#confirm-dialog").modal('show');
+        }
+
+        $(document).ready(function() {
+            $('.dropdown-toggle').dropdown()
+        });
     </script>
 
 </body>

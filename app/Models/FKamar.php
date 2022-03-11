@@ -50,11 +50,13 @@ class FKamar extends Model
         return $this->table('fasilitas_kamar')->countAll();
     }
 
-    public function get_typeKamar()
+    public function get_typeKamar($keyword = null)
     {
         return $this->db->table('fasilitas_kamar')
             ->select('*')
             ->join('type_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')
+            // ->like('nama_fkamar', $keyword)
+            // ->orLike('type_kamar', $keyword)
             ->get()->getResultArray();
     }
 

@@ -32,6 +32,7 @@
                     <div class="card-body my-3">
                         <div class="text-center m-auto mb-3">
                             <h6 class=" text-center display-6">Login Petugas AuHotelia</h6>
+                            <!-- <img src="/logo.jpg" alt=""> -->
                             <?php if (session()->getFlashdata('salahLogin')) : ?>
                                 <div class="alert text-center m-auto my-3 col-10 alert-danger alert-dismissible fade show" role="alert">
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

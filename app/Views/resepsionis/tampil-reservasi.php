@@ -30,12 +30,13 @@
                 <thead>
                     <tr class="text-center">
                         <th>#</th>
-                        <th>NIK</th>
+                        <th>Nama Tamu</th>
                         <th>Check-In</th>
                         <th>Check-Out</th>
                         <th>No Kamar</th>
                         <th>Jumlah Kamar</th>
                         <th>Total</th>
+                        <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -44,29 +45,29 @@
                     foreach ($reservasi as $row) : ?>
                         <tr class="text-center">
                             <td><?= $no++; ?></td>
-                            <td><?= $row['nik']; ?></td>
+                            <td><?= $row['nama_tamu']; ?></td>
                             <td><?= $row['checkin']; ?></td>
                             <td><?= $row['checkout']; ?></td>
                             <td><?= $row['no_kamar']; ?></td>
                             <td><?= $row['jml_kamar']; ?></td>
                             <td><?= $row['total']; ?></td>
+                            <td><?= $row['status']; ?></td>
                             <td class="text-center">
                                 <!-- <a href="/petugas/fumum/edit/<?= $row['id_reservasi']; ?>" class="btn btn-warning btn-sm mx-1 my-1">Edit</a> -->
                                 <div class="btn-group" role="group">
-                                    <a href="/petugas/fumum/detail/<?= $row['id_reservasi']; ?>" title="Detail" class="btn btn-success btn-sm"><i class="fa fa-check" aria-hidden="true"></i></a>
-                                    <div class="dropdown">
-                                        <button class="btn btn-primary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Dropdown
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="triggerId">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item disabled" href="#">Disabled action</a>
-                                            <h6 class="dropdown-header">Section header</h6>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">After divider action</a>
-                                        </div>
+                                    <a href="/resepsionis/reservasi/detail/<?= $row['id_reservasi']; ?>" title="Detail" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                    <!-- <div class="dropdown"> -->
+                                    <button class="btn btn-warning dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Status
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="triggerId">
+                                        <a class="dropdown-item" href="#">Check-in</a>
+                                        <a class="dropdown-item" href="#">Check-out</a>
+                                        <a class="dropdown-item" href="#">Terima</a>
+                                        <a class="dropdown-item" href="#">Tolak</a>
+                                        <a class="dropdown-item" href="#">Hapus</a>
                                     </div>
+                                    <!-- </div> -->
                                     <!-- <a href="/petugas/fumum/hapus/<?= $row['id_reservasi']; ?>" title="Hapus" class="btn btn-danger  btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a> -->
                                 </div>
                             </td>

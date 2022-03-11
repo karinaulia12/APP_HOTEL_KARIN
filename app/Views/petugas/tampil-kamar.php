@@ -24,25 +24,25 @@
             <?php if (session()->getFlashdata('tambahKamar')) { ?>
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    <div class="fw-light">Data Kamar <?= session()->get('no_kamar'); ?> berhasil ditambahkan</div>
+                    <div class="fw-light">Data Kamar <strong><?= session()->get('no_kamar'); ?></strong> berhasil ditambahkan</div>
                 </div>
             <?php } ?>
             <?php if (session()->getFlashdata('hapusKamar')) { ?>
                 <div class="alert alert-info alert-dismissible fade show" role="alert">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    <div class="fw-light"><?= session()->getFlashdata('hapusKamar'); ?></div>
+                    <div class="fw-light"><strong><?= session()->getFlashdata('hapusKamar'); ?></strong></div>
                 </div>
             <?php } ?>
             <?php if (session()->getFlashdata('editKamar')) : ?>
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    <div class="fw-light"><?= session()->getFlashdata('editKamar'); ?></div>
+                    <div class="fw-light"><strong><?= session()->getFlashdata('editKamar'); ?></strong></div>
                 </div>
             <?php endif; ?>
             <?php if (session()->getFlashdata('editFotoKamar')) : ?>
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    <div class="fw-light"><?= session()->getFlashdata('editFotoKamar'); ?></div>
+                    <div class="fw-light"><strong><?= session()->getFlashdata('editFotoKamar'); ?></strong></div>
                 </div>
             <?php endif; ?>
             <div class="row">
@@ -64,8 +64,9 @@
                                         <a href="/petugas/kamar/detail/<?= $kamar['id_kamar']; ?>" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></a>
                                         <a href="/petugas/kamar/edit/<?= $kamar['id_kamar']; ?>" class="btn btn-warning"><i class="fa fa-pen" aria-hidden="true"></i></a>
                                         <!-- <a href="/petugas/kamar/edit-foto/<?= $kamar['id_kamar']; ?>" class="btn btn-primary"><i class="fa fa-pen" aria-hidden="true"></i> Foto</a> -->
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#modelHapus" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                        <!-- <a href="/petugas/kamar/hapus/<?= $kamar['id_kamar']; ?>" type="button" class="btn btn-danger">Hapus</a> -->
+                                        <a href="/petugas/kamar/hapus/<?= $kamar['id_kamar']; ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin akan hapus data?')"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                        <!-- <a href="#" data-href="/petugas/kamar/hapus/<?= $kamar['id_kamar']; ?>" data-bs-toggle="modal" data-bs-target="#modelHapus" onclick="confirmToDelete(this)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a> -->
+                                        <!-- <a href="#" data-href="petugas/kamar/hapus/<?= $kamar['id_kamar']; ?>" data-bs-toggle="modal" data-bs-target="#confirm-dialog" onclick="confirmToDelete(this)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a> -->
                                     </div>
                                 </div>
                             </div>
@@ -73,8 +74,8 @@
                     </div>
                 <?php endforeach; ?>
 
-                <!-- Modal Logout -->
-                <div class="modal fade" id="modelHapus" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <!-- Modal Hapus -->
+                <!-- <div class="modal fade" id="modelHapus" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -85,18 +86,39 @@
                                 Apakah Anda yakin akan menghapusnya?
                             </div>
                             <div class="modal-footer">
+                                <input type="hidden" name="id_kamar" class="productID">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
                                 <a href="/petugas/kamar/hapus/<?= $kamar['id_kamar']; ?>" type="button" class="btn btn-danger">Hapus</a>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
+
+
+                <form action="/petugas/kamar/hapus/<?= $kamar['id_kamar']; ?>" method="post">
+                    <div id="confirm-dialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Hapus Data Kamar</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- <h2 class="h2">Apakah Anda yakin?</h2>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                                    <p>Data Kamar akan dihapus secara permanen.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <!-- <a href="#" role="button" id="delete-button" class="btn btn-danger">Hapus</a> -->
+                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-
-
         </div>
     </div>
 </div>
-
-
 <?= $this->endSection(); ?>

@@ -53,10 +53,6 @@ class Kamar extends Model
 
     public function search($keyword)
     {
-        // $builder = $this->table('kamar');
-        // $builder->like('no_kamar', $keyword);
-        // return $builder;
-
         return $this->table('kamar')->like('no_kamar', $keyword)->orLike('id_type_kamar', $keyword)->orLike('deskripsi', $keyword)->orLike('harga', $keyword);
     }
 

@@ -31,7 +31,7 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'TamuController::index');
 
 // admin
 $routes->get('/petugas', 'PetugasController::index');
@@ -41,7 +41,9 @@ $routes->get('/petugas/logout', 'PetugasController::logout');
 
 // resepsionis
 $routes->get('/resepsionis/dashboard', 'ResepsionisController::dashboard', ['filter' => 'otentifikasi']);
-$routes->get('/resepsionis/reservasi', 'ResepsionisController::tampil_reservasi');
+$routes->get('/resepsionis/reservasi', 'ResepsionisController::tampil_reservasi', ['filter' => 'otentifikasi']);
+$routes->get('/resepsionis/reservasi/detail/(:num)', 'ResepsionisController::detail_reservasi/$1', ['filter' => 'otentifikasi']);
+$routes->get('/resepsionis/tamu', 'ResepsionisController::tampil_tamu', ['filter' => 'otentifikasi']);
 
 // crud kamar
 $routes->get('/petugas/kamar', 'PetugasController::tampilKamar', ['filter' => 'otentifikasi']);
