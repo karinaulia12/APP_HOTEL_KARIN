@@ -41,7 +41,7 @@
         <div class="container-fluid mb-5">
             <div class="row mb-5">
                 <div class="col mb-5">
-                    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary" data-bs-toggle=" collapse" href="#collapseExample">
+                    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary" data-bs-toggle=" collapse" href="#collapseExample" id="navbarResponsive">
                         <div class=" container-sm">
                             <?php if (session()->get('level') == 'admin') { ?>
                                 <a class="navbar-brand" role="button" aria-expanded="false" aria-controls="collapseExample" href="/petugas/dashboard"> <i class="fa-solid fa-hotel"></i> AuHotelia</a>

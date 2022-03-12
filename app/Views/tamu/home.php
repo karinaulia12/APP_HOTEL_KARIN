@@ -29,9 +29,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#hotel">Hotel</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#fasilitasKamar">Fasilitas Kamar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#prosedur">Prosedur</a></li>
                     <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
@@ -41,13 +41,13 @@
     <!-- Masthead-->
     <header class="masthead">
         <div class="container">
-            <div class="masthead-subheading">Welcome To Our Studio!</div>
-            <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-            <a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
+            <div class="masthead-subheading">Welcome To Our Hotel!</div>
+            <div class="masthead-heading text-uppercase">AuHotelia</div>
+            <a class="btn btn-primary btn-xl text-uppercase" href="#services">Book Now</a>
         </div>
     </header>
     <!-- Services-->
-    <section class="page-section" id="services">
+    <section class="page-section" id="hotel">
         <div class="container">
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">Services</h2>
@@ -56,7 +56,7 @@
             <div class="row text-center">
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
-                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fas fa-circle fa-stack-2x text-info"></i>
                         <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 class="my-3">E-Commerce</h4>
@@ -64,7 +64,7 @@
                 </div>
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
-                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fas fa-circle fa-stack-2x text-info"></i>
                         <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 class="my-3">Responsive Design</h4>
@@ -72,7 +72,7 @@
                 </div>
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
-                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fas fa-circle fa-stack-2x text-info"></i>
                         <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 class="my-3">Web Security</h4>
@@ -82,7 +82,7 @@
         </div>
     </section>
     <!-- Portfolio Grid-->
-    <section class="page-section bg-light" id="portfolio">
+    <section class="page-section bg-light" id="fasilitasKamar">
         <div class="container">
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">Portfolio</h2>
@@ -91,91 +91,91 @@
             <div class="row">
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <!-- Portfolio item 1-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                    <div class="fasilitasKamar-item">
+                        <a class="fasilitasKamar-link" data-bs-toggle="modal" href="#fasilitasKamarModal1">
+                            <div class="fasilitasKamar-hover">
+                                <div class="fasilitasKamar-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
                             <img class="img-fluid" src="/landing_page/assets/img/portfolio/1.jpg" alt="..." />
                         </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Threads</div>
-                            <div class="portfolio-caption-subheading text-muted">Illustration</div>
+                        <div class="fasilitasKamar-caption">
+                            <div class="fasilitasKamar-caption-heading">Threads</div>
+                            <div class="fasilitasKamar-caption-subheading text-muted">Illustration</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <!-- Portfolio item 2-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                    <div class="fasilitasKamar-item">
+                        <a class="fasilitasKamar-link" data-bs-toggle="modal" href="#fasilitasKamarModal2">
+                            <div class="fasilitasKamar-hover">
+                                <div class="fasilitasKamar-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
                             <img class="img-fluid" src="/landing_page/assets/img/portfolio/2.jpg" alt="..." />
                         </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Explore</div>
-                            <div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+                        <div class="fasilitasKamar-caption">
+                            <div class="fasilitasKamar-caption-heading">Explore</div>
+                            <div class="fasilitasKamar-caption-subheading text-muted">Graphic Design</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <!-- Portfolio item 3-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                    <div class="fasilitasKamar-item">
+                        <a class="fasilitasKamar-link" data-bs-toggle="modal" href="#fasilitasKamarModal3">
+                            <div class="fasilitasKamar-hover">
+                                <div class="fasilitasKamar-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
                             <img class="img-fluid" src="/landing_page/assets/img/portfolio/3.jpg" alt="..." />
                         </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Finish</div>
-                            <div class="portfolio-caption-subheading text-muted">Identity</div>
+                        <div class="fasilitasKamar-caption">
+                            <div class="fasilitasKamar-caption-heading">Finish</div>
+                            <div class="fasilitasKamar-caption-subheading text-muted">Identity</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
                     <!-- Portfolio item 4-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                    <div class="fasilitasKamar-item">
+                        <a class="fasilitasKamar-link" data-bs-toggle="modal" href="#fasilitasKamarModal4">
+                            <div class="fasilitasKamar-hover">
+                                <div class="fasilitasKamar-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
                             <img class="img-fluid" src="/landing_page/assets/img/portfolio/4.jpg" alt="..." />
                         </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Lines</div>
-                            <div class="portfolio-caption-subheading text-muted">Branding</div>
+                        <div class="fasilitasKamar-caption">
+                            <div class="fasilitasKamar-caption-heading">Lines</div>
+                            <div class="fasilitasKamar-caption-subheading text-muted">Branding</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
                     <!-- Portfolio item 5-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                    <div class="fasilitasKamar-item">
+                        <a class="fasilitasKamar-link" data-bs-toggle="modal" href="#fasilitasKamarModal5">
+                            <div class="fasilitasKamar-hover">
+                                <div class="fasilitasKamar-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
                             <img class="img-fluid" src="/landing_page/assets/img/portfolio/5.jpg" alt="..." />
                         </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Southwest</div>
-                            <div class="portfolio-caption-subheading text-muted">Website Design</div>
+                        <div class="fasilitasKamar-caption">
+                            <div class="fasilitasKamar-caption-heading">Southwest</div>
+                            <div class="fasilitasKamar-caption-subheading text-muted">Website Design</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
                     <!-- Portfolio item 6-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                    <div class="fasilitasKamar-item">
+                        <a class="fasilitasKamar-link" data-bs-toggle="modal" href="#fasilitasKamarModal6">
+                            <div class="fasilitasKamar-hover">
+                                <div class="fasilitasKamar-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
                             <img class="img-fluid" src="/landing_page/assets/img/portfolio/6.jpg" alt="..." />
                         </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Window</div>
-                            <div class="portfolio-caption-subheading text-muted">Photography</div>
+                        <div class="fasilitasKamar-caption">
+                            <div class="fasilitasKamar-caption-heading">Window</div>
+                            <div class="fasilitasKamar-caption-subheading text-muted">Photography</div>
                         </div>
                     </div>
                 </div>
@@ -402,7 +402,7 @@
     </footer>
     <!-- Portfolio Modals-->
     <!-- Portfolio item 1 modal popup-->
-    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="fasilitasKamar-modal modal fade" id="fasilitasKamarModal1" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="close-modal" data-bs-dismiss="modal"><img src="/landing_page/assets/img/close-icon.svg" alt="Close modal" /></div>
@@ -437,7 +437,7 @@
         </div>
     </div>
     <!-- Portfolio item 2 modal popup-->
-    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="fasilitasKamar-modal modal fade" id="fasilitasKamarModal2" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="close-modal" data-bs-dismiss="modal"><img src="/landing_page/assets/img/close-icon.svg" alt="Close modal" /></div>
@@ -472,7 +472,7 @@
         </div>
     </div>
     <!-- Portfolio item 3 modal popup-->
-    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="fasilitasKamar-modal modal fade" id="fasilitasKamarModal3" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="close-modal" data-bs-dismiss="modal"><img src="/landing_page/assets/img/close-icon.svg" alt="Close modal" /></div>
@@ -507,7 +507,7 @@
         </div>
     </div>
     <!-- Portfolio item 4 modal popup-->
-    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="fasilitasKamar-modal modal fade" id="fasilitasKamarModal4" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="close-modal" data-bs-dismiss="modal"><img src="/landing_page/assets/img/close-icon.svg" alt="Close modal" /></div>
@@ -542,7 +542,7 @@
         </div>
     </div>
     <!-- Portfolio item 5 modal popup-->
-    <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="fasilitasKamar-modal modal fade" id="fasilitasKamarModal5" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="close-modal" data-bs-dismiss="modal"><img src="/landing_page/assets/img/close-icon.svg" alt="Close modal" /></div>
@@ -577,7 +577,7 @@
         </div>
     </div>
     <!-- Portfolio item 6 modal popup-->
-    <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="fasilitasKamar-modal modal fade" id="fasilitasKamarModal6" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="close-modal" data-bs-dismiss="modal"><img src="/landing_page/assets/img/close-icon.svg" alt="Close modal" /></div>

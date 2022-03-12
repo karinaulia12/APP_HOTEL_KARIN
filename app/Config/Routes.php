@@ -31,7 +31,10 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+// tamu
 $routes->get('/', 'TamuController::index');
+$routes->get('/booking', 'TamuController::tampil_booking');
 
 // admin
 $routes->get('/petugas', 'PetugasController::index');
