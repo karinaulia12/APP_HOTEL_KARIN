@@ -45,8 +45,10 @@
                         <div class=" container-sm">
                             <?php if (session()->get('level') == 'admin') { ?>
                                 <a class="navbar-brand" role="button" aria-expanded="false" aria-controls="collapseExample" href="/petugas/dashboard"> <i class="fa-solid fa-hotel"></i> AuHotelia</a>
-                            <?php } else { ?>
+                            <?php } elseif (session()->get('level') == 'resepsionis') { ?>
                                 <a class="navbar-brand" role="button" aria-expanded="false" aria-controls="collapseExample" href="/resepsionis/dashboard"> <i class="fa-solid fa-hotel"></i> AuHotelia</a>
+                            <?php } else { ?>
+                                <a class="navbar-brand" role="button" aria-expanded="false" aria-controls="collapseExample" href="/"> <i class="fa-solid fa-hotel"></i> AuHotelia</a>
                             <?php } ?>
                             <button class="navbar-toggler" type="button" aria-expanded="false" aria-controls="collapseExample" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
@@ -66,6 +68,9 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="/petugas/fumum">Fasilitas Hotel</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modelLogout">Logout</a>
+                                        </li>
                                     <?php } elseif (session()->get('level') == 'resepsionis') { ?>
                                         <li class="nav-item">
                                             <a class="nav-link" href="/resepsionis/reservasi">Reservasi</a>
@@ -73,11 +78,18 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="/resepsionis/tamu">Tamu</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modelLogout">Logout</a>
+                                        </li>
 
+                                    <?php } else { ?>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="">Kamar</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/form-booking">Form Booking</a>
+                                        </li>
                                     <?php } ?>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modelLogout">Logout</a>
-                                    </li>
                                 </ul>
                             </div>
                         </div>

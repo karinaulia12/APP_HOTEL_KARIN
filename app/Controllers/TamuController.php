@@ -9,7 +9,9 @@ class TamuController extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'AuHotelia'
+            'title' => 'AuHotelia',
+            'data_fumum' => $this->fUmumModel->findAll(),
+            'data_fkamar' => $this->fKamarModel->findAll()
         ];
         return view('tamu/lp_tamu', $data);
     }

@@ -40,23 +40,29 @@ class FKamar extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function search($keyword)
-    {
-        return $this->table('fasilitas_kamar')->like('nama_fkamar', $keyword)->orLike('type_kamar', $keyword);
-    }
 
     public function hitung_fkamar()
     {
         return $this->table('fasilitas_kamar')->countAll();
     }
 
-    public function get_typeKamar($keyword = null)
+    public function get_typeKamar()
     {
         return $this->db->table('fasilitas_kamar')
             ->select('*')
             ->join('type_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')
             // ->like('nama_fkamar', $keyword)
             // ->orLike('type_kamar', $keyword)
+            ->get()->getResultArray();
+    }
+
+    public function search($keyword)
+    {
+        return $this->db->table('fasilitas_kamar')
+            ->select('*')
+            ->join('type_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')
+            ->like('nama_fkamar', $keyword)
+            ->orLike('type_kamar', $keyword)
             ->get()->getResultArray();
     }
 

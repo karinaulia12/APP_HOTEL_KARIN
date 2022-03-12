@@ -3,9 +3,9 @@
 <!-- Masthead-->
 <header class="masthead">
     <div class="container">
-        <div class="masthead-subheading">Welcome To Our Hotel!</div>
+        <div class="masthead-subheading text-primary">Welcome To Our Hotel!</div>
         <div class="masthead-heading text-uppercase">AuHotelia</div>
-        <a class="btn btn-primary btn-xl text-uppercase" href="/booking">Book Now</a>
+        <a class="btn btn-primary btn-xl text-uppercase" href="/form-booking">Book Now</a>
     </div>
 </header>
 
@@ -17,21 +17,24 @@
             <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
         </div>
         <div class="row text-center">
-            <div class="col-md-4">
-                <span class="fa-stack fa-4x">
-                    <i class="fas fa-circle fa-stack-2x text-info"></i>
-                    <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="my-3">E-Commerce</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-            </div>
-            <div class="col-md-4">
+            <?php foreach ($data_fumum as $row) : ?>
+                <div class="col-md">
+                    <div class="card bg-light">
+                        <img class="card-img-top" src="/gambar/<?= $row['foto']; ?>" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title"><?= $row['nama_fumum']; ?></h4>
+                            <p class="card-text"><?= $row['deskripsi']; ?></p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            <!-- <div class="col-md-4">
                 <span class="fa-stack fa-4x">
                     <i class="fas fa-circle fa-stack-2x text-info"></i>
                     <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                 </span>
-                <h4 class="my-3">Responsive Design</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                <h4 class="my-3"><?= $data_fumum[1]['nama_fumum']; ?></h4>
+                <p class="text-muted"><?= $data_fumum[1]['deskripsi']; ?></p>
             </div>
             <div class="col-md-4">
                 <span class="fa-stack fa-4x">
@@ -40,7 +43,7 @@
                 </span>
                 <h4 class="my-3">Web Security</h4>
                 <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
@@ -49,100 +52,27 @@
 <section class="page-section bg-light" id="fasilitasKamar">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">Portfolio</h2>
+            <h2 class="section-heading text-uppercase">Tipe Kamar</h2>
             <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-sm-6 mb-4">
-                <!-- Portfolio item 1-->
-                <div class="fasilitasKamar-item">
-                    <a class="fasilitasKamar-link" data-bs-toggle="modal" href="#fasilitasKamarModal1">
-                        <div class="fasilitasKamar-hover">
-                            <div class="fasilitasKamar-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+            <?php foreach ($data_fkamar as $row) : ?>
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <!-- Portfolio item 1-->
+                    <div class="fasilitasKamar-item">
+                        <a class="fasilitasKamar-link" data-bs-toggle="modal" href="#fasilitasKamarModal1">
+                            <div class="fasilitasKamar-hover">
+                                <div class="fasilitasKamar-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="/landing_page/assets/img/portfolio/1.jpg" alt="..." />
+                        </a>
+                        <div class="fasilitasKamar-caption">
+                            <div class="fasilitasKamar-caption-heading"><?= $row['nama_fkamar']; ?></div>
+                            <div class="fasilitasKamar-caption-subheading text-muted">Illustration</div>
                         </div>
-                        <img class="img-fluid" src="/landing_page/assets/img/portfolio/1.jpg" alt="..." />
-                    </a>
-                    <div class="fasilitasKamar-caption">
-                        <div class="fasilitasKamar-caption-heading">Threads</div>
-                        <div class="fasilitasKamar-caption-subheading text-muted">Illustration</div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 mb-4">
-                <!-- Portfolio item 2-->
-                <div class="fasilitasKamar-item">
-                    <a class="fasilitasKamar-link" data-bs-toggle="modal" href="#fasilitasKamarModal2">
-                        <div class="fasilitasKamar-hover">
-                            <div class="fasilitasKamar-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <img class="img-fluid" src="/landing_page/assets/img/portfolio/2.jpg" alt="..." />
-                    </a>
-                    <div class="fasilitasKamar-caption">
-                        <div class="fasilitasKamar-caption-heading">Explore</div>
-                        <div class="fasilitasKamar-caption-subheading text-muted">Graphic Design</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 mb-4">
-                <!-- Portfolio item 3-->
-                <div class="fasilitasKamar-item">
-                    <a class="fasilitasKamar-link" data-bs-toggle="modal" href="#fasilitasKamarModal3">
-                        <div class="fasilitasKamar-hover">
-                            <div class="fasilitasKamar-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <img class="img-fluid" src="/landing_page/assets/img/portfolio/3.jpg" alt="..." />
-                    </a>
-                    <div class="fasilitasKamar-caption">
-                        <div class="fasilitasKamar-caption-heading">Finish</div>
-                        <div class="fasilitasKamar-caption-subheading text-muted">Identity</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                <!-- Portfolio item 4-->
-                <div class="fasilitasKamar-item">
-                    <a class="fasilitasKamar-link" data-bs-toggle="modal" href="#fasilitasKamarModal4">
-                        <div class="fasilitasKamar-hover">
-                            <div class="fasilitasKamar-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <img class="img-fluid" src="/landing_page/assets/img/portfolio/4.jpg" alt="..." />
-                    </a>
-                    <div class="fasilitasKamar-caption">
-                        <div class="fasilitasKamar-caption-heading">Lines</div>
-                        <div class="fasilitasKamar-caption-subheading text-muted">Branding</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-                <!-- Portfolio item 5-->
-                <div class="fasilitasKamar-item">
-                    <a class="fasilitasKamar-link" data-bs-toggle="modal" href="#fasilitasKamarModal5">
-                        <div class="fasilitasKamar-hover">
-                            <div class="fasilitasKamar-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <img class="img-fluid" src="/landing_page/assets/img/portfolio/5.jpg" alt="..." />
-                    </a>
-                    <div class="fasilitasKamar-caption">
-                        <div class="fasilitasKamar-caption-heading">Southwest</div>
-                        <div class="fasilitasKamar-caption-subheading text-muted">Website Design</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <!-- Portfolio item 6-->
-                <div class="fasilitasKamar-item">
-                    <a class="fasilitasKamar-link" data-bs-toggle="modal" href="#fasilitasKamarModal6">
-                        <div class="fasilitasKamar-hover">
-                            <div class="fasilitasKamar-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <img class="img-fluid" src="/landing_page/assets/img/portfolio/6.jpg" alt="..." />
-                    </a>
-                    <div class="fasilitasKamar-caption">
-                        <div class="fasilitasKamar-caption-heading">Window</div>
-                        <div class="fasilitasKamar-caption-subheading text-muted">Photography</div>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
@@ -344,4 +274,41 @@
         </form>
     </div>
 </section>
+
+<!-- Portfolio Modals-->
+<!-- Portfolio item 1 modal popup-->
+<div class="fasilitasKamar-modal modal fade" id="fasilitasKamarModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-bs-dismiss="modal"><img src="/landing_page/assets/img/close-icon.svg" alt="Close modal" /></div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="modal-body">
+                            <!-- Project details-->
+                            <h2 class="text-uppercase">Project Name</h2>
+                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                            <img class="img-fluid d-block mx-auto" src="/landing_page/assets/img/portfolio/1.jpg" alt="..." />
+                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                            <ul class="list-inline">
+                                <li>
+                                    <strong>Client:</strong>
+                                    Threads
+                                </li>
+                                <li>
+                                    <strong>Category:</strong>
+                                    Illustration
+                                </li>
+                            </ul>
+                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                <i class="fas fa-times me-1"></i>
+                                Close Project
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <?= $this->endSection(); ?>

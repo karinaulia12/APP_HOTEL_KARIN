@@ -34,7 +34,8 @@ $routes->setAutoRoute(true);
 
 // tamu
 $routes->get('/', 'TamuController::index');
-$routes->get('/booking', 'TamuController::tampil_booking');
+$routes->get('/form-booking', 'TamuController::tampil_booking');
+$routes->post('/booking', 'TamuController::proses_booking');
 
 // admin
 $routes->get('/petugas', 'PetugasController::index');

@@ -48,7 +48,7 @@
             <div class="row">
                 <?php if (!$dataKamar) : ?>
                     <div class="alert alert-danger" role="alert">
-                        <h6 class="text-center display-6">Data Kamar tidak ditemukan!</h6>
+                        <strong>Data Kamar dengan kata kunci "<?= $keyword; ?>" tidak ditemukan!</strong>
                     </div>
                 <?php endif; ?>
                 <?php foreach ($dataKamar as $kamar) : ?>
@@ -88,14 +88,14 @@
                             <div class="modal-footer">
                                 <input type="hidden" name="id_kamar" class="productID">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
-                                <a href="/petugas/kamar/hapus/<?= $kamar['id_kamar']; ?>" type="button" class="btn btn-danger">Hapus</a>
+                                <a href="/petugas/kamar/hapus/" type="button" class="btn btn-danger">Hapus</a>
                             </div>
                         </div>
                     </div>
                 </div> -->
 
 
-                <form action="/petugas/kamar/hapus/<?= $kamar['id_kamar']; ?>" method="post">
+                <form action="/petugas/kamar/hapus/" method="post">
                     <div id="confirm-dialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">

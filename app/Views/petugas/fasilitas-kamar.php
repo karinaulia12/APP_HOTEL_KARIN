@@ -38,24 +38,23 @@
                 </thead>
                 <tbody>
                     <!-- data asli fkamar  -->
-                    <?php if ($data_tk) {
-                        $no = 1;
-                        foreach ($data_tk as $row) : ?>
-                            <tr>
-                                <td class="text-center"><?= $no++; ?></td>
-                                <td class="text-center">
-                                    <a class="btn btn-info btn-sm rounded-pill text-white" href="/petugas/fkamar/detail/<?= $row['id_fkamar']; ?>">
-                                        <?= $row['type_kamar']; ?>
-                                    </a>
-                                </td>
-                                <td><?= $row['nama_fkamar']; ?></td>
-                                <td class="text-center">
-                                    <a href="/petugas/fkamar/edit/<?= $row['id_fkamar']; ?>" class="btn btn-warning btn-sm mx-1 my-1">Edit</a>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modelHapus" class="btn btn-danger btn-sm mx-1 my-1">Hapus</a>
-                                </td>
-                            </tr>
-                    <?php endforeach;
-                    } ?>
+                    <?php $no = 1;
+                    foreach ($fkamar as $row) : ?>
+                        <tr>
+                            <td class="text-center"><?= $no++; ?></td>
+                            <td class="text-center">
+                                <a class="btn btn-info btn-sm rounded-pill text-white" href="/petugas/fkamar/detail/<?= $row['id_fkamar']; ?>">
+                                    <?= $row['type_kamar']; ?>
+                                </a>
+                            </td>
+                            <td><?= $row['nama_fkamar']; ?></td>
+                            <td class="text-center">
+                                <a href="/petugas/fkamar/edit/<?= $row['id_fkamar']; ?>" class="btn btn-warning btn-sm mx-1 my-1">Edit</a>
+                                <!-- <a href="#" data-bs-toggle="modal" data-bs-target="#modelHapus" class="btn btn-danger btn-sm mx-1 my-1">Hapus</a> -->
+                                <a href="/petugas/fkamar/hapus/<?= $row['id_fkamar']; ?>" type="button" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin menghapusnya?')">Hapus</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
             <!-- Modal Logout -->

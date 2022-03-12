@@ -25,23 +25,11 @@
                                 <option <?= $dataKamar[0]['id_type_kamar'] == '4' ? 'selected' : ''; ?> value="4">Junior Suite Room - Rp. <?= $data_typekamar[0]['harga']; ?></option>
                                 <option <?= $dataKamar[0]['id_type_kamar'] == '5' ? 'selected' : ''; ?> value="5">Suite Room - Rp. <?= $data_typekamar[0]['harga']; ?></option>
                                 <option <?= $dataKamar[0]['id_type_kamar'] == '6' ? 'selected' : ''; ?> value="6">Presidential Room - Rp. <?= $data_typekamar[0]['harga']; ?></option>
-
-
-                                <!-- <option <?= $data_typekamar[0]['type_kamar'] == 'Standard Room' ? 'selected' : ''; ?> value="Standard Room">Standard Room - Rp. <?= $data_typekamar[0]['harga']; ?></option>
-                                <option <?= $data_typekamar[0]['type_kamar'] == 'Superior Room' ? 'selected' : ''; ?> value="Superior Room">Superior Room - Rp. <?= $data_typekamar[0]['harga']; ?></option>
-                                <option <?= $data_typekamar[0]['type_kamar'] == 'Deluxe Room' ? 'selected' : ''; ?> value="Deluxe Room">Deluxe Room - Rp. <?= $data_typekamar[0]['harga']; ?></option>
-                                <option <?= $data_typekamar[0]['type_kamar'] == 'Junior Suite Room' ? 'selected' : ''; ?> value="Junior Suite Room">Junior Suite Room - Rp. <?= $data_typekamar[0]['harga']; ?></option>
-                                <option <?= $data_typekamar[0]['type_kamar'] == 'Suite Room' ? 'selected' : ''; ?> value="Suite Room">Suite Room - Rp. <?= $data_typekamar[0]['harga']; ?></option>
-                                <option <?= $data_typekamar[0]['type_kamar'] == 'Presidential Room' ? 'selected' : ''; ?> value="Presidential Room">Presidential Room - Rp. <?= $data_typekamar[0]['harga']; ?></option> -->
-                            </select>
-                            <div class="invalid-feedback">
-                                <?= $validasi->getError('type_kamar'); ?>
-                            </div>
                         </div>
                         <!-- </div> -->
                         <div class="col-6">
                             <label for="" class="form-label mt-3">Foto</label>
-                            <input type="hidden" name="nama_foto" value="<?= $dataKamar[0]['foto']; ?>">
+                            <input type="hidden" name="nama_foto" value="<?= ($dataKamar[0]['foto']) ? $dataKamar[0]['foto'] : '' ?>">
                             <input type="file" onchange="previewImage" class="form-control <?= ($validasi->hasError('foto')) ? 'is-invalid' : ''; ?>" value="<?= old('foto'); ?>" name="foto" value="" placeholder="">
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('foto'); ?>

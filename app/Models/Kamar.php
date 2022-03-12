@@ -53,12 +53,21 @@ class Kamar extends Model
 
     public function search($keyword)
     {
-        return $this->table('kamar')->like('no_kamar', $keyword)->orLike('id_type_kamar', $keyword)->orLike('deskripsi', $keyword)->orLike('harga', $keyword);
+        return $this->db->table('kamar')
+            ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+            ->like('no_kamar', $keyword)
+            ->orLike('type_kamar', $keyword)
+            ->orLike('deskripsi', $keyword)
+            ->orLike('harga', $keyword)
+            ->get()->getResultArray();
     }
 
     public function join_typeKamar()
     {
-        return $this->db->table('kamar')->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')->get()->getResultArray();
+        return $this->db->table('kamar')
+            ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+            ->like('no_kamar')
+            ->get()->getResultArray();
         // return $join->paginate(9, 'kamar');
     }
 
@@ -78,21 +87,4 @@ class Kamar extends Model
         // return $this->db->table('kamar')
         // return $this->db->table('type_kamar')->join('fasilitas_kamar', 'fasilitas_kamar.id_fkamar = fasilitas_kamar.id_type_kamar')->where('id_kamar', $id_kamar)->get()->getResultArray();
     }
-
-    // public function join($id_kamar)
-    // {
-    //     $this->db->table('kamar')->select('*')->from('kamar k');
-    //     $this->db->select('*');
-    //     $this->db->from('Album a');
-    //     $this->db->join('Category b', 'b.cat_id=a.cat_id', 'left');
-    //     $this->db->join('Soundtrack c', 'c.album_id=a.album_id', 'left');
-    //     $this->db->where('c.album_id', $id);
-    //     $this->db->order_by('c.track_title', 'asc');
-    //     $query = $this->db->get();
-    //     if ($query->num_rows() != 0) {
-    //         return $query->result_array();
-    //     } else {
-    //         return false;
-    //     }
-    // }
 }

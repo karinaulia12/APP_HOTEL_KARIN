@@ -10,20 +10,23 @@
                 <?= csrf_field(); ?>
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-5">
+                        <div class="col-6">
                             <label for="" class="form-label">Tipe Kamar</label>
                             <select class=" form-select <?= ($validasi->hasError('no_kamar')) ? 'is-invalid' : ''; ?>" name="type_kamar" id="" value="">
-                                <option <?= $data_fkamar[0]['type_kamar'] == 'superior' ? 'selected' : ''; ?> value="superior">Superior</option>
-                                <option <?= $data_fkamar[0]['type_kamar'] == 'deluxe' ? 'selected' : ''; ?> value="deluxe">Deluxe</option>
+                                <option <?= $data_fkamar[0]['id_type_kamar'] == '1' ? 'selected' : ''; ?> value="1">Standard Room - Rp. </option>
+                                <option <?= $data_fkamar[0]['id_type_kamar'] == '2' ? 'selected' : ''; ?> value="2">Superior Room - Rp. </option>
+                                <option <?= $data_fkamar[0]['id_type_kamar'] == '3' ? 'selected' : ''; ?> value="3">Deluxe Room - Rp. </option>
+                                <option <?= $data_fkamar[0]['id_type_kamar'] == '4' ? 'selected' : ''; ?> value="4">Junior Suite Room - Rp. </option>
+                                <option <?= $data_fkamar[0]['id_type_kamar'] == '5' ? 'selected' : ''; ?> value="5">Suite Room - Rp. </option>
+                                <option <?= $data_fkamar[0]['id_type_kamar'] == '6' ? 'selected' : ''; ?> value="6">Presidential Room - Rp. </option>
                             </select>
                             <div id="validationServer03Feedback" class="invalid-feedback">
                                 <?= $validasi->getError('no_kamar'); ?>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row mt-3">
-                        <div class="col">
+                        <!-- <div class="row mt-3"> -->
+                        <div class="col-6">
                             <label for="NoKamar" class="form-label">Fasilitas Kamar</label>
                             <input type="hidden" name="id_fkamar" value="<?= $data_fkamar[0]['id_fkamar']; ?>">
                             <textarea class=" form-control <?= ($validasi->hasError('nama_fkamar')) ? 'is-invalid' : ''; ?>" name="nama_fkamar" id="" cols="30" rows="10"><?= $data_fkamar[0]['nama_fkamar']; ?></textarea>
@@ -31,9 +34,10 @@
                                 <?= $validasi->getError('nama_fkamar'); ?>
                             </div>
                         </div>
-
                     </div>
-                    <button type="submit" class="btn btn-primary my-3">Kirim</button>
+
+                    <!-- </div> -->
+                    <button type="submit" class="btn btn-primary my-3 justify-align-center">Kirim</button>
                 </div>
             </form>
         </div>

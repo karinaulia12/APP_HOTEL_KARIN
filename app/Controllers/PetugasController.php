@@ -198,7 +198,7 @@ class PetugasController extends BaseController
         if ($keyword) {
             $fkamar = $this->fKamarModel->search($keyword);
         } else {
-            $fkamar = $this->fKamarModel;
+            $fkamar = $this->fKamarModel->get_typeKamar();
         }
 
         // $tabeljoin = $this->kamarModel->join('fasilitas_kamar', 'kamar.id_kamar = fasilitas_kamar.id_kamar')->get()->getResultArray();
@@ -206,7 +206,7 @@ class PetugasController extends BaseController
         $data = [
             'title' => 'Fasilitas Kamar AuHotelia',
             // 'dataKamar' => $tabeljoin,
-            'fkamar' => $fkamar->findAll(),
+            'fkamar' => $fkamar,
             'data_tk' => $this->fKamarModel->get_typeKamar(),
             'keyword' => $keyword
         ];
@@ -285,7 +285,7 @@ class PetugasController extends BaseController
         $data = [
             'title' => 'Edit Fasilitas Kamar AuHotelia',
             'data_fkamar' => $this->fKamarModel->where('id_fkamar', $id_fkamar)->findAll(),
-            'data_noKamar' => $this->kamarModel->findAll(),
+            'data_tk' => $this->fKamarModel->get_typeKamar(),
             'validasi' => \Config\Services::validation()
         ];
 
@@ -396,14 +396,14 @@ class PetugasController extends BaseController
         if ($keyword) {
             $kamar = $this->kamarModel->search($keyword);
         } else {
-            $kamar = $this->kamarModel;
+            $kamar = $this->kamarModel->join_typeKamar();
         }
 
         $data = [
             'title' => 'Kamar AuHotelia',
             // 'dataKamar' => $this->kamarModel->findAll(),
             // 'dataKamar' => $kamar->orderBy('no_kamar', 'asc')->paginate(9, 'kamar'),
-            'dataKamar' => $this->kamarModel->join_typeKamar(),
+            'dataKamar' => $kamar,
             'pager' => $this->kamarModel->pager,
             'keyword' => $keyword
         ];
@@ -593,10 +593,18 @@ class PetugasController extends BaseController
             return redirect()->to('/petugas');
             exit;
         }
+
         $syarat = ['id_kamar' => $id_kamar];
         $dataKamar = $this->kamarModel->where($syarat)->find();
+
+        $file = $dataKamar[0]['foto'];
+        // if ($file->isValid() && !$file->hasMoved()) {
+        if (file_exists('gambar/' . $file)) {
+            unlink('gambar/' . $file);
+        }
+        // }
         // hapus foto
-        unlink('gambar/' . $dataKamar[0]['foto']);
+        // unlink('gambar/' . $dataKamar[0]['foto']);
         $this->kamarModel->where('id_kamar', $id_kamar)->delete();
         session()->setFlashdata('hapusKamar', 'Data Kamar berhasil dihapus');
         return redirect()->to('/petugas/kamar');
@@ -658,7 +666,7 @@ class PetugasController extends BaseController
             $inputdata = [
                 'nama_fkamar' => $this->request->getPost('nama_fkamar'),
                 // 'foto' => $upload->getName(),
-                'type_kamar' => $this->request->getPost('type_kamar')
+                'id_type_kamar' => $this->request->getPost('type_kamar')
             ];
             session()->set($inputdata);
             $this->fKamarModel->update($id_fkamar, $inputdata);

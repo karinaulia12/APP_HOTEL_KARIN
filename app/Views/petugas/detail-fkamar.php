@@ -17,7 +17,8 @@
                 <div class="card-body">
                     <h5 class="card-title">Fasilitas :</h5>
                     <p class="card-text"><?= $dataFkamar[0]['nama_fkamar']; ?></p>
-                    <a href="#" class="btn btn-warning text-center"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                    <a href="/petugas/fkamar/edit/<?= $dataFkamar[0]['id_fkamar']; ?>" class="btn btn-warning text-center"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                    <a href="/petugas/fkamar/hapus/<?= $dataFkamar[0]['id_fkamar']; ?>" type="button" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin menghapusnya?')"><i class="fa fa-trash" aria-hidden="true"></i> Hapus</a>
                 </div>
             </div>
         </div>
