@@ -538,7 +538,6 @@ class PetugasController extends BaseController
         } else {
             $nama_foto = $nama_foto_lama;
         }
-
         $data = [
             'id_type_kamar' => $this->request->getPost('type_kamar'),
             'foto' => $nama_foto,

@@ -51,6 +51,7 @@ class FKamar extends Model
         return $this->db->table('fasilitas_kamar')
             ->select('*')
             ->join('type_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')
+            ->orderBy('harga', 'asc')
             // ->like('nama_fkamar', $keyword)
             // ->orLike('type_kamar', $keyword)
             ->get()->getResultArray();

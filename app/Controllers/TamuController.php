@@ -11,9 +11,9 @@ class TamuController extends BaseController
         $data = [
             'title' => 'AuHotelia',
             'data_fumum' => $this->fUmumModel->findAll(),
-            'data_fkamar' => $this->fKamarModel->findAll()
+            'data_fkamar' => $this->fKamarModel->get_typeKamar()
         ];
-        return view('tamu/lp_tamu', $data);
+        return view('tamu/lp_tamu2', $data);
     }
 
     public function tampil_booking()

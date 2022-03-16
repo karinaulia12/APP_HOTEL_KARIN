@@ -49,17 +49,17 @@
 </section>
 
 <!-- Portfolio Grid-->
-<section class="page-section bg-light" id="fasilitasKamar">
+<section class="page-section bg-warning" id="fasilitasKamar">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">Tipe Kamar</h2>
+            <h2 class="section-heading text-uppercase text-white">Tipe Kamar</h2>
             <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
         </div>
         <div class="row">
             <?php foreach ($data_fkamar as $row) : ?>
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <!-- Portfolio item 1-->
-                    <div class="fasilitasKamar-item">
+                    <!-- <div class="fasilitasKamar-item">
                         <a class="fasilitasKamar-link" data-bs-toggle="modal" href="#fasilitasKamarModal1">
                             <div class="fasilitasKamar-hover">
                                 <div class="fasilitasKamar-hover-content"><i class="fas fa-plus fa-3x"></i></div>
@@ -67,8 +67,21 @@
                             <img class="img-fluid" src="/landing_page/assets/img/portfolio/1.jpg" alt="..." />
                         </a>
                         <div class="fasilitasKamar-caption">
-                            <div class="fasilitasKamar-caption-heading"><?= $row['nama_fkamar']; ?></div>
-                            <div class="fasilitasKamar-caption-subheading text-muted">Illustration</div>
+                            <div class="fasilitasKamar-caption-heading"><?= $row['type_kamar']; ?></div>
+                            <div class="fasilitasKamar-caption-subheading text-muted"><?= $row['nama_fkamar']; ?></div>
+                        </div>
+                    </div>
+                </div> -->
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <?= $row['type_kamar']; ?>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title"><?= $row['nama_fkamar']; ?></h4>
+                            <!-- <p class="card-text"><?= $row['nama_fkamar']; ?></p> -->
+                        </div>
+                        <div class="card-footer text-muted">
+                            Harga: Rp. <?= $row['harga']; ?> / malam
                         </div>
                     </div>
                 </div>
