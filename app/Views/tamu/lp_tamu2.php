@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="/landing_page2//landing_page2/assets/img/favicon.png" rel="icon">
-    <link href="/landing_page2//landing_page2/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="landing_page2/assets/img/favicon.png" rel="icon">
+    <link href="landing_page2/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,59 +60,23 @@
             <nav id="navbar" class="navbar">
                 <ul>
 
-                    <li class="dropdown"><a href="#"><span>Home</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                        <ul>
-                            <li><a href="index.html" class="active">Home 1 - index.html</a></li>
-                            <li><a href="index-2.html">Home 2 - index-2.html</a></li>
-                            <li><a href="index-3.html">Home 3 - index-3.html</a></li>
-                            <li><a href="index-4.html">Home 4 - index-4.html</a></li>
-                        </ul>
-                    </li>
+                    <!-- <li class="dropdown"> -->
+                    <a href="#"><span>Home</span></a>
+                    <!-- </li> -->
 
                     <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
                     <li><a class="nav-link scrollto" href="index.html#services">Services</a></li>
                     <li><a class="nav-link scrollto" href="index.html#portfolio">Portfolio</a></li>
                     <li><a class="nav-link scrollto" href="index.html#team">Team</a></li>
                     <li><a href="blog.html">Blog</a></li>
-                    <li class="dropdown megamenu"><a href="#"><span>Mega Menu</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <li class="dropdown"><a href="#"><span>Tipe Kamar</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
-                            <li>
-                                <a href="#">Column 1 link 1</a>
-                                <a href="#">Column 1 link 2</a>
-                                <a href="#">Column 1 link 3</a>
-                            </li>
-                            <li>
-                                <a href="#">Column 2 link 1</a>
-                                <a href="#">Column 2 link 2</a>
-                                <a href="#">Column 3 link 3</a>
-                            </li>
-                            <li>
-                                <a href="#">Column 3 link 1</a>
-                                <a href="#">Column 3 link 2</a>
-                                <a href="#">Column 3 link 3</a>
-                            </li>
-                            <li>
-                                <a href="#">Column 4 link 1</a>
-                                <a href="#">Column 4 link 2</a>
-                                <a href="#">Column 4 link 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                        <ul>
-                            <li><a href="#">Drop Down 1</a></li>
-                            <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                                <ul>
-                                    <li><a href="#">Deep Drop Down 1</a></li>
-                                    <li><a href="#">Deep Drop Down 2</a></li>
-                                    <li><a href="#">Deep Drop Down 3</a></li>
-                                    <li><a href="#">Deep Drop Down 4</a></li>
-                                    <li><a href="#">Deep Drop Down 5</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Drop Down 2</a></li>
-                            <li><a href="#">Drop Down 3</a></li>
-                            <li><a href="#">Drop Down 4</a></li>
+                            <li><a href="#">Standard Room</a></li>
+                            <li><a href="#">Superior Room</a></li>
+                            <li><a href="#">Deluxe Room</a></li>
+                            <li><a href="#">Junior Suite Room</a></li>
+                            <li><a href="#">Suite Room</a></li>
+                            <li><a href="#">Presidential Room</a></li>
                         </ul>
                     </li>
                     <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
@@ -128,72 +92,31 @@
     <section id="hero-animated" class="hero-animated d-flex align-items-center">
         <div class="container d-flex flex-column justify-content-center align-items-center text-center position-relative" data-aos="zoom-out">
             <img src="/landing_page2/assets/img/hero-carousel/hero-carousel-3.svg" class="img-fluid animated">
-            <h2>Welcome to <span>HeroBiz</span></h2>
+            <h2>Welcome to <span>AuHotelia</span></h2>
             <p>Et voluptate esse accusantium accusamus natus reiciendis quidem voluptates similique aut.</p>
             <div class="d-flex">
-                <a href="#about" class="btn-get-started scrollto">Get Started</a>
-                <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+                <a href="#about" class="btn-get-started scrollto">Pesan Sekarang</a>
+                <!-- <a href="#" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
             </div>
         </div>
     </section>
 
     <main id="main">
 
-        <!-- ======= Featured Services Section ======= -->
-        <section id="featured-services" class="featured-services">
-            <div class="container">
-
-                <div class="row gy-4">
-
-                    <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out">
-                        <div class="service-item position-relative">
-                            <div class="icon"><i class="bi bi-activity icon"></i></div>
-                            <h4><a href="" class="stretched-link">Lorem Ipsum</a></h4>
-                            <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-                        </div>
-                    </div><!-- End Service Item -->
-
-                    <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="200">
-                        <div class="service-item position-relative">
-                            <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
-                            <h4><a href="" class="stretched-link">Sed ut perspici</a></h4>
-                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-                        </div>
-                    </div><!-- End Service Item -->
-
-                    <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="400">
-                        <div class="service-item position-relative">
-                            <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
-                            <h4><a href="" class="stretched-link">Magni Dolores</a></h4>
-                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-                        </div>
-                    </div><!-- End Service Item -->
-
-                    <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="600">
-                        <div class="service-item position-relative">
-                            <div class="icon"><i class="bi bi-broadcast icon"></i></div>
-                            <h4><a href="" class="stretched-link">Nemo Enim</a></h4>
-                            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-                        </div>
-                    </div><!-- End Service Item -->
-
-                </div>
-
-            </div>
-        </section><!-- End Featured Services Section -->
-
         <!-- ======= Features Section ======= -->
         <section id="features" class="features">
             <div class="container" data-aos="fade-up">
 
                 <ul class="nav nav-tabs row gy-4 d-flex">
-
-                    <li class="nav-item col-6 col-md-4 col-lg-2">
-                        <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-1">
-                            <i class="bi bi-binoculars color-cyan"></i>
-                            <h4>Modinest</h4>
-                        </a>
-                    </li><!-- End Tab 1 Nav -->
+                    <?php foreach ($data_fkamar as $fk) : ?>
+                        <li class="nav-item col-6 col-md-4 col-lg-2 text-center">
+                            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#<?= $fk['id_fkamar'] ?>">
+                                <i class="bi bi-binoculars color-cyan"></i>
+                                <h4><?= $fk['type_kamar']; ?></h4>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                    <!-- End Tab 1 Nav -->
 
                     <li class="nav-item col-6 col-md-4 col-lg-2">
                         <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-2">
@@ -233,32 +156,32 @@
                 </ul>
 
                 <div class="tab-content">
-
-                    <div class="tab-pane active show" id="tab-1">
-                        <div class="row gy-4">
-                            <div class="col-lg-8 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="100">
-                                <h3>Modinest</h3>
-                                <p class="fst-italic">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                                    magna aliqua.
-                                </p>
-                                <ul>
-                                    <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                                    <li><i class="bi bi-check-circle-fill"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                                    <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-                                </ul>
-                                <p>
-                                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                    culpa qui officia deserunt mollit anim id est laborum
-                                </p>
+                    <?php foreach ($data_fkamar as $row) : ?>
+                        <div class="tab-pane active show" id="<?= $row['id_fkamar']; ?>">
+                            <div class="row gy-4">
+                                <div class="col-lg-8 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="100">
+                                    <h3><?= $row['type_kamar']; ?></h3>
+                                    <p class="fst-italic">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                                        magna aliqua.
+                                    </p>
+                                    <ul>
+                                        <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                                        <li><i class="bi bi-check-circle-fill"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+                                        <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+                                    </ul>
+                                    <p>
+                                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                                        culpa qui officia deserunt mollit anim id est laborum
+                                    </p>
+                                </div>
+                                <div class="col-lg-4 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200">
+                                    <img src="/landing_page2/assets/img/features-1.svg" alt="" class="img-fluid">
+                                </div>
                             </div>
-                            <div class="col-lg-4 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200">
-                                <img src="/landing_page2/assets/img/features-1.svg" alt="" class="img-fluid">
-                            </div>
-                        </div>
-                    </div><!-- End Tab Content 1 -->
-
+                        </div><!-- End Tab Content 1 -->
+                    <?php endforeach; ?>
                     <div class="tab-pane" id="tab-2">
                         <div class="row gy-4">
                             <div class="col-lg-8 order-2 order-lg-1">
@@ -400,20 +323,20 @@
                 </div>
 
                 <div class="row gy-5">
-                    <?php foreach ($data_fkamar as $row) : ?>
+                    <?php foreach ($data_fumum as $row) : ?>
                         <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
                             <div class="service-item">
                                 <div class="img">
-                                    <img src="/landing_page2/assets/img/services-1.jpg" class="img-fluid" alt="">
+                                    <img src="/gambar/<?= $row['foto']; ?>" class="img-fluid" alt="">
                                 </div>
                                 <div class="details position-relative">
                                     <div class="icon">
                                         <i class="bi bi-activity"></i>
                                     </div>
                                     <a href="#" class="stretched-link">
-                                        <h3><?= $row['type_kamar']; ?></h3>
+                                        <h3><?= $row['nama_fumum']; ?></h3>
                                     </a>
-                                    <p><?= $row['nama_fkamar']; ?>.</p>
+                                    <p><?= $row['deskripsi']; ?>.</p>
                                 </div>
                             </div>
                         </div>
@@ -633,77 +556,30 @@
                 </div>
 
                 <div class="row gy-4">
+                    <?php foreach ($data_fkamar as $fk) : ?>
+                        <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="pricing-item featured">
 
-                    <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="pricing-item">
+                                <div class="pricing-header">
+                                    <h3><?= $fk['type_kamar']; ?></h3>
+                                    <h4><sup>Rp</sup><?= $fk['harga']; ?><span> / malam</span></h4>
+                                </div>
 
-                            <div class="pricing-header">
-                                <h3>Free Plan</h3>
-                                <h4><sup>$</sup>0<span> / month</span></h4>
+                                <ul>
+                                    <li><i class="bi bi-dot"></i> <span>Quam adipiscing vitae proin</span></li>
+                                    <li><i class="bi bi-dot"></i> <span>Nec feugiat nisl pretium</span></li>
+                                    <li><i class="bi bi-dot"></i> <span>Nulla at volutpat diam uteera</span></li>
+                                    <li class="na"><i class="bi bi-x"></i> <span>Pharetra massa massa ultricies</span></li>
+                                    <li class="na"><i class="bi bi-x"></i> <span>Massa ultricies mi quis hendrerit</span></li>
+                                </ul>
+
+                                <div class="text-center mt-auto">
+                                    <a href="#" class="buy-btn">Buy Now</a>
+                                </div>
+
                             </div>
-
-                            <ul>
-                                <li><i class="bi bi-dot"></i> <span>Quam adipiscing vitae proin</span></li>
-                                <li><i class="bi bi-dot"></i> <span>Nec feugiat nisl pretium</span></li>
-                                <li><i class="bi bi-dot"></i> <span>Nulla at volutpat diam uteera</span></li>
-                                <li class="na"><i class="bi bi-x"></i> <span>Pharetra massa massa ultricies</span></li>
-                                <li class="na"><i class="bi bi-x"></i> <span>Massa ultricies mi quis hendrerit</span></li>
-                            </ul>
-
-                            <div class="text-center mt-auto">
-                                <a href="#" class="buy-btn">Buy Now</a>
-                            </div>
-
-                        </div>
-                    </div><!-- End Pricing Item -->
-
-                    <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="400">
-                        <div class="pricing-item featured">
-
-                            <div class="pricing-header">
-                                <h3>Business Plan</h3>
-                                <h4><sup>$</sup>29<span> / month</span></h4>
-                            </div>
-
-                            <ul>
-                                <li><i class="bi bi-dot"></i> <span>Quam adipiscing vitae proin</span></li>
-                                <li><i class="bi bi-dot"></i> <span>Nec feugiat nisl pretium</span></li>
-                                <li><i class="bi bi-dot"></i> <span>Nulla at volutpat diam uteera</spa>
-                                </li>
-                                <li><i class="bi bi-dot"></i> <span>Pharetra massa massa ultricies</spa>
-                                </li>
-                                <li><i class="bi bi-dot"></i> <span>Massa ultricies mi quis hendrerit</span></li>
-                            </ul>
-
-                            <div class="text-center mt-auto">
-                                <a href="#" class="buy-btn">Buy Now</a>
-                            </div>
-
-                        </div>
-                    </div><!-- End Pricing Item -->
-
-                    <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="600">
-                        <div class="pricing-item">
-
-                            <div class="pricing-header">
-                                <h3>Developer Plan</h3>
-                                <h4><sup>$</sup>49<span> / month</span></h4>
-                            </div>
-
-                            <ul>
-                                <li><i class="bi bi-dot"></i> <span>Quam adipiscing vitae proin</span></li>
-                                <li><i class="bi bi-dot"></i> <span>Nec feugiat nisl pretium</span></li>
-                                <li><i class="bi bi-dot"></i> <span>Nulla at volutpat diam uteera</span></li>
-                                <li><i class="bi bi-dot"></i> <span>Pharetra massa massa ultricies</span></li>
-                                <li><i class="bi bi-dot"></i> <span>Massa ultricies mi quis hendrerit</span></li>
-                            </ul>
-
-                            <div class="text-center mt-auto">
-                                <a href="#" class="buy-btn">Buy Now</a>
-                            </div>
-
-                        </div>
-                    </div><!-- End Pricing Item -->
+                        </div><!-- End Pricing Item -->
+                    <?php endforeach; ?>
 
                 </div>
 
