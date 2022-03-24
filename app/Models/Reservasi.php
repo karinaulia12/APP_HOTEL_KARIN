@@ -65,7 +65,7 @@ class Reservasi extends Model
         return $this->db->table('reservasi')
             ->select('*')
             ->where('id_reservasi', $id)
-            ->join('reservasi_kamar', 'reservasi_kamar.id_reservasi = reservasi.id_reservasi')
+            ->join('reservasi_kamar', 'reservasi_kamar.id_reservasi_kamar = reservasi.id_reservasi')
             ->join('kamar', 'kamar.id_kamar = reservasi_kamar.id_kamar')
             ->join('tamu', 'tamu.nik = reservasi.nik')
             ->get()->getResultArray();

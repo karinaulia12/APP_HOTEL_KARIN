@@ -162,11 +162,10 @@
                                 <div class="col-lg-8 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="100">
                                     <h3><?= $row['type_kamar']; ?></h3>
                                     <p class="fst-italic">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                                        magna aliqua.
+                                        <?= $row['nama_fkamar']; ?>
                                     </p>
                                     <ul>
-                                        <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                                        <li><i class="bi bi-check-circle-fill"></i> <?= $row['nama_fkamar']; ?>.</li>
                                         <li><i class="bi bi-check-circle-fill"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
                                         <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
                                     </ul>
@@ -182,6 +181,7 @@
                             </div>
                         </div><!-- End Tab Content 1 -->
                     <?php endforeach; ?>
+
                     <div class="tab-pane" id="tab-2">
                         <div class="row gy-4">
                             <div class="col-lg-8 order-2 order-lg-1">

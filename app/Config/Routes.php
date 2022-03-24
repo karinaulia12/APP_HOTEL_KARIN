@@ -34,8 +34,8 @@ $routes->setAutoRoute(true);
 
 // tamu
 $routes->get('/', 'TamuController::index');
-$routes->get('/form-booking', 'TamuController::tampil_booking');
-$routes->post('/booking', 'TamuController::proses_booking');
+$routes->get('/form-booking', 'TamuController::form');
+$routes->post('/booking', 'TamuController::simpanBooking');
 
 // admin
 $routes->get('/petugas', 'PetugasController::index');
@@ -45,9 +45,14 @@ $routes->get('/petugas/logout', 'PetugasController::logout');
 
 // resepsionis
 $routes->get('/resepsionis/dashboard', 'ResepsionisController::dashboard', ['filter' => 'otentifikasi']);
-$routes->get('/resepsionis/reservasi', 'ResepsionisController::tampil_reservasi', ['filter' => 'otentifikasi']);
-$routes->get('/resepsionis/reservasi/detail/(:num)', 'ResepsionisController::detail_reservasi/$1', ['filter' => 'otentifikasi']);
+$routes->get('/resepsionis/reservasi', 'ResepsionisController::data', ['filter' => 'otentifikasi']);
+$routes->get('/resepsionis/reservasi/detail/(:any)', 'ResepsionisController::detail_reservasi/$1', ['filter' => 'otentifikasi']);
 $routes->get('/resepsionis/tamu', 'ResepsionisController::tampil_tamu', ['filter' => 'otentifikasi']);
+$routes->get('/resepsionis/reservasi/checkin/(:num)', 'ResepsionisController::checkin/$1', ['filter' => 'otentifikasi']);
+$routes->get('/resepsionis/reservasi/checkout/(:num)', 'ResepsionisController::checkout/$1', ['filter' => 'otentifikasi']);
+$routes->get('/resepsionis/reservasi/terima/(:num)', 'ResepsionisController::terima/$1', ['filter' => 'otentifikasi']);
+$routes->get('/resepsionis/reservasi/tolak/(:num)', 'ResepsionisController::tolak/$1', ['filter' => 'otentifikasi']);
+$routes->get('/resepsionis/reservasi/hapus/(:num)', 'ResepsionisController::hapusdatareservasi/$1', ['filter' => 'otentifikasi']);
 
 // crud kamar
 $routes->get('/petugas/kamar', 'PetugasController::tampilKamar', ['filter' => 'otentifikasi']);

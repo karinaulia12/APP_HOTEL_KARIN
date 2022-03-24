@@ -423,12 +423,6 @@ class PetugasController extends BaseController
                     'is_unique' => 'Nomor Kamar sudah terdaftar.'
                 ]
             ],
-            // 'type_kamar' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Tipe Kamar harus diisi.',
-            //     ]
-            // ],
             'foto' => [
                 'rules' => 'uploaded[foto]|is_image[foto]|mime_in[foto,image/jpg,image/png,image/jpeg]',
                 'errors' => [
@@ -436,14 +430,7 @@ class PetugasController extends BaseController
                     'is_image' => 'File yang Anda pilih bukan gambar.',
                     'mime_in' => 'Foto yang Anda pilih harus memiliki ekstensi .jpg, .png, atau .jpeg.'
                 ]
-            ],
-            // 'harga' => [
-            //     'rules' => 'required|is_numeric',
-            //     'errors' => [
-            //         'required' => 'Harga harus diisi.',
-            //         'is_numeric' => 'Harga tidak boleh mengandung huruf'
-            //     ]
-            // ]
+            ]
         ])) {
             $validation = \Config\Services::validation();
             return redirect()->to('/petugas/kamar/tambah')->withInput('validation', $validation);
@@ -483,25 +470,12 @@ class PetugasController extends BaseController
                     'is_unique' => 'Nomor Kamar sudah terdaftar.'
                 ]
             ],
-            'type_kamar' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Tipe Kamar harus diisi.',
-                ]
-            ],
             'foto' => [
                 'rules' => 'uploaded[foto]|is_image[foto]|mime_in[foto,image/jpg,image/png,image/jpeg]',
                 'errors' => [
                     'uploaded' => 'Foto harus diisi.',
                     'is_image' => 'File yang Anda pilih bukan gambar.',
                     'mime_in' => 'Foto yang Anda pilih harus memiliki ekstensi .jpg, .png, atau .jpeg.'
-                ]
-            ],
-            'harga' => [
-                'rules' => 'required|is_numeric',
-                'errors' => [
-                    'required' => 'Harga harus diisi.',
-                    'is_numeric' => 'Harga tidak boleh mengandung huruf'
                 ]
             ]
         ])) {
@@ -548,38 +522,6 @@ class PetugasController extends BaseController
         $this->kamarModel->update($no_kamar, $data);
         return redirect()->to('/petugas/kamar')->with('editKamar', 'Data kamar berhasil diupdate');
     }
-
-    // public function editFotoKamar()
-    // {
-    //     if (!session()->get('sudahkahLogin')) {
-    //         return redirect()->to('/petugas');
-    //         exit;
-    //     }
-
-    //     if (session()->get('level' != 'admin')) {
-    //         return redirect()->to('/petugas');
-    //         exit;
-    //     }
-
-    //     if (session()->get('level' != 'admin')) {
-    //         return redirect()->to('/petugas/dashboard');
-    //         exit;
-    //     }
-
-    //     helper(['form']);
-    //     $id = $this->request->getPost('id_kamar');
-    //     $syarat = $this->request->getPost('nama_foto');
-    //     unlink('gambar/' . $syarat);
-    //     $upload = $this->request->getFile('foto');
-    //     // $namaFoto = $upload->getRandomName();
-    //     $upload->move(WRITEPATH . '../public/gambar');
-    //     $data = [
-    //         'foto' => $upload->getName()
-    //     ];
-    //     $this->kamarModel->update($id, $data);
-    //     session()->setFlashdata('editFotoKamar', 'Foto Kamar berhasil diupdate.');
-    //     return redirect()->to('/petugas/kamar');
-    // }
 
     public function hapusKamar($id_kamar)
     {
@@ -633,16 +575,10 @@ class PetugasController extends BaseController
                 'errors' => [
                     'required' => 'Fasilitas Kamar harus diisi.'
                 ]
-            ],
-            'id_type_kamar' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nomor Kamar harus diisi.',
-                ]
             ]
         ])) {
             $validation = \Config\Services::validation();
-            return redirect()->to('/petugas/fkamar/tambah')->with('validation', $validation);
+            return redirect()->to('/petugas/fkamar/tambah')->withInput('validation', $validation);
         }
         helper(['form']);
         $inputdata = [
@@ -717,7 +653,7 @@ class PetugasController extends BaseController
             ]
         ])) {
             $validation = \Config\Services::validation();
-            return redirect()->to('/petugas/fumum/tambah')->with('validation', $validation);
+            return redirect()->to('/petugas/fumum/tambah')->withInput('validation', $validation);
         }
 
         helper(['form']);
