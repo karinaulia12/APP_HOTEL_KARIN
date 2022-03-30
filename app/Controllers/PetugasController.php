@@ -674,6 +674,7 @@ class PetugasController extends BaseController
 
     public function edit_fumum()
     {
+        helper(['form']);
         $id_fumum = $this->request->getPost('id_fumum');
         $nama_foto_lama = $this->request->getPost('nama_foto_fumum');
 
@@ -683,17 +684,19 @@ class PetugasController extends BaseController
                 unlink('gambar/' . $nama_foto_lama);
             }
             $nama_foto_fumum = $file->getRandomName();
-            $file->move(WRITEPATH . '../public/gambar', $nama_foto_fumum);
+            $file->move(WRITEPATH . '../public/gambar/', $nama_foto_fumum);
         } else {
             $nama_foto_fumum = $nama_foto_lama;
         }
 
-        $data = [
-            'nama_fumum' => $this->request->getPost('nama_fumum'),
-            'foto' => $nama_foto_fumum,
-            'deskripsi' => $this->request->getPost('deskripsi')
-        ];
-
+        if ($id_fumum) {
+            $data = [
+                'nama_fumum' => $this->request->getPost('nama_fumum'),
+                'foto' => $nama_foto_fumum,
+                'deskripsi' => $this->request->getPost('deskripsi')
+            ];
+        }
+        // dd($data);
         $this->fUmumModel->update($id_fumum, $data);
         session()->setFlashdata('edit_fumum', 'Data fasilitas hotel berhasil diupdate');
         return redirect()->to('/petugas/fumum');

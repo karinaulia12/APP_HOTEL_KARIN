@@ -84,9 +84,6 @@
 
                                     <?php } else { ?>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="">Kamar</a>
-                                        </li>
-                                        <li class="nav-item">
                                             <a class="nav-link" href="/form-booking">Form Booking</a>
                                         </li>
                                     <?php } ?>

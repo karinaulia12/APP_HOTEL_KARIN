@@ -14,7 +14,7 @@ class Reservasi extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_reservasi', 'nik', 'checkin', 'checkout', 'jml_kamar', 'total', 'status'];
+    protected $allowedFields    = ['id_reservasi', 'nik', 'checkin', 'checkout', 'harga', 'jml_kamar', 'total', 'status'];
 
     // Dates
     protected $useTimestamps = false;
@@ -55,16 +55,42 @@ class Reservasi extends Model
             ->get()->getResultArray();
     }
 
-    public function search($keyword)
-    {
-        return $this->table('reservasi')->like('nik', $keyword)->orLike('checkout', $keyword)->orLike('checkin', $keyword)->orLike('jml_kamar', $keyword)->orLike('total', $keyword)->orLike('status', $keyword);
-    }
-
-    public function detail_rsv($id)
+    public function join_utk_pdf($id_rsv)
     {
         return $this->db->table('reservasi')
             ->select('*')
+            ->where('id_reservasi', $id_rsv)
+            ->join('reservasi_kamar', 'reservasi.id_reservasi = reservasi_kamar.id_reservasi')
+            ->join('kamar', 'kamar.id_kamar = reservasi_kamar.id_kamar')
+            ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+            ->join('tamu', 'tamu.nik = reservasi.nik')
+            ->get()->getResultArray();
+    }
+
+    public function get_id($id)
+    {
+        return $this->db->table('reservasi')
+            ->select('id_reservasi')
             ->where('id_reservasi', $id)
+            ->get()->getLastRow();
+    }
+
+    public function search($keyword)
+    {
+        return $this->db->table('reservasi')
+            ->join('tamu', 'tamu.nik = reservasi.nik')
+            ->join('reservasi_kamar', 'reservasi.id_reservasi = reservasi_kamar.id_reservasi')
+            ->join('kamar', 'kamar.id_kamar = reservasi_kamar.id_kamar')
+            ->like('nama_tamu', $keyword)
+            ->orLike('checkin', $keyword)
+            ->get()->getResultArray();
+    }
+
+    public function detail_rsv($nik)
+    {
+        return $this->db->table('reservasi')
+            ->select('*')
+            ->where('nik', $nik)
             ->join('reservasi_kamar', 'reservasi_kamar.id_reservasi_kamar = reservasi.id_reservasi')
             ->join('kamar', 'kamar.id_kamar = reservasi_kamar.id_kamar')
             ->join('tamu', 'tamu.nik = reservasi.nik')

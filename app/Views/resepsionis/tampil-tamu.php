@@ -27,7 +27,6 @@
                         <th>Nama</th>
                         <th>No. Telp</th>
                         <th>Email</th>
-                        <!-- <th>Nama</th> -->
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -41,8 +40,8 @@
                             <td><?= $row['no_telp']; ?></td>
                             <td><?= $row['email']; ?></td>
                             <td class="text-center">
-                                <a href="/petugas/fumum/edit/<?= $row['nik']; ?>" class="btn btn-warning btn-sm mx-1 my-1">Edit</a>
-                                <a href="/petugas/fumum/hapus/<?= $row['nik']; ?>" class="btn btn-danger  btn-sm mx-1 my-1">Hapus</a>
+                                <a href="/resepsionis/tamu/edit/<?= $row['nik']; ?>" class="btn btn-warning btn-sm mx-1 my-1">Edit</a>
+                                <a href="/resepsionis/tamu/hapus/<?= $row['nik']; ?>" class="btn btn-danger  btn-sm mx-1 my-1">Hapus</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

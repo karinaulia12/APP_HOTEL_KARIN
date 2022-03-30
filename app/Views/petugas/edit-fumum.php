@@ -22,14 +22,11 @@
                             <input type="hidden" name="id_fumum" value="<?= $data_fumum[0]['id_fumum']; ?>">
                             <label for="NoKamar" class="form-label">Fasilitas Hotel</label>
                             <textarea class="form-control <?= ($validasi->hasError('nama_fumum')) ? 'is-invalid' : ''; ?>" id="exampleFormControlTextarea1" rows="4" placeholder="Tambahkan fasilitas hotel" name="nama_fumum"><?= $data_fumum[0]['nama_fumum']; ?></textarea>
-                            <div class="invalid-feedback">
-                                <?= $validasi->getError('nama_fumum'); ?>
-                            </div>
                         </div>
 
                         <div class="col">
                             <label for="" class="form-label">Foto</label>
-                            <input type="text" name="nama_foto_fumum" value="<?= $data_fumum[0]['foto']; ?>">
+                            <input type="hidden" name="nama_foto_fumum" value="<?= $data_fumum[0]['foto']; ?>">
                             <input type="file" class="form-control <?= ($validasi->hasError('foto')) ? 'is-invalid' : ''; ?>" name="foto">
                             <div class="col-sm-4">
                                 <?php if (!empty($data_fumum[0]['foto'])) { ?>
@@ -38,17 +35,11 @@
                                     <img src="/gambar/noimage.jpg" onchange="previewImage" alt="" class="img-thumbnail mt-1 img-preview">
                                 <?php } ?>
                             </div>
-                            <div id="validationServer03Feedback" class="invalid-feedback">
-                                <?= $validasi->getError('foto'); ?>
-                            </div>
                         </div>
 
                         <div class="mt-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
                             <textarea class="form-control <?= ($validasi->hasError('deskripsi')) ? 'is-invalid' : ''; ?>" id="exampleFormControlTextarea1" rows="4" placeholder="Tambahkan deskripsi" name="deskripsi"><?= $data_fumum[0]['deskripsi']; ?></textarea>
-                            <div id="validationServer03Feedback" class="invalid-feedback">
-                                <?= $validasi->getError('deskripsi'); ?>
-                            </div>
                         </div>
 
                     </div>

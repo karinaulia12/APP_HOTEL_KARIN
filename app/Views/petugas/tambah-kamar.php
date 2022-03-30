@@ -24,7 +24,7 @@
                             <select value="<?= old('type_kamar'); ?>" class=" form-select <?= ($validasi->hasError('type_kamar')) ? 'is-invalid' : ''; ?>" name="id_type_kamar" id="">
                                 <?php $no = 1;
                                 foreach ($dataTypeKamar as $tk) : ?>
-                                    <option value="<?= $no++; ?>"><?= $tk['type_kamar']; ?> - <?= $tk['harga']; ?></option>
+                                    <option value="<?= $tk['id_type_kamar']; ?>"><?= $tk['type_kamar']; ?> - <?= $tk['harga']; ?></option>
                                 <?php endforeach; ?>
                                 <!-- <option selected>Pilih tipe kamar</option>
                                 <option value="1">Standard Room - </option>

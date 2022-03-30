@@ -65,6 +65,7 @@ class Kamar extends Model
     public function join_typeKamar()
     {
         return $this->db->table('kamar')
+            ->select('*')
             ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
             ->like('no_kamar')
             ->get()->getResultArray();

@@ -55,23 +55,24 @@ class ResepsionisController extends BaseController
         if ($keyword) {
             $reservasi = $this->reservasiModel->search($keyword);
         } else {
-            $reservasi = $this->reservasiModel;
+            $reservasi = $this->reservasiModel->join_tabel();
         }
 
         $data = [
             'title' =>  'Data Reservasi | AuHotelia',
-            'reservasi' => $this->reservasiModel->join_tabel(),
+            // 'reservasi' => $this->reservasiModel->join_tabel(),
+            'reservasi' => $reservasi,
             'keyword' => $keyword
         ];
 
         return view('resepsionis/tampil-reservasi', $data);
     }
 
-    public function detail_reservasi($id_reservasi)
+    public function detail_reservasi($nik)
     {
         $data = [
             'title' =>  'Detail Reservasi | AuHotelia',
-            'reservasi' => $this->reservasiModel->detail_rsv($id_reservasi)
+            'reservasi' => $this->reservasiModel->detail_rsv($nik)
         ];
 
         return view('resepsionis/detail-reservasi', $data);
@@ -95,17 +96,15 @@ class ResepsionisController extends BaseController
         return view('resepsionis/tampil-tamu', $data);
     }
 
-
     public function data()
     {
         $reservasi = $this->reservasiModel
-            // ->select('reservasi.id_reservasi, nik, checkin, checkout, jml_kamar, harga, total, status')
             ->select('*')
             ->join('tamu', 'tamu.nik = reservasi.nik')
             ->join('reservasi_kamar', 'reservasi.id_reservasi = reservasi_kamar.id_reservasi_kamar')
             ->join('kamar', 'kamar.id_kamar = reservasi_kamar.id_kamar')
-            ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar');
-        // ->get()->getResultArray();
+            ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+            ->orderBy('checkin', 'desc');
 
         $reservasi = $reservasi->get()->getResultArray();
 
@@ -136,8 +135,8 @@ class ResepsionisController extends BaseController
         // memasukkan $data_kamar ke $reservasi
         $reservasi = array_map(function ($reserv) use ($data_kamar_) {
             $reserv['kamar'] = [];
-            if (array_key_exists($reserv['id_reservasi'], $data_kamar_)) {
-                $reserv['kamar'] = $data_kamar_[$reserv['id_reservasi']];
+            if (array_key_exists($reserv['id_reservasi_kamar'], $data_kamar_)) {
+                $reserv['kamar'] = $data_kamar_[$reserv['id_reservasi_kamar']];
             }
 
             switch ($reserv['status']) {
@@ -150,57 +149,40 @@ class ResepsionisController extends BaseController
                 case 3:
                     $reserv['status_txt'] = 'Check-Out';
                     break;
-                case 4:
-                    $reserv['status_txt'] = 'Terima';
-                    break;
-                case 5:
-                    $reserv['status_txt'] = 'Tolak';
-                    break;
             }
 
             return $reserv;
         }, $reservasi);
 
         // search
-        // $keyword = $this->request->getVar('keyword');
-        // if ($keyword) {
-        //     $reservasi = $this->reservasiModel->search($keyword);
-        // } else {
-        //     $reservasi = $this->reservasiModel;
-        // }
+        $keyword = $this->request->getVar('keyword');
+        if ($keyword) {
+            $reservasi = $this->reservasiModel->search($keyword);
+        } else {
+            $reservasi = $this->reservasiModel->join_tabel();
+        }
 
         $data = [
             'title' =>  'Data Reservasi | AuHotelia',
-            // 'reservasi' => $this->reservasiModel->join_tabel(),
-            // 'keyword' => $keyword
+            'reservasi' => $reservasi,
+            'keyword' => $keyword
         ];
-        $data['reservasi'] = $reservasi;
+        // $data['reservasi'] = $reservasi;
 
         return view('resepsionis/tampil-reservasi', $data);
     }
 
-
     public function checkin($id_reservasi)
     {
+        // dd($id_reservasi);
         $berhasil = $this->reservasiModel->update($id_reservasi, ['status' => 2]);
         return redirect()->to('/resepsionis/reservasi');
     }
 
     public function checkout($id_reservasi)
     {
+        // dd($id_reservasi);
         $berhasil = $this->reservasiModel->update($id_reservasi, ['status' => 3]);
-        return redirect()->to('/resepsionis/reservasi');
-    }
-
-    public function terima($id_reservasi)
-    {
-        $berhasil = $this->reservasiModel->update($id_reservasi, ['status' => 4]);
-        return redirect()->to('/resepsionis/reservasi');
-    }
-
-    public function tolak($id_reservasi)
-    {
-        $berhasil = $this->reservasiModel->update($id_reservasi, ['status' => 5]);
         return redirect()->to('/resepsionis/reservasi');
     }
 
@@ -209,7 +191,8 @@ class ResepsionisController extends BaseController
         $syarat = ['id_reservasi' => $id_reservasi];
         $infoFile = $this->reservasiModel->where($syarat)->find();
 
-        $this->reservasiModel->where('id_reservasi', $id_reservasi)->delete();
+        // $this->reservasiModel->where('id_reservasi', $id_reservasi)->delete();
+        $this->reservasiModel->where($infoFile)->delete();
         return redirect()->to('/resepsionis/reservasi');
     }
 }

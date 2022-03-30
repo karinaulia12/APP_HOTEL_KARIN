@@ -24,7 +24,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     <strong><?= session()->getFlashdata('tambah_fumum'); ?></strong>
                 </div>
-
+            <?php endif; ?>
+            <?php if (session()->getFlashdata('edit_fumum')) : ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <strong><?= session()->getFlashdata('edit_fumum'); ?></strong>
+                </div>
             <?php endif; ?>
             <?php if (!$data_fumum) { ?>
                 <div class="alert alert-danger" role="alert">

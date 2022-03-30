@@ -33,9 +33,15 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 
 // tamu
-$routes->get('/', 'TamuController::index');
+$routes->get('/', 'TamuController::welcome');
+$routes->get('/welcome', 'TamuController::welcome');
 $routes->get('/form-booking', 'TamuController::form');
 $routes->post('/booking', 'TamuController::simpanBooking');
+$routes->get('/fasilitas-kamar', 'TamuController::lp_fkamar');
+$routes->get('/fasilitas-hotel', 'TamuController::lp_fumum');
+$routes->get('/harga', 'TamuController::lp_harga');
+$routes->get('/form', 'TamuController::lp_form');
+$routes->get('/reservasi/pdf/(:any)', 'PdfController::index/$1');
 
 // admin
 $routes->get('/petugas', 'PetugasController::index');

@@ -49,4 +49,14 @@ class Tamu extends Model
     {
         return $this->table('tamu')->like('nik', $keyword)->orLike('no_telp', $keyword)->orLike('nama_tamu', $keyword)->orLike('email', $keyword)->orLike('username', $keyword);
     }
+
+    public function get_nik($nik)
+    {
+        $niktamu = $this->db->table('tamu')
+            ->select('nik')
+            ->where('nik', $nik)
+            ->get()->getResultArray();
+
+        return $niktamu;
+    }
 }
