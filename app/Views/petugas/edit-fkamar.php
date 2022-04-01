@@ -15,23 +15,27 @@
                         <div class="col-6">
                             <label for="NoKamar" class="form-label">Fasilitas Kamar</label>
                             <input type="hidden" name="id_fkamar" value="<?= $data_fkamar[0]['id_fkamar']; ?>">
-                            <textarea class=" form-control <?= ($validasi->hasError('nama_fkamar')) ? 'is-invalid' : ''; ?>" name="nama_fkamar" id="" cols="30" rows="10"><?= $data_fkamar[0]['nama_fkamar']; ?></textarea>
+                            <textarea class=" form-control <?= ($validasi->hasError('nama_fkamar')) ? 'is-invalid' : ''; ?>" name="nama_fkamar" id="" cols="30" rows="6"><?= $data_fkamar[0]['nama_fkamar']; ?></textarea>
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('nama_fkamar'); ?>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <label for="" class="form-label">Tipe Kamar</label>
-                            <select class=" form-select <?= ($validasi->hasError('no_kamar')) ? 'is-invalid' : ''; ?>" name="type_kamar" id="" value="">
-                                <option <?= $data_fkamar[0]['id_type_kamar'] == '1' ? 'selected' : ''; ?> value="1">Standard Room - Rp. </option>
-                                <option <?= $data_fkamar[0]['id_type_kamar'] == '2' ? 'selected' : ''; ?> value="2">Superior Room - Rp. </option>
-                                <option <?= $data_fkamar[0]['id_type_kamar'] == '3' ? 'selected' : ''; ?> value="3">Deluxe Room - Rp. </option>
-                                <option <?= $data_fkamar[0]['id_type_kamar'] == '4' ? 'selected' : ''; ?> value="4">Junior Suite Room - Rp. </option>
-                                <option <?= $data_fkamar[0]['id_type_kamar'] == '5' ? 'selected' : ''; ?> value="5">Suite Room - Rp. </option>
-                                <option <?= $data_fkamar[0]['id_type_kamar'] == '6' ? 'selected' : ''; ?> value="6">Presidential Room - Rp. </option>
-                            </select>
-                            <div id="validationServer03Feedback" class="invalid-feedback">
-                                <?= $validasi->getError('no_kamar'); ?>
+                        <div class="col-md">
+                            <div class="col">
+                                <label for="" class="form-label">Tipe Kamar</label>
+                                <select class=" form-select <?= ($validasi->hasError('no_kamar')) ? 'is-invalid' : ''; ?>" name="type_kamar" id="" value="">
+                                    <?php foreach ($fkamar as $fk) : ?>
+                                        <option <?= $fk['id_type_kamar'] == $data_fkamar[0]['id_type_kamar'] ? 'selected' : ''; ?> value="<?= $fk['id_type_kamar']; ?>"><?= $fk['type_kamar']; ?> - Rp <?= number_format($fk['harga'], 0, ',', '.'); ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    <?= $validasi->getError('no_kamar'); ?>
+                                </div>
+                            </div>
+
+                            <div class="col mt-3">
+                                <label for="" class="form-label">Stok Kamar</label>
+                                <input type="number" name="stok_kamar" class="form-control" placeholder="Masukkan stok kamar">
                             </div>
                         </div>
                     </div>

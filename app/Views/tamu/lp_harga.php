@@ -16,12 +16,12 @@
 
                         <div class="pricing-header">
                             <h3><?= $fk['type_kamar']; ?></h3>
-                            <h4><sup>Rp</sup><?= $fk['harga']; ?><span> / malam</span></h4>
+                            <h4><sup>Rp</sup><?= number_format($fk['harga'], 0, ',', '.'); ?><span> / malam</span></h4>
                         </div>
                         <ul>
                         </ul>
                         <div class="text-center mt-auto">
-                            <a href="#" class="buy-btn">Buy Now</a>
+                            <a href="#" class="buy-btn">Book Now</a>
                         </div>
 
                     </div>

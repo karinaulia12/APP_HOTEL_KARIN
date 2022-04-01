@@ -58,7 +58,7 @@
                             <div class="card-body">
                                 <h5 class="card-title text-center fs-3 fw-bold"><?= $kamar['no_kamar']; ?></h5>
                                 <p class="card-text fs-5 fw-lighter text-capitalize">Tipe Kamar: <?= $kamar['type_kamar']; ?></p>
-                                <p class="card-text fs-5 fw-lighter">Harga: <strong>Rp <?= $kamar['harga']; ?></strong></p>
+                                <p class="card-text fs-5 fw-lighter">Harga: Rp <?= number_format($kamar['harga'], 0, ',', '.'); ?></p>
                                 <div class="text-center">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a href="/petugas/kamar/detail/<?= $kamar['id_kamar']; ?>" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></a>

@@ -284,7 +284,13 @@ class PetugasController extends BaseController
         }
         $data = [
             'title' => 'Edit Fasilitas Kamar AuHotelia',
-            'data_fkamar' => $this->fKamarModel->where('id_fkamar', $id_fkamar)->findAll(),
+            'data_fkamar' => $this->fKamarModel->where('id_fkamar', $id_fkamar)
+                ->join('type_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')
+                ->get()->getResultArray(),
+            'fkamar' => $this->fKamarModel
+                ->join('type_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')
+                ->orderBy('harga', 'asc')
+                ->get()->getResultArray(),
             'data_tk' => $this->fKamarModel->get_typeKamar(),
             'validasi' => \Config\Services::validation()
         ];
@@ -601,10 +607,14 @@ class PetugasController extends BaseController
             $inputdata = [
                 'nama_fkamar' => $this->request->getPost('nama_fkamar'),
                 // 'foto' => $upload->getName(),
-                'id_type_kamar' => $this->request->getPost('type_kamar')
+                'id_type_kamar' => $this->request->getPost('type_kamar'),
+                'stok_kamar' => $this->request->getPost('stok_kamar')
             ];
             session()->set($inputdata);
-            $this->fKamarModel->update($id_fkamar, $inputdata);
+            // $this->fKamarModel->update($id_fkamar, $inputdata);
+            $this->fKamarModel
+                ->join('type_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')
+                ->update($id_fkamar, $inputdata);
             session()->setFlashdata('edit_fkamar', 'Data fasilitas hotel berhasil diupdate');
             return redirect()->to('/petugas/fkamar');
         }

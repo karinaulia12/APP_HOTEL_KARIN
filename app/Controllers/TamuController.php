@@ -56,7 +56,6 @@ class TamuController extends BaseController
         return view('tamu/lp_home');
     }
 
-
     public function form()
     {
         $data = [
@@ -65,6 +64,16 @@ class TamuController extends BaseController
             // 'id_rsv1' => $this->reservasiModel->findAll()
         ];
         return view('tamu/form-booking', $data);
+    }
+
+    public function form_typeKamar($type_kamar)
+    {
+        $syarat = ['type_kamar' => $type_kamar];
+        $tk = $this->typeKamarModel->select('type_kamar')
+            ->where($syarat)
+            ->get()->getResultArray();
+
+        return view('tamu/form-booking-tk');
     }
 
     public function simpanBooking()

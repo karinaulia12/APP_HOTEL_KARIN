@@ -24,15 +24,26 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     <?= session()->getFlashdata('tambahFkamar'); ?>
                 </div>
-
+            <?php endif; ?>
+            <?php if (session()->getFlashdata('edit_fkamar')) : ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <?= session()->getFlashdata('edit_fkamar'); ?>
+                </div>
+            <?php endif; ?>
+            <?php if (session()->getFlashdata('hapus_fkamar')) : ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <?= session()->getFlashdata('hapus_fkamar'); ?>
+                </div>
             <?php endif; ?>
             <table class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr class="text-center">
                         <th>#</th>
-                        <!-- <th>No Kamar</th> -->
                         <th>Tipe Kamar</th>
                         <th>Nama Fasilitas</th>
+                        <th>Stok Kamar</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -48,35 +59,16 @@
                                 </a>
                             </td>
                             <td><?= $row['nama_fkamar']; ?></td>
+                            <td class="text-center"><?= $row['stok_kamar']; ?></td>
                             <td class="text-center">
                                 <a href="/petugas/fkamar/edit/<?= $row['id_fkamar']; ?>" class="btn btn-warning btn-sm mx-1 my-1">Edit</a>
-                                <!-- <a href="#" data-bs-toggle="modal" data-bs-target="#modelHapus" class="btn btn-danger btn-sm mx-1 my-1">Hapus</a> -->
-                                <a href="/petugas/fkamar/hapus/<?= $row['id_fkamar']; ?>" type="button" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin menghapusnya?')">Hapus</a>
+                                <a href="/petugas/fkamar/hapus/<?= $row['id_fkamar']; ?>" type="button" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin menghapusnya?')">Hapus</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            <!-- Modal Logout -->
-            <div class="modal fade" id="modelHapus" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Hapus Data Fasilitas Kamar</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            Apakah Anda yakin akan menghapusnya?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
-                            <a href="/petugas/fkamar/hapus/<?= $fkamar[0]['id_fkamar']; ?>" type="button" class="btn btn-danger">Hapus</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
-</div>
 
-<?= $this->endSection(); ?>
+    <?= $this->endSection(); ?>

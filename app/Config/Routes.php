@@ -41,7 +41,8 @@ $routes->get('/fasilitas-kamar', 'TamuController::lp_fkamar');
 $routes->get('/fasilitas-hotel', 'TamuController::lp_fumum');
 $routes->get('/harga', 'TamuController::lp_harga');
 $routes->get('/form', 'TamuController::lp_form');
-$routes->get('/reservasi/pdf/(:any)', 'PdfController::index/$1');
+$routes->get('/form-booking/(:any)', 'TamuController::form_typeKamar/$1');
+$routes->get('/reservasi/pdf/(:num)', 'PdfController::index/$1');
 
 // admin
 $routes->get('/petugas', 'PetugasController::index');

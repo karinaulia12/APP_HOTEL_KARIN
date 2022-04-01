@@ -21,7 +21,7 @@
                             <hr>
                             <div class="row">
                                 <p class="card-text col-6">Tipe Kamar : <strong><?= $data_typeKamar[0]['type_kamar']; ?></strong></p>
-                                <p class="card-text col-6">Harga : <strong>Rp. <?= $data_typeKamar[0]['harga']; ?></strong></p>
+                                <p class="card-text col-6">Harga : Rp <?= number_format($data_typeKamar[0]['harga'], 0, ',', '.'); ?></p>
                             </div>
                             <div class="row">
                                 <div class="col">

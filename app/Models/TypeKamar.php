@@ -14,7 +14,7 @@ class TypeKamar extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_type_kamar', 'type_kamar', 'harga'];
+    protected $allowedFields    = ['id_type_kamar', 'type_kamar', 'harga', 'stok_kamar'];
 
     // Dates
     protected $useTimestamps = false;

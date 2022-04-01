@@ -30,7 +30,7 @@
                                 <option selected>Pilih Tipe Kamar</option>
                                 <?php $no = 1;
                                 foreach ($dataTypeKamar as $tk) : ?>
-                                    <option value="<?= $no++; ?>"><?= $tk['type_kamar']; ?> - <?= $tk['harga']; ?></option>
+                                    <option value="<?= $no++; ?>"><?= $tk['type_kamar']; ?> - Rp <?= number_format($tk['harga'], 0, ',', '.'); ?></option>
                                 <?php endforeach; ?>
                                 <!-- <option class="text-capitalize" value="superior">superior</option>
                                 <option class="text-capitalize" value="deluxe">deluxe</option> -->

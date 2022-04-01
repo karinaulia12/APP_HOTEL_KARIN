@@ -44,18 +44,18 @@
                     </thead>
                     <tbody class="text-center">
                         <tr>
-                            <td><?= $reservasi[0]['nik']; ?></td>
-                            <td><?= $reservasi[0]['nama_tamu']; ?></td>
-                            <td><?= $reservasi[0]['no_kamar']; ?></td>
-                            <td><?= $reservasi[0]['type_kamar']; ?></td>
-                            <td><?= $reservasi[0]['jml_kamar']; ?></td>
-                            <td><?= $reservasi[0]['checkin']; ?></td>
-                            <td><?= $reservasi[0]['checkout']; ?></td>
-                            <!-- <td><?= $reservasi[0]['total']; ?></td> -->
+                            <td><?= $reservasi['nik']; ?></td>
+                            <td><?= $reservasi['nama_tamu']; ?></td>
+                            <td><?= $reservasi['no_kamar']; ?></td>
+                            <td><?= $reservasi['type_kamar']; ?></td>
+                            <td><?= $reservasi['jml_kamar']; ?></td>
+                            <td><?= $reservasi['checkin']; ?></td>
+                            <td><?= $reservasi['checkout']; ?></td>
+                            <!-- <td><?= $reservasi['total']; ?></td> -->
                         </tr>
                     </tbody>
                 </table>
-                <p>Total Bayar: <?= $reservasi[0]['total']; ?></p>
+                <p>Total Bayar: <?= $reservasi['total']; ?></p>
 
             </div>
         </div>
