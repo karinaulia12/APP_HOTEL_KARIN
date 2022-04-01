@@ -69,11 +69,15 @@ class TamuController extends BaseController
     public function form_typeKamar($type_kamar)
     {
         $syarat = ['type_kamar' => $type_kamar];
-        $tk = $this->typeKamarModel->select('type_kamar')
+        $type_kamar = $this->typeKamarModel->select('type_kamar')
             ->where($syarat)
             ->get()->getResultArray();
+        $data = [
+            // 'nama_tk' => 
+            'tk' => $type_kamar
+        ];
 
-        return view('tamu/form-booking-tk');
+        return view('tamu/form-booking-tk', $data);
     }
 
     public function simpanBooking()

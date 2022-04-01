@@ -15,6 +15,7 @@
                         <div class="col-6">
                             <label for="NoKamar" class="form-label">Fasilitas Kamar</label>
                             <input type="hidden" name="id_fkamar" value="<?= $data_fkamar[0]['id_fkamar']; ?>">
+                            <input type="hidden" name="id_tk" value="<?= $data_fkamar[0]['id_type_kamar']; ?>">
                             <textarea class=" form-control <?= ($validasi->hasError('nama_fkamar')) ? 'is-invalid' : ''; ?>" name="nama_fkamar" id="" cols="30" rows="6"><?= $data_fkamar[0]['nama_fkamar']; ?></textarea>
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('nama_fkamar'); ?>
@@ -35,7 +36,7 @@
 
                             <div class="col mt-3">
                                 <label for="" class="form-label">Stok Kamar</label>
-                                <input type="number" name="stok_kamar" class="form-control" placeholder="Masukkan stok kamar">
+                                <input type="number" name="stok_kamar" value="<?= $data_fkamar[0]['stok_kamar']; ?>" class="form-control" placeholder="Masukkan stok kamar">
                             </div>
                         </div>
                     </div>

@@ -602,6 +602,7 @@ class PetugasController extends BaseController
     {
         helper(['form']);
         $id_fkamar = $this->request->getPost('id_fkamar');
+        $id_tk = $this->request->getPost('id_tk');
 
         if ($this->request->getPost('id_fkamar')) {
             $inputdata = [
@@ -611,10 +612,21 @@ class PetugasController extends BaseController
                 'stok_kamar' => $this->request->getPost('stok_kamar')
             ];
             session()->set($inputdata);
-            // $this->fKamarModel->update($id_fkamar, $inputdata);
-            $this->fKamarModel
-                ->join('type_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')
-                ->update($id_fkamar, $inputdata);
+            $db = \config\Database::connect();
+            // update fasilitas_kamar
+            $db->table('fasilitas_kamar as fk')
+                ->where('id_fkamar', $id_fkamar)
+                // ->where('id_type_kamar', )
+                ->set('fk.nama_fkamar', $this->request->getPost('nama_fkamar'))
+                ->set('fk.id_type_kamar', $this->request->getPost('type_kamar'))
+                ->update();
+
+            // update stok pada type_kamar
+            $db->table('type_kamar as tk')
+                ->where('id_type_kamar', $id_tk)
+                ->set('tk.stok_kamar', $this->request->getPost('stok_kamar'))
+                ->update();
+
             session()->setFlashdata('edit_fkamar', 'Data fasilitas hotel berhasil diupdate');
             return redirect()->to('/petugas/fkamar');
         }
