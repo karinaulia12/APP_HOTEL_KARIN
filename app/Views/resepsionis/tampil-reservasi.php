@@ -1,7 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 <?= $this->section('content'); ?>
 
-<div class="container-sm">
+<div class="container-fluid">
     <div class="row">
         <div class="col-8">
             <h1 class="fw-lighter display-6"> Data Reservasi</h1>
@@ -44,8 +44,9 @@
                             <th>Nama Tamu</th>
                             <th>Check-In</th>
                             <th>Check-Out</th>
-                            <th>No Kamar</th>
-                            <th>Jumlah Kamar</th>
+                            <th>Tipe Kamar</th>
+                            <th width="50px">Jumlah Kamar</th>
+                            <th>Nama Pemesan</th>
                             <th>Total</th>
                             <th>Status</th>
                             <th>Aksi</th>
@@ -56,30 +57,33 @@
                         foreach ($reservasi as $row) : ?>
                             <tr class="text-center">
                                 <td><?= $no++; ?></td>
-                                <td><?= $row['nama_tamu']; ?></td>
-                                <td><?= $row['checkin']; ?></td>
-                                <td><?= $row['checkout']; ?></td>
-                                <td><?= $row['no_kamar']; ?></td>
+                                <td>
+                                    <h5><span class="badge bg-info"><?= $row['nama_tamu']; ?></span></h5>
+                                </td>
+                                <td><?= date('d-m-Y', strtotime($row['checkin'])); ?></td>
+                                <td><?= date('d-m-Y', strtotime($row['checkout'])); ?></td>
+                                <td><?= $row['type_kamar']; ?></td>
                                 <td><?= $row['jml_kamar']; ?></td>
-                                <td><?= $row['total']; ?></td>
+                                <td><?= $row['nama_pemesan']; ?></td>
+                                <td>Rp <?= number_format($row['total'], '0', ',', '.'); ?></td>
                                 <td><?php if ($row['status'] == '1') { ?>
                                         <!-- pending -->
-                                        <h5><span class="badge bg-warning">
-                                                Pending
-                                            </span>
-                                        </h5>
+                                        <span class="badge bg-warning">
+                                            Pending
+                                        </span>
+
                                     <?php } elseif ($row['status'] == '2') { ?>
                                         <!-- checkin -->
-                                        <h5><span class="badge bg-primary">
-                                                Check-In
-                                            </span>
-                                        </h5>
+                                        <span class="badge bg-primary">
+                                            Check-In
+                                        </span>
+
                                     <?php } elseif ($row['status'] == '3') { ?>
                                         <!-- checkout -->
-                                        <h5><span class="badge bg-success">
-                                                Check-Out
-                                            </span>
-                                        </h5>
+                                        <span class="badge bg-success">
+                                            Check-Out
+                                        </span>
+
                                     <?php } ?>
                                 </td>
                                 <td class="text-center">

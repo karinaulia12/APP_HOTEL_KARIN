@@ -61,7 +61,7 @@ class TamuController extends BaseController
         $data = [
             'title' => 'Form Booking AuHotelia',
             'kamar' => $this->kamarModel->join_typeKamar(),
-            // 'id_rsv1' => $this->reservasiModel->findAll()
+            'type_kamar' => $this->typeKamarModel->findAll()
         ];
         return view('tamu/form-booking', $data);
     }
@@ -106,30 +106,12 @@ class TamuController extends BaseController
         $interval = $in->diff($out);
         $jml_hari = $interval->d;
 
-        $nik = $this->request->getPost('nik');
-        if (empty($this->tamuModel->get_nik($nik))) {
-            $this->tamuModel->insert([
-                'nik' => $nik,
-                'nama_tamu' => $this->request->getPost('nama_tamu'),
-                'no_telp' => $this->request->getPost('no_telp'),
-                'email' => $this->request->getPost('email')
-            ]);
-        }
-
-        // ambil nik di tbl tamu
-        // $nik_tamu = $this->tamuModel->get_nik($nik);
-        $nik_tamu = $this->tamuModel
-            ->select('tamu.nik')
-            ->where('tamu.nik', $nik)
-            ->join('reservasi', 'tamu.nik = reservasi.nik')
-            ->get()->getResultArray();
-        $nik1 = null;
-        foreach ($nik_tamu as $value) {
-            $nik1 = $nik1 . $value['tamu.nik'];
-        }
-        // d($nik1);
         $rsv = [
-            'nik' => $nik,
+            'nik' => $this->request->getPost('nik'),
+            'nama_pemesan' => $this->request->getPost('nama_pemesan'),
+            'no_telp' => $this->request->getPost('no_telp'),
+            'email' => $this->request->getPost('email'),
+            'nama_tamu' => $this->request->getPost('nama_tamu'),
             'checkin' => $checkin,
             'checkout' => $checkout,
             'jml_kamar' => $jml_kamar,
@@ -137,8 +119,7 @@ class TamuController extends BaseController
             'total' => $harga_kamar * $jml_hari,
             'status' => 1
         ];
-        // d($nik_tamu);
-        // d($rsv);
+        dd($rsv);
         $this->reservasiModel->insert($rsv);
 
         $data = [];
@@ -152,6 +133,69 @@ class TamuController extends BaseController
         $db = \config\Database::connect();
         $builder = $db->table('reservasi_kamar');
         $builder->insertBatch($data);
+
+        session()->setFlashdata('pesan_kamar', 'Anda telah berhasil pesan kamar!');
+        return redirect()->to('/reservasi/pdf/' . $this->reservasiModel->getInsertId());
+    }
+
+    public function simpanBooking1()
+    {
+        d($this->request->getPost());
+
+        $jml_kamar = $this->request->getPost('jml_kamar');
+        $id_typekamar = $this->request->getPost('type_kamar');
+
+        // ambil harga kamar berd. tipe kamar
+        $hrg = $this->typeKamarModel->select('harga')
+            // ->whereIn('type_kamar', $id_typekamar)
+            ->where('id_type_kamar', $id_typekamar)
+            // ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+            ->get()->getResultArray();
+
+        $harga_kamar = 0;
+        foreach ($hrg as $value) {
+            $harga_kamar = $harga_kamar + $value['harga'];
+        }
+
+        $checkin = $this->request->getPost('checkin');
+        $checkout = $this->request->getPost('checkout');
+
+        $in = new \DateTime($checkin);
+        $out = new \DateTime($checkout);
+        $interval = $in->diff($out);
+        $jml_hari = $interval->d;
+
+        $rsv = [
+            'nik' => $this->request->getPost('nik'),
+            'nama_pemesan' => $this->request->getPost('nama_pemesan'),
+            'no_telp' => $this->request->getPost('no_telp'),
+            'email' => $this->request->getPost('email'),
+            'nama_tamu' => $this->request->getPost('nama_tamu'),
+            'checkin' => $checkin,
+            'checkout' => $checkout,
+            'jml_kamar' => $jml_kamar,
+            'harga' => $harga_kamar * $jml_kamar,
+            'total' => $harga_kamar * $jml_hari * $jml_kamar,
+            'status' => 1
+        ];
+        // dd($rsv);
+        $this->reservasiModel->save($rsv);
+
+        // ambil id_kamar berd. tipe kamar
+        $id_kmr = $this->kamarModel->select('id_kamar')
+            ->where('type_kamar.id_type_kamar', $id_typekamar)
+            ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+            // ->find();
+            ->get($jml_kamar)->getResultArray();
+
+        foreach ($id_kmr as $value) {
+            $data[] = [
+                'id_kamar' => $value['id_kamar'],
+                'id_reservasi' => $this->reservasiModel->getInsertId()
+            ];
+        }
+        // dd($data);
+        $this->reservasiKamarModel->insertBatch($data);
 
         session()->setFlashdata('pesan_kamar', 'Anda telah berhasil pesan kamar!');
         return redirect()->to('/reservasi/pdf/' . $this->reservasiModel->getInsertId());

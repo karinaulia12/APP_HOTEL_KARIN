@@ -36,7 +36,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'TamuController::welcome');
 $routes->get('/welcome', 'TamuController::welcome');
 $routes->get('/form-booking', 'TamuController::form');
-$routes->post('/booking', 'TamuController::simpanBooking');
+$routes->post('/booking', 'TamuController::simpanBooking1');
 $routes->get('/fasilitas-kamar', 'TamuController::lp_fkamar');
 $routes->get('/fasilitas-hotel', 'TamuController::lp_fumum');
 $routes->get('/harga', 'TamuController::lp_harga');

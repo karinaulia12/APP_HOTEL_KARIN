@@ -25,13 +25,16 @@
     <div class="container-sm">
         <div class="row">
             <div class="col">
-                <h2 class="display-6">Data Reservasi </h2>
-                <a class="btn btn-success btn-lg mb-2" href="<?= base_url('PdfController/generate') ?>">
+                <h2 class="display-6">Bukti Reservasi <?= $nama_file; ?></h2>
+                <a class="btn btn-success btn-lg mb-2" href="<?= base_url('PdfController/generate/' . $reservasi['id_reservasi']) ?>">
                     Download PDF
+                </a>
+                <a class="btn btn-warning mx-2 mb-2" href="<?= base_url('') ?>">
+                    <i class="fa fa-home" aria-hidden="true"></i> Kembali
                 </a>
                 <table class="table table-striped table-bordered">
                     <thead>
-                        <tr bgcolor=silver align=center>
+                        <tr align=center>
                             <td>NIK</td>
                             <td>Nama Tamu</td>
                             <td>No. Kamar</td>
@@ -43,7 +46,7 @@
                         </tr>
                     </thead>
                     <tbody class="text-center">
-                        <tr>
+                        <tr align=center>
                             <td><?= $reservasi['nik']; ?></td>
                             <td><?= $reservasi['nama_tamu']; ?></td>
                             <td><?= $reservasi['no_kamar']; ?></td>
@@ -51,11 +54,10 @@
                             <td><?= $reservasi['jml_kamar']; ?></td>
                             <td><?= $reservasi['checkin']; ?></td>
                             <td><?= $reservasi['checkout']; ?></td>
-                            <!-- <td><?= $reservasi['total']; ?></td> -->
                         </tr>
                     </tbody>
                 </table>
-                <p>Total Bayar: <?= $reservasi['total']; ?></p>
+                <p>Total Bayar: Rp <strong?><?= number_format($reservasi['total'], '0', ',', '.'); ?></strong></p>
 
             </div>
         </div>

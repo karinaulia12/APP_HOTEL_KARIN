@@ -11,6 +11,19 @@ class PetugasController extends BaseController
         return view('petugas/v_login');
     }
 
+    public function __construct()
+    {
+        if (!session()->get('sudahkahLogin')) {
+            return redirect()->to('/petugas');
+            exit;
+        }
+
+        if (session()->get('level' != 'admin')) {
+            return redirect()->to('/petugas');
+            exit;
+        }
+    }
+
     public function login()
     {
         $syarat = [
@@ -48,16 +61,6 @@ class PetugasController extends BaseController
 
     public function dashboard()
     {
-        if (!session()->get('sudahkahLogin')) {
-            return redirect()->to('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect()->to('/petugas');
-            exit;
-        }
-
         $data = [
             'title' => 'Dashboard Petugas | AuHotelia',
             'hitung_kamar' => $this->kamarModel->hitung_kamar(),
@@ -70,20 +73,6 @@ class PetugasController extends BaseController
     // function tampilan
     public function tampiltambahkamar()
     {
-        if (!session()->get('sudahkahLogin')) {
-            return redirect()->to('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect()->to('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect()->to('/petugas/dashboard');
-            exit;
-        }
         $data = [
             'title' => 'Tambah Kamar AuHotelia',
             'dataKamar' => $this->kamarModel->findAll(),
@@ -96,22 +85,7 @@ class PetugasController extends BaseController
 
     public function tampildetailkamar($id_kamar)
     {
-        if (!session()->get('sudahkahLogin')) {
-            return redirect()->to('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect()->to('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect()->to('/petugas/dashboard');
-            exit;
-        }
-
-        $join_typeKamar = $this->kamarModel->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')->get()->getResultArray();
+        // $join_typeKamar = $this->kamarModel->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')->get()->getResultArray();
 
         $data = [
             'title' => 'Detail Kamar AuHotelia',
@@ -127,20 +101,6 @@ class PetugasController extends BaseController
 
     public function tampileditkamar($id_kamar)
     {
-        if (!session()->get('sudahkahLogin')) {
-            return redirect()->to('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect()->to('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect()->to('/petugas/dashboard');
-            exit;
-        }
         $data = [
             'title' => 'Edit Kamar AuHotelia',
             'dataKamar' => $this->kamarModel->where('id_kamar', $id_kamar)->findAll(),
@@ -154,21 +114,6 @@ class PetugasController extends BaseController
 
     public function tampileditfotokamar($id_kamar)
     {
-        if (!session()->get('sudahkahLogin')) {
-            return redirect()->to('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect()->to('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect()->to('/petugas/dashboard');
-            exit;
-        }
-
         $data = [
             'title' => 'Edit Foto Kamar AuHotelia',
             'dataKamar' => $this->kamarModel->where('id_kamar', $id_kamar)->find()
@@ -179,21 +124,6 @@ class PetugasController extends BaseController
 
     public function tampilfasilitaskamar()
     {
-        if (!session()->get('sudahkahLogin')) {
-            return redirect()->to('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect()->to('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect()->to('/petugas/dashboard');
-            exit;
-        }
-
         $keyword = $this->request->getVar('keyword');
         if ($keyword) {
             $fkamar = $this->fKamarModel->search($keyword);
@@ -216,21 +146,6 @@ class PetugasController extends BaseController
 
     public function tampildetail_fkamar($id_fkamar)
     {
-        if (!session()->get('sudahkahLogin')) {
-            return redirect()->to('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect()->to('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect()->to('/petugas/dashboard');
-            exit;
-        }
-
         $data = [
             'title' => 'Detail Fasilitas Kamar AuHotelia',
             // 'dataFkamar' => $this->fKamarModel->where('id_fkamar', $id_fkamar)->findAll()
@@ -242,21 +157,6 @@ class PetugasController extends BaseController
 
     public function tampiltambah_fkamar()
     {
-        if (!session()->get('sudahkahLogin')) {
-            return redirect('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect('/petugas/dashboard');
-            exit;
-        }
-
         $data = [
             'title' => 'Tambah Fasilitas Kamar AuHotelia',
             'validasi' => \Config\Services::validation(),
@@ -268,20 +168,6 @@ class PetugasController extends BaseController
 
     public function tampiledit_fkamar($id_fkamar)
     {
-        if (!session()->get('sudahkahLogin')) {
-            return redirect('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect('/petugas/dashboard');
-            exit;
-        }
         $data = [
             'title' => 'Edit Fasilitas Kamar AuHotelia',
             'data_fkamar' => $this->fKamarModel->where('id_fkamar', $id_fkamar)
@@ -300,21 +186,6 @@ class PetugasController extends BaseController
 
     public function tampil_fumum()
     {
-        if (!session()->get('sudahkahLogin')) {
-            return redirect('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' !== 'admin')) {
-            return redirect('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' !== 'admin')) {
-            return redirect('/petugas/dashboard');
-            exit;
-        }
-
         $keyword = $this->request->getVar('keyword');
         if ($keyword) {
             $fumum = $this->fUmumModel->search($keyword);
@@ -334,20 +205,6 @@ class PetugasController extends BaseController
 
     public function tampiltambah_fumum()
     {
-        if (!session()->get('sudahkahLogin')) {
-            return redirect('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect('/petugas/dashboard');
-            exit;
-        }
 
         $data = [
             'title' => 'Tambah Fasilitas Hotel AuHotelia',
@@ -358,20 +215,6 @@ class PetugasController extends BaseController
 
     public function tampiledit_fumum($id_fumum)
     {
-        if (!session()->get('sudahkahLogin')) {
-            return redirect('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect('/petugas/dashboard');
-            exit;
-        }
         $data = [
             'title' => 'Edit Fasilitas Hotel AuHotelia',
             'data_fumum' => $this->fUmumModel->where('id_fumum', $id_fumum)->findAll(),
@@ -384,20 +227,6 @@ class PetugasController extends BaseController
     // crud kamar
     public function tampilKamar()
     {
-        if (!session()->get('sudahkahLogin')) {
-            return redirect('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect('/petugas/dashboard');
-            exit;
-        }
         $keyword = $this->request->getVar('keyword');
         if ($keyword) {
             $kamar = $this->kamarModel->search($keyword);
@@ -465,44 +294,6 @@ class PetugasController extends BaseController
         return redirect()->to('/petugas/kamar');
     }
 
-    public function editKamar()
-    {
-        if (!$this->validate([
-            'no_kamar' => [
-                'rules' => 'required|max_length[10]|is_unique[kamar.no_kamar]',
-                'errors' => [
-                    'required' => 'Nomor Kamar harus diisi.',
-                    'max_length' => 'Nomor Kamar terlalu panjang',
-                    'is_unique' => 'Nomor Kamar sudah terdaftar.'
-                ]
-            ],
-            'foto' => [
-                'rules' => 'uploaded[foto]|is_image[foto]|mime_in[foto,image/jpg,image/png,image/jpeg]',
-                'errors' => [
-                    'uploaded' => 'Foto harus diisi.',
-                    'is_image' => 'File yang Anda pilih bukan gambar.',
-                    'mime_in' => 'Foto yang Anda pilih harus memiliki ekstensi .jpg, .png, atau .jpeg.'
-                ]
-            ]
-        ])) {
-            $id_kamar = $this->request->getPost('id_kamar');
-            $validation = \Config\Services::validation();
-            return redirect()->to('/petugas/kamar/edit/' . $id_kamar)->withInput('validation', $validation);
-        }
-
-        if ($this->request->getPost('no_kamar')) {
-            $inputdata = [
-                'type_kamar' => $this->request->getPost('type_kamar'),
-                'harga'      => $this->request->getPost('harga'),
-                'deskripsi'  => $this->request->getPost('deskripsi')
-            ];
-            session()->set($inputdata);
-            $this->kamarModel->update($this->request->getPost('no_kamar'), $inputdata);
-            session()->setFlashdata('editKamar', 'Data kamar berhasil diupdate');
-            return redirect()->to('/petugas/kamar');
-        }
-    }
-
     public function editKamar1()
     {
         $no_kamar = $this->request->getPost('no_kamar');
@@ -521,26 +312,15 @@ class PetugasController extends BaseController
         $data = [
             'id_type_kamar' => $this->request->getPost('type_kamar'),
             'foto' => $nama_foto,
-            'deskripsi' => $this->request->getPost('deskripsi'),
-            // 'harga' => $this->request->getPost('harga')
+            'deskripsi' => $this->request->getPost('deskripsi')
         ];
-
+        // dd($data);
         $this->kamarModel->update($no_kamar, $data);
         return redirect()->to('/petugas/kamar')->with('editKamar', 'Data kamar berhasil diupdate');
     }
 
     public function hapusKamar($id_kamar)
     {
-        if (!session()->get('sudahkahLogin')) {
-            return redirect()->to('/petugas');
-            exit;
-        }
-
-        if (session()->get('level') != 'admin') {
-            return redirect()->to('/petugas');
-            exit;
-        }
-
         $syarat = ['id_kamar' => $id_kamar];
         $dataKamar = $this->kamarModel->where($syarat)->find();
 
@@ -560,20 +340,6 @@ class PetugasController extends BaseController
     // crud fasilitas kamar
     public function tambah_fkamar()
     {
-        if (!session()->get('sudahkahLogin')) {
-            return redirect('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect('/petugas');
-            exit;
-        }
-
-        if (session()->get('level' != 'admin')) {
-            return redirect('/petugas/dashboard');
-            exit;
-        }
 
         if (!$this->validate([
             'nama_fkamar' => [
@@ -634,15 +400,6 @@ class PetugasController extends BaseController
 
     public function hapus_fkamar($id_fkamar)
     {
-        if (!session()->get('sudahkahLogin')) {
-            return redirect()->to('/petugas');
-            exit;
-        }
-
-        if (session()->get('level') != 'admin') {
-            return redirect()->to('/petugas');
-            exit;
-        }
         $syarat = ['id_fkamar' => $id_fkamar];
         $this->fKamarModel->where($syarat)->find();
         $this->fKamarModel->where('id_fkamar', $id_fkamar)->delete();
@@ -726,15 +483,6 @@ class PetugasController extends BaseController
 
     public function hapus_fumum($id_fumum)
     {
-        if (!session()->get('sudahkahLogin')) {
-            return redirect()->to('/petugas');
-            exit;
-        }
-
-        if (session()->get('level') != 'admin') {
-            return redirect()->to('/petugas');
-            exit;
-        }
         helper(['form']);
         $syarat = ['id_fumum' => $id_fumum];
         $data_fumum = $this->fUmumModel->where($syarat)->find();

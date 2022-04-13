@@ -66,7 +66,8 @@ class Kamar extends Model
     {
         return $this->db->table('kamar')
             ->select('*')
-            ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+            ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar', 'left')
+            ->orderBy('type_kamar.id_type_kamar', 'asc')
             ->like('no_kamar')
             ->get()->getResultArray();
         // return $join->paginate(9, 'kamar');
@@ -81,11 +82,5 @@ class Kamar extends Model
             ->get()
             ->getResultArray();
         // return $this->db->table('kamar')->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')->where('id_kamar', $id_kamar)->get()->getResult();
-    }
-
-    public function namaFasilitas_detailKamar($id_kamar)
-    {
-        // return $this->db->table('kamar')
-        // return $this->db->table('type_kamar')->join('fasilitas_kamar', 'fasilitas_kamar.id_fkamar = fasilitas_kamar.id_type_kamar')->where('id_kamar', $id_kamar)->get()->getResultArray();
     }
 }

@@ -10,7 +10,6 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use App\Models\Petugas;
 use App\Models\Kamar;
-use App\Models\Tamu;
 use App\Models\FKamar;
 use App\Models\FUmum;
 use App\Models\Reservasi;
@@ -56,7 +55,6 @@ class BaseController extends Controller
         // Preload any models, libraries, etc, here.
         $this->kamarModel = new Kamar;
         $this->petugasModel = new Petugas;
-        $this->tamuModel = new Tamu;
         $this->reservasiModel = new Reservasi;
         $this->fKamarModel = new FKamar;
         $this->fUmumModel = new FUmum;

@@ -14,7 +14,7 @@ class Reservasi extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_reservasi', 'nik', 'checkin', 'checkout', 'harga', 'jml_kamar', 'total', 'status'];
+    protected $allowedFields    = ['id_reservasi', 'nama_pemesan', 'nama_tamu', 'no_telp', 'email', 'nik', 'checkin', 'checkout', 'harga', 'jml_kamar', 'total', 'status'];
 
     // Dates
     protected $useTimestamps = false;
@@ -51,7 +51,10 @@ class Reservasi extends Model
             ->select('*')
             ->join('reservasi_kamar', 'reservasi.id_reservasi = reservasi_kamar.id_reservasi')
             ->join('kamar', 'kamar.id_kamar = reservasi_kamar.id_kamar')
-            ->join('tamu', 'tamu.nik = reservasi.nik')
+            ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+            ->groupBy('reservasi_kamar.id_reservasi')
+            ->orderBy('checkin', 'desc')
+            // ->join('tamu', 'tamu.nik = reservasi.nik')
             ->get()->getResultArray();
     }
 
@@ -78,22 +81,25 @@ class Reservasi extends Model
     public function search($keyword)
     {
         return $this->db->table('reservasi')
-            ->join('tamu', 'tamu.nik = reservasi.nik')
+            // ->join('tamu', 'tamu.nik = reservasi.nik')
             ->join('reservasi_kamar', 'reservasi.id_reservasi = reservasi_kamar.id_reservasi')
             ->join('kamar', 'kamar.id_kamar = reservasi_kamar.id_kamar')
-            ->like('nama_tamu', $keyword)
+            ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+            ->like('reservasi.nama_tamu', $keyword)
             ->orLike('checkin', $keyword)
+            ->orLike('reservasi_kamar.id_kamar', $keyword)
+            ->orderBy('checkin', 'desc')
+            ->groupBy('reservasi_kamar.id_reservasi')
             ->get()->getResultArray();
     }
 
-    public function detail_rsv($nik)
+    public function detail_rsv($id_rsv)
     {
         return $this->db->table('reservasi')
             ->select('*')
-            ->where('nik', $nik)
-            ->join('reservasi_kamar', 'reservasi_kamar.id_reservasi_kamar = reservasi.id_reservasi')
+            ->where('reservasi.nik', $id_rsv)
+            ->join('reservasi_kamar', 'reservasi.id_reservasi = reservasi_kamar.id_reservasi')
             ->join('kamar', 'kamar.id_kamar = reservasi_kamar.id_kamar')
-            ->join('tamu', 'tamu.nik = reservasi.nik')
             ->get()->getResultArray();
     }
 }
