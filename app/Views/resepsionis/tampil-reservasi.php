@@ -15,7 +15,7 @@
                     <form action="" method="get">
                         <div class="input-group my-2">
                             <input type="date" class="form-control" value="<?= $keyword ? $keyword : null; ?>" name="keyword">
-                            <button class="btn btn-outline-primary" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                            <button class="btn btn-outline-primary" type="submit">Check-In</button>
                         </div>
                     </form>
                 </div>
@@ -88,13 +88,14 @@
                                 </td>
                                 <td class="text-center">
                                     <!-- <div class="btn-group" role="group"> -->
-                                    <a href="/resepsionis/reservasi/detail/<?= $row['nik']; ?>" title="Detail" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                    <a href="/resepsionis/reservasi/detail/<?= $row['id_reservasi']; ?>" title="Detail" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></a>
                                     <button class="btn btn-primary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Status
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="triggerId">
-                                        <a class="dropdown-item" href="/resepsionis/reservasi/checkin/<?= $row['id_reservasi']; ?>">Check-in</a>
-                                        <a class="dropdown-item" href="/resepsionis/reservasi/checkout/<?= $row['id_reservasi']; ?>">Check-out</a>
+                                        <a class="dropdown-item <?= $row['status'] == 1 ? 'disabled' : ''; ?> " href="/resepsionis/reservasi/pending/<?= $row['id_reservasi']; ?>">Pending</a>
+                                        <a class="dropdown-item <?= $row['status'] == 2 ? 'disabled' : ''; ?> " href="/resepsionis/reservasi/checkin/<?= $row['id_reservasi']; ?>">Check-in</a>
+                                        <a class="dropdown-item <?= $row['status'] == 3 ? 'disabled' : ''; ?> " href="/resepsionis/reservasi/checkout/<?= $row['id_reservasi']; ?>">Check-out</a>
                                     </div>
                                     <a class="btn btn-danger" href="/resepsionis/reservasi/hapus/<?= $row['id_reservasi']; ?>"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                     <!-- </div> -->

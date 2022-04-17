@@ -117,12 +117,12 @@
 
             <?= $this->renderSection('content') ?>
 
-            <footer class="mt-auto py-3 footer fixed-bottom bg-light">
-                <div class="container">
-                    <span class="fw-light text-muted">By rpl@scada</span>
-                </div>
-            </footer>
     </header>
+    <footer class="mt-auto py-3 footer bg-light">
+        <div class="container">
+            <span class="fw-light text-muted">By rpl@scada</span>
+        </div>
+    </footer>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/bootstrap.js"></script>
     <script src="/js/bootstrap.bundle.js"></script>

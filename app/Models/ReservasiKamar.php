@@ -39,4 +39,16 @@ class ReservasiKamar extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function get_noKamar($id_rsv)
+    {
+        $syarat = ['id_reservasi' => $id_rsv];
+        $a = $this->db->table('reservasi_kamar')
+            ->select('no_kamar')
+            ->join('kamar', 'kamar.id_kamar = reservasi_kamar.id_kamar')
+            ->where($syarat)
+            ->get()->getResultArray();
+
+        // dd($a);
+    }
 }

@@ -40,12 +40,6 @@ class Kamar extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    // public function kamarjoin_fkamar($id_kamar) {
-    //     // $this->db->select('*');
-    //     $this->db->join('fasilitas_kamar', 'kamar.id_kamar = fasilitas_kamar.id_kamar')->where('id_kamar', $id_kamar)->get()->result();
-
-    // }
-
     public function hitung_kamar()
     {
         return $this->db->table('kamar')->countAll();
@@ -66,7 +60,8 @@ class Kamar extends Model
     {
         return $this->db->table('kamar')
             ->select('*')
-            ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar', 'left')
+            ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+            ->join('fasilitas_kamar', 'fasilitas_kamar.id_type_kamar = type_kamar.id_type_kamar')
             ->orderBy('type_kamar.id_type_kamar', 'asc')
             ->like('no_kamar')
             ->get()->getResultArray();

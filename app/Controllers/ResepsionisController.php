@@ -70,10 +70,35 @@ class ResepsionisController extends BaseController
 
     public function detail_reservasi($id_rsv)
     {
-        $syarat = ['id_reservasi' => $id_rsv];
+        $syarat = ['reservasi.id_reservasi' => $id_rsv];
+        $status = $this->reservasiModel->get_status($id_rsv);
+
+        $stt = array_map(function ($s) use ($status) {
+            $s[] = [];
+            switch ($s['status']) {
+                case 1:
+                    $s['status_txt'] = 'Pending';
+                    break;
+                case 2:
+                    $s['status_txt'] = 'Check-In';
+                    break;
+                case 3:
+                    $s['status_txt'] = 'Check-Out';
+                    break;
+            }
+
+            return $s;
+        }, $status);
+
         $data = [
             'title' =>  'Detail Reservasi | AuHotelia',
-            'reservasi' => $this->reservasiModel->where($syarat)->find()
+            'reservasi' => $this->reservasiModel
+                ->select('reservasi.id_reservasi, reservasi.nik, reservasi.nama_tamu, kamar.no_kamar, type_kamar.type_kamar, reservasi.jml_kamar, reservasi.checkin, reservasi.checkout, reservasi.total, reservasi.nama_pemesan, reservasi.no_telp, reservasi.email, type_kamar.harga, datediff(reservasi.checkout,reservasi.checkin) as jmlHari, reservasi.status')
+                ->join('reservasi_kamar', 'reservasi.id_reservasi = reservasi_kamar.id_reservasi')
+                ->join('kamar', 'kamar.id_kamar = reservasi_kamar.id_kamar')
+                ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+                ->where($syarat)->find()[0],
+            'status' => $stt
         ];
 
         return view('resepsionis/detail-reservasi', $data);
@@ -167,6 +192,13 @@ class ResepsionisController extends BaseController
     {
         // dd($id_reservasi);
         $berhasil = $this->reservasiModel->update($id_reservasi, ['status' => 3]);
+        return redirect()->to('/resepsionis/reservasi');
+    }
+
+    public function pending($id_reservasi)
+    {
+        // dd($id_reservasi);
+        $this->reservasiModel->update($id_reservasi, ['status' => 1]);
         return redirect()->to('/resepsionis/reservasi');
     }
 

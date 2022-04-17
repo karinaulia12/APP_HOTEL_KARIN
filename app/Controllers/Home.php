@@ -6,6 +6,12 @@ class Home extends BaseController
 {
     public function index()
     {
-        return view('welcome_message');
+        $data = [
+            'title' => 'AuHotelia',
+            'data_fumum' => $this->fUmumModel->findAll(),
+            'data_fkamar' => $this->fKamarModel->get_typeKamar(),
+            'type_kamar' => $this->typeKamarModel->findAll()
+        ];
+        return view('layout/template_tamu', $data);
     }
 }

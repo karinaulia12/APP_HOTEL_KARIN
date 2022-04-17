@@ -33,7 +33,8 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 
 // tamu
-$routes->get('/', 'TamuController::welcome');
+// $routes->get('/', 'TamuController::welcome');
+$routes->get('/', 'Home::index');
 $routes->get('/welcome', 'TamuController::welcome');
 $routes->get('/form-booking', 'TamuController::form');
 $routes->post('/booking', 'TamuController::simpanBooking1');
@@ -42,7 +43,9 @@ $routes->get('/fasilitas-hotel', 'TamuController::lp_fumum');
 $routes->get('/harga', 'TamuController::lp_harga');
 $routes->get('/form', 'TamuController::lp_form');
 $routes->get('/form-booking/(:any)', 'TamuController::form_typeKamar/$1');
+$routes->post('/booking/type', 'TamuController::simpanBooking_tk');
 $routes->get('/reservasi/pdf/(:num)', 'PdfController::index/$1');
+$routes->get('/reservasi/lihat/(:num)', 'PdfController::lihat/$1');
 
 // admin
 $routes->get('/petugas', 'PetugasController::index');
@@ -57,6 +60,7 @@ $routes->get('/resepsionis/reservasi/detail/(:any)', 'ResepsionisController::det
 $routes->get('/resepsionis/tamu', 'ResepsionisController::tampil_tamu', ['filter' => 'otentifikasi']);
 $routes->get('/resepsionis/reservasi/checkin/(:num)', 'ResepsionisController::checkin/$1', ['filter' => 'otentifikasi']);
 $routes->get('/resepsionis/reservasi/checkout/(:num)', 'ResepsionisController::checkout/$1', ['filter' => 'otentifikasi']);
+$routes->get('/resepsionis/reservasi/pending/(:num)', 'ResepsionisController::pending/$1', ['filter' => 'otentifikasi']);
 $routes->get('/resepsionis/reservasi/terima/(:num)', 'ResepsionisController::terima/$1', ['filter' => 'otentifikasi']);
 $routes->get('/resepsionis/reservasi/tolak/(:num)', 'ResepsionisController::tolak/$1', ['filter' => 'otentifikasi']);
 $routes->get('/resepsionis/reservasi/hapus/(:num)', 'ResepsionisController::hapusdatareservasi/$1', ['filter' => 'otentifikasi']);

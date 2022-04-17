@@ -102,4 +102,14 @@ class Reservasi extends Model
             ->join('kamar', 'kamar.id_kamar = reservasi_kamar.id_kamar')
             ->get()->getResultArray();
     }
+
+    public function get_status($id_rsv)
+    {
+        return $this->db->table('reservasi')
+            ->select('status')
+            ->where('reservasi.id_reservasi', $id_rsv)
+            // ->join('reservasi_kamar', 'reservasi.id_reservasi = reservasi_kamar.id_reservasi')
+            // ->join('kamar', 'kamar.id_kamar = reservasi_kamar.id_kamar')
+            ->get()->getResultArray();
+    }
 }
