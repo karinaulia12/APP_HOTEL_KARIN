@@ -57,6 +57,8 @@ $routes->get('/resepsionis/dashboard', 'ResepsionisController::dashboard', ['fil
 $routes->get('/resepsionis/reservasi', 'ResepsionisController::data', ['filter' => 'otentifikasi']);
 $routes->get('/resepsionis/type-kamar', 'ResepsionisController::tampil_tk', ['filter' => 'otentifikasi']);
 $routes->get('/resepsionis/reservasi/detail/(:any)', 'ResepsionisController::detail_reservasi/$1', ['filter' => 'otentifikasi']);
+$routes->get('/resepsionis/reservasi/edit/(:num)', 'ResepsionisController::edit_rsv/$1', ['filter' => 'otentifikasi']);
+$routes->post('/reservasi/update', 'ResepsionisController::update_rsv/$1', ['filter' => 'otentifikasi']);
 $routes->get('/resepsionis/tamu', 'ResepsionisController::tampil_tamu', ['filter' => 'otentifikasi']);
 $routes->get('/resepsionis/reservasi/checkin/(:num)', 'ResepsionisController::checkin/$1', ['filter' => 'otentifikasi']);
 $routes->get('/resepsionis/reservasi/checkout/(:num)', 'ResepsionisController::checkout/$1', ['filter' => 'otentifikasi']);

@@ -202,4 +202,129 @@ class ResepsionisController extends BaseController
 
         return view('resepsionis/type_kamar', $data);
     }
+
+    public function edit_rsv($id_rsv)
+    {
+        $syarat = ['id_reservasi' => $id_rsv];
+        $dt_rsv = $this->reservasiModel
+            ->join('type_kamar', 'type_kamar.id_type_kamar = reservasi.id_type_kamar')
+            ->where($syarat)->find()[0];
+        $kmr_tersedia = $this->kamarModel->select('id_kamar')
+            ->where('status_kmr', 'tersedia')
+            ->where($syarat)
+            ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+            ->join('reservasi', 'type_kamar.id_type_kamar = reservasi.id_type_kamar')
+            ->get()->getResultArray();
+        // $type_kamar = $this->typeKamarModel->select('type_kamar, type_kamar.id_type_kamar, type_kamar.foto, type_kamar.harga, fasilitas_kamar.nama_fkamar')
+        //     ->join('kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+        //     ->join('fasilitas_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')
+        //     ->where($syarat)
+        //     ->find()[0];
+        // $f_kamar = $this->fKamarModel->select('nama_fkamar')
+        //     ->join('type_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')
+        //     ->where($syarat)
+        //     ->get()->getResultArray();
+        $data = [
+            'title' => 'Edit Reservasi | AuHotelia',
+            'rsv' => $dt_rsv,
+            'kmr_tersedia' => $kmr_tersedia
+        ];
+        // dd($kmr_tersedia);
+        return view('resepsionis/edit-form-booking-tk', $data);
+    }
+
+    public function update_rsv()
+    {
+        // dd($this->request->getPost());
+        $jml_kamar = $this->request->getPost('jml_kamar');
+        $tambah_kamar = $this->request->getPost('tambah_kamar');
+        $id_typekamar = $this->request->getPost('id_tk');
+        $nm_pemesan = $this->request->getPost('nama_pemesan');
+        $id_reservasi = $this->request->getPost('id_reservasi');
+        $id_rsv = ['id_reservasi' => $id_reservasi];
+
+        // ambil harga kamar berd. tipe kamar
+        $hrg = $this->typeKamarModel->select('harga')
+            // ->whereIn('type_kamar', $id_typekamar)
+            ->where('id_type_kamar', $id_typekamar)
+            // ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+            ->get()->getResultArray();
+
+        $harga_kamar = 0;
+        foreach ($hrg as $value) {
+            $harga_kamar = $harga_kamar + $value['harga'];
+        }
+
+        $checkin = $this->request->getPost('checkin');
+        $checkout = $this->request->getPost('checkout');
+
+        $in = new \DateTime($checkin);
+        $out = new \DateTime($checkout);
+        $interval = $in->diff($out);
+        $jml_hari = $interval->d;
+
+        $rsv = [
+            'nik' => $this->request->getPost('nik'),
+            'id_type_kamar' => $id_typekamar,
+            'nama_pemesan' => $nm_pemesan,
+            'no_telp' => $this->request->getPost('no_telp'),
+            'email' => $this->request->getPost('email'),
+            'nama_tamu' => $this->request->getPost('nama_tamu'),
+            'checkin' => $checkin,
+            'checkout' => $checkout,
+            'jml_kamar' => $jml_kamar + $tambah_kamar,
+            'harga' => $harga_kamar * $jml_kamar,
+            'total' => $harga_kamar * $jml_hari * $jml_kamar,
+            'status' => 1
+        ];
+        d($rsv);
+        $this->reservasiModel->where($id_rsv)->set($rsv)->update();
+
+        $query = $this->kamarModel->select('id_kamar')
+            ->where('kamar.status_kmr', 'tersedia')
+            ->orWhere('kamar.status_kmr', 'dipesan')
+            ->where('type_kamar.id_type_kamar', $id_typekamar)
+            ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar');
+
+        // jika jml kmr dipesan melebihi kmr yg tersedia
+        $tersedia = $query->get()->getResultArray();
+        d($tersedia);
+
+        if ($jml_kamar > count($tersedia)) {
+            $psn = 'Jumlah kamar yang dipesan melebihi batas kamar yang tersedia';
+            session()->setFlashdata('gagal_rsv', $psn);
+            return redirect()->to('/resepsionis/reservasi/edit/' . $id_reservasi);
+        }
+
+        // ambil id_kamar berd. tipe kamar
+        $id_kmr = $this->kamarModel->select('id_kamar')
+            ->where('kamar.status_kmr', 'tersedia')
+            ->orWhere('kamar.status_kmr', 'dipesan')
+            ->where('type_kamar.id_type_kamar', $id_typekamar)
+            ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+            ->get($jml_kamar)->getResultArray();
+        d($id_kmr);
+
+        // jika id_kmr = 0
+        if ($id_kmr === 0) {
+            $psn = 'Maaf kamar yang Anda pesan sudah penuh';
+            session()->setFlashdata('penuh', $psn);
+            return redirect()->to('/form-booking/' . $id_typekamar);
+        }
+
+        foreach ($id_kmr as $value) {
+            $data[] = [
+                'id_kamar' => $value['id_kamar'],
+                'status_kmr' => 'dipesan'
+            ];
+        }
+        d($data);
+
+        // $this->kamarModel->where('id_kamar', $id_kmr)->set(['status_kmr' => 'dipesan'])->update();
+        // $this->kamarModel->where('id_kamar', $data)->update(['status_kmr' => 'dipesan']);
+        $this->kamarModel->updateBatch($data, 'id_kamar');
+
+        session()->setFlashdata('update_rsv', 'Data reservasi dengan nama pemesan ' . $nm_pemesan . ' telah berhasil diupdate!');
+        return redirect()->to('/resepsionis/reservasi');
+    }
 }

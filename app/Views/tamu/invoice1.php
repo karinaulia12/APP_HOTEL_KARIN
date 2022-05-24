@@ -49,7 +49,7 @@
                         <small>Invoice / <?= date('m'); ?></small>
                         <div class="date text-inverse m-t-5"><?= date('d-m-Y H:i:s a',); ?></div>
                         <div class="invoice-detail">
-                            #0000123DSS<br>
+                            #0000<?= $reservasi['id_reservasi']; ?><br>
                             Booking Kamar
                         </div>
                     </div>

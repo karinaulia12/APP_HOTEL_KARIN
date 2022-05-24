@@ -28,6 +28,20 @@
                     </form>
                 </div>
             </div>
+            <?php if (session()->getFlashdata('update_rsv')) : ?>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <strong><?= session()->getFlashdata('update_rsv'); ?></strong>
+                </div>
+
+                <script>
+                    var alertList = document.querySelectorAll('.alert');
+                    alertList.forEach(function(alert) {
+                        new bootstrap.Alert(alert)
+                    })
+                </script>
+
+            <?php endif; ?>
             <?php if (!$reservasi) { ?>
                 <div class="row justify-content-center mt-3">
                     <div class="col">
@@ -89,6 +103,7 @@
                                 <td class="text-center">
                                     <!-- <div class="btn-group" role="group"> -->
                                     <a href="/resepsionis/reservasi/detail/<?= $row['id_reservasi']; ?>" title="Detail" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                    <a href="/resepsionis/reservasi/edit/<?= $row['id_reservasi']; ?>" title="Edit" class="btn btn-warning"><i class="fa fa-pen" aria-hidden="true"></i></a>
                                     <button class="btn btn-primary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Status
                                     </button>

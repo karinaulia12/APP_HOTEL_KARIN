@@ -78,6 +78,7 @@ class Reservasi extends Model
             ->join('kamar', 'kamar.id_type_kamar = type_kamar.id_type_kamar')
             ->like('reservasi.nama_tamu', $keyword)
             ->orLike('checkin', $keyword)
+            ->orLike('type_kamar', $keyword)
             ->orderBy('checkin', 'desc')
             ->groupBy('nik')
             ->get()->getResultArray();

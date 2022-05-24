@@ -14,7 +14,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-10">
+                        <div class="col-9">
                             <h5>Status <span class="badge <?php if ($reservasi['status'] == '1') {
                                                                 echo 'bg-warning';
                                                             } elseif ($reservasi['status'] == '2') {
@@ -25,7 +25,7 @@
 
                         </div>
 
-                        <div class="col-2">
+                        <div class="col-3">
                             <button class="btn btn-primary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Status
                             </button>
@@ -34,7 +34,7 @@
                                 <a class="dropdown-item <?= $reservasi['status'] == 2 ? 'disabled' : ''; ?>" href="/resepsionis/reservasi/checkin/<?= $reservasi['id_reservasi']; ?>">Check-in</a>
                                 <a class="dropdown-item <?= $reservasi['status'] == 3 ? 'disabled' : ''; ?>" href="/resepsionis/reservasi/checkout/<?= $reservasi['id_reservasi']; ?>">Check-out</a>
                             </div>
-
+                            <a href="/resepsionis/reservasi/edit/<?= $reservasi['id_reservasi']; ?>" title="Edit" class="btn btn-warning"><i class="fa fa-pen" aria-hidden="true"></i></a>
                             <a class="btn btn-danger <?= $reservasi['status'] != 3 ? 'disabled' : ''; ?>" href="/reservasi/pdf/<?= $reservasi['id_reservasi']; ?>"><i class="fa-solid fa-file-pdf"></i></a>
                         </div>
                     </div>

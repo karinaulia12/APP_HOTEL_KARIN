@@ -74,7 +74,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modelLogout">Logout</a>
                                         </li>
-                                    <?php } elseif (session()->get('level') == 'resepsionis') { ?>
+                                    <?php } elseif (session()->get('level') === 'resepsionis') { ?>
                                         <li class="nav-item">
                                             <a class="nav-link active" href="/resepsionis/reservasi">Reservasi</a>
                                         </li>
