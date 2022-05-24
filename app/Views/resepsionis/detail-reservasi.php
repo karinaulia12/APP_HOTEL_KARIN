@@ -12,18 +12,43 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                <div class="card-header">Status <h1-6><span class="badge <?php if ($reservasi['status'] == '1') {
-                                                                                echo 'bg-warning';
-                                                                            } elseif ($reservasi['status'] == '2') {
-                                                                                echo 'bg-primary';
-                                                                            } else {
-                                                                                echo 'bg-success';
-                                                                            } ?>"><?= $status[0]['status_txt'] ?></span></h1-6>
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-10">
+                            <h5>Status <span class="badge <?php if ($reservasi['status'] == '1') {
+                                                                echo 'bg-warning';
+                                                            } elseif ($reservasi['status'] == '2') {
+                                                                echo 'bg-primary';
+                                                            } else {
+                                                                echo 'bg-success';
+                                                            } ?>"><?= $status[0]['status_txt'] ?></span></h5>
+
+                        </div>
+
+                        <div class="col-2">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Status
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="triggerId">
+                                <a class="dropdown-item <?= $reservasi['status'] == 1 ? 'disabled' : ''; ?>" href="/resepsionis/reservasi/pending/<?= $reservasi['id_reservasi']; ?>">Pending</a>
+                                <a class="dropdown-item <?= $reservasi['status'] == 2 ? 'disabled' : ''; ?>" href="/resepsionis/reservasi/checkin/<?= $reservasi['id_reservasi']; ?>">Check-in</a>
+                                <a class="dropdown-item <?= $reservasi['status'] == 3 ? 'disabled' : ''; ?>" href="/resepsionis/reservasi/checkout/<?= $reservasi['id_reservasi']; ?>">Check-out</a>
+                            </div>
+
+                            <a class="btn btn-danger <?= $reservasi['status'] != 3 ? 'disabled' : ''; ?>" href="/reservasi/pdf/<?= $reservasi['id_reservasi']; ?>"><i class="fa-solid fa-file-pdf"></i></a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-6">
-                            <div class="card border-primary text-start">
+                            <div class="card <?php if ($reservasi['status'] == '1') {
+                                                    echo 'border-warning';
+                                                } elseif ($reservasi['status'] == '2') {
+                                                    echo 'border-primary';
+                                                } else {
+                                                    echo 'border-success';
+                                                } ?> text-start">
                                 <div class="card-body">
                                     <h3 class="card-title">Data Tamu</h3>
                                     <table class="table table-hover table-inverse table-responsive">
@@ -57,7 +82,13 @@
                             </div>
                         </div>
                         <div class="col-6">
-                            <div class="card border-warning text-start">
+                            <div class="card <?php if ($reservasi['status'] == '1') {
+                                                    echo 'border-warning';
+                                                } elseif ($reservasi['status'] == '2') {
+                                                    echo 'border-primary';
+                                                } else {
+                                                    echo 'border-success';
+                                                } ?> text-start">
                                 <div class="card-body">
                                     <h3 class="card-title">Data Reservasi</h3>
                                     <table class="table table-hover table-inverse table-responsive">
@@ -89,16 +120,11 @@
                                         <tr>
                                             <td>Total</td>
                                             <td>: </td>
-                                            <td><span class="badge bg-success">Rp <?= number_format($reservasi['total'], '0', ',', '.'); ?></span></td>
+                                            <td>
+                                                <h5><span class="badge bg-success">Rp <?= number_format($reservasi['total'], '0', ',', '.'); ?></span></h5>
+                                            </td>
                                         </tr>
                                     </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col">
-                                <div class="alert alert-success" role="alert">
-                                    <strong>Total: Rp <?= number_format($reservasi['total'], '0', ',', '.'); ?></strong>
                                 </div>
                             </div>
                         </div>

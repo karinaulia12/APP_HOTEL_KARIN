@@ -48,7 +48,7 @@
             <div class="row">
                 <?php if (!$dataKamar) : ?>
                     <div class="alert alert-danger" role="alert">
-                        <strong>Data Kamar dengan kata kunci "<?= $keyword; ?>" tidak ditemukan!</strong>
+                        <strong>Data Kamar tidak ditemukan!</strong>
                     </div>
                 <?php endif; ?>
                 <?php foreach ($dataKamar as $kamar) : ?>
@@ -57,14 +57,16 @@
                             <img src="/gambar/<?= $kamar['foto']; ?>" class="card-img-top" alt="<?= $kamar['foto']; ?>">
                             <div class="card-body">
                                 <h5 class="card-title text-center fs-3 fw-bold"><?= $kamar['no_kamar']; ?></h5>
-                                <p class="card-text fs-5 fw-lighter text-capitalize">Tipe Kamar: <?= $kamar['type_kamar']; ?></p>
-                                <p class="card-text fs-5 fw-lighter">Harga: Rp <?= number_format($kamar['harga'], 0, ',', '.'); ?></p>
+                                <p class="card-text fs-5 fw-lighter text-capitalize">
+                                    Tipe: <span class="badge bg-primary"><?= $kamar['type_kamar']; ?></span><br>
+                                    Harga: <span class="badge bg-success">Rp <?= number_format($kamar['harga'], 0, ',', '.'); ?></span>
+                                </p>
                                 <div class="text-center">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a href="/petugas/kamar/detail/<?= $kamar['id_kamar']; ?>" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></a>
                                         <a href="/petugas/kamar/edit/<?= $kamar['id_kamar']; ?>" class="btn btn-warning"><i class="fa fa-pen" aria-hidden="true"></i></a>
                                         <!-- <a href="/petugas/kamar/edit-foto/<?= $kamar['id_kamar']; ?>" class="btn btn-primary"><i class="fa fa-pen" aria-hidden="true"></i> Foto</a> -->
-                                        <a href="/petugas/kamar/hapus/<?= $kamar['id_kamar']; ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin akan hapus data?')"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                        <a href="/petugas/kamar/hapus/<?= $kamar['id_kamar']; ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin akan menghapusnya?')"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                         <!-- <a href="#" data-href="/petugas/kamar/hapus/<?= $kamar['id_kamar']; ?>" data-bs-toggle="modal" data-bs-target="#modelHapus" onclick="confirmToDelete(this)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a> -->
                                         <!-- <a href="#" data-href="petugas/kamar/hapus/<?= $kamar['id_kamar']; ?>" data-bs-toggle="modal" data-bs-target="#confirm-dialog" onclick="confirmToDelete(this)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a> -->
                                     </div>

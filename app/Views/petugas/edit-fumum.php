@@ -5,18 +5,11 @@
 <div class="container-lg">
     <div class="row">
         <div class="col justify-content-center">
-            <form action="/petugas/fumum/update" method="post" enctype="multipart/form-data">
+            <form action="/petugas/fumum/update/<?= $data_fumum[0]['id_fumum']; ?>" method="post" enctype="multipart/form-data">
                 <?= csrf_field(); ?>
                 <div class="form-group">
                     <h1 class="display-6"><i class="fa fa-pen text-primary" aria-hidden="true"></i> Edit Fasilitas Hotel</h1>
                     <hr>
-                    <?php if (!empty(session()->getFlashdata('edit_fumum'))) : ?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            <?= session()->getFlashdata('edit_fumum'); ?>
-                        </div>
-                    <?php endif; ?>
-
                     <div class="row">
                         <div class="col-6">
                             <input type="hidden" name="id_fumum" value="<?= $data_fumum[0]['id_fumum']; ?>">
@@ -30,7 +23,7 @@
                             <input type="file" class="form-control <?= ($validasi->hasError('foto')) ? 'is-invalid' : ''; ?>" name="foto">
                             <div class="col-sm-4">
                                 <?php if (!empty($data_fumum[0]['foto'])) { ?>
-                                    <img src="/gambar/<?= $data_fumum[0]['foto']; ?>" alt="<?= $data_fumum[0]['foto']; ?>" class="img-thumbnail mt-1 img-preview" onchange="previewImage">
+                                    <img src="/gambar/<?= $data_fumum[0]['foto']; ?>" class="img-thumbnail mt-1 img-preview" onchange="previewImage">
                                 <?php } else { ?>
                                     <img src="/gambar/noimage.jpg" onchange="previewImage" alt="" class="img-thumbnail mt-1 img-preview">
                                 <?php } ?>

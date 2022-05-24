@@ -24,12 +24,12 @@
 
                 <div class="col">
                     <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Fasilitas Kamar</div>
+                        <div class="card-header">Tipe Kamar</div>
                         <div class="card-body">
                             <div class="row">
-                                <h5 class="card-title col-9">Jumlah Fasilitas Kamar</h5>
+                                <h5 class="card-title col-9">Jumlah Tipe Kamar</h5>
                                 <p class="card-text display-5 col-3"><?= $hitung_fkamar; ?></p>
-                                <a href="/petugas/fkamar" class="text-white">Lihat Fasilitas Kamar <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                                <a href="/petugas/tkamar" class="text-white">Lihat Tipe Kamar <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </div>

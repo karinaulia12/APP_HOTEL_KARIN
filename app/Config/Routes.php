@@ -33,19 +33,18 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 
 // tamu
-// $routes->get('/', 'TamuController::welcome');
+// $routes->get('/', 'Home::welcome');
 $routes->get('/', 'Home::index');
-$routes->get('/welcome', 'TamuController::welcome');
-$routes->get('/form-booking', 'TamuController::form');
-$routes->post('/booking', 'TamuController::simpanBooking1');
-$routes->get('/fasilitas-kamar', 'TamuController::lp_fkamar');
-$routes->get('/fasilitas-hotel', 'TamuController::lp_fumum');
-$routes->get('/harga', 'TamuController::lp_harga');
-$routes->get('/form', 'TamuController::lp_form');
-$routes->get('/form-booking/(:any)', 'TamuController::form_typeKamar/$1');
-$routes->post('/booking/type', 'TamuController::simpanBooking_tk');
+$routes->get('/welcome', 'Home::welcome');
+$routes->get('/form-booking', 'Home::form');
+$routes->post('/booking', 'Home::simpanBooking1');
+$routes->get('/fasilitas-kamar', 'Home::lp_fkamar');
+$routes->get('/fasilitas-hotel', 'Home::lp_fumum');
+$routes->get('/harga', 'Home::lp_harga');
+$routes->get('/form', 'Home::lp_form');
+$routes->get('/form-booking/(:any)', 'Home::form_typeKamar/$1');
+$routes->post('/booking/type', 'Home::simpanBooking_tk');
 $routes->get('/reservasi/pdf/(:num)', 'PdfController::index/$1');
-$routes->get('/reservasi/lihat/(:num)', 'PdfController::lihat/$1');
 
 // admin
 $routes->get('/petugas', 'PetugasController::index');
@@ -56,6 +55,7 @@ $routes->get('/petugas/logout', 'PetugasController::logout');
 // resepsionis
 $routes->get('/resepsionis/dashboard', 'ResepsionisController::dashboard', ['filter' => 'otentifikasi']);
 $routes->get('/resepsionis/reservasi', 'ResepsionisController::data', ['filter' => 'otentifikasi']);
+$routes->get('/resepsionis/type-kamar', 'ResepsionisController::tampil_tk', ['filter' => 'otentifikasi']);
 $routes->get('/resepsionis/reservasi/detail/(:any)', 'ResepsionisController::detail_reservasi/$1', ['filter' => 'otentifikasi']);
 $routes->get('/resepsionis/tamu', 'ResepsionisController::tampil_tamu', ['filter' => 'otentifikasi']);
 $routes->get('/resepsionis/reservasi/checkin/(:num)', 'ResepsionisController::checkin/$1', ['filter' => 'otentifikasi']);
@@ -76,6 +76,15 @@ $routes->get('/petugas/kamar/edit-foto/(:num)', 'PetugasController::tampileditfo
 $routes->post('/petugas/kamar/update-foto', 'PetugasController::editFotoKamar', ['filter' => 'otentifikasi']);
 $routes->get('/petugas/kamar/hapus/(:num)', 'PetugasController::hapuskamar/$1', ['filter' => 'otentifikasi']);
 
+// crud type_kamar
+$routes->get('/petugas/tkamar', 'PetugasController::tampiltypekamar', ['filter' => 'otentifikasi']);
+$routes->get('/petugas/tkamar/tambah', 'PetugasController::tampiltambah_tkamar', ['filter' => 'otentifikasi']);
+$routes->post('/petugas/tkamar/add', 'PetugasController::tambah_tkamar', ['filter' => 'otentifikasi']);
+$routes->get('/petugas/tkamar/edit/(:num)', 'PetugasController::tampiledit_tkamar/$1', ['filter' => 'otentifikasi']);
+$routes->post('/petugas/tkamar/update', 'PetugasController::edit_tkamar', ['filter' => 'otentifikasi']);
+$routes->get('/petugas/tkamar/hapus/(:num)', 'PetugasController::hapus_tkamar/$1', ['filter' => 'otentifikasi']);
+
+
 // crud fasilitas kamar
 $routes->get('/petugas/fkamar', 'PetugasController::tampilfasilitaskamar', ['filter' => 'otentifikasi']);
 $routes->get('/petugas/fkamar/tambah', 'PetugasController::tampiltambah_fkamar', ['filter' => 'otentifikasi']);
@@ -90,7 +99,8 @@ $routes->get('/petugas/fumum', 'PetugasController::tampil_fumum', ['filter' => '
 $routes->get('/petugas/fumum/tambah', 'PetugasController::tampiltambah_fumum', ['filter' => 'otentifikasi']);
 $routes->post('/petugas/fumum/add', 'PetugasController::tambah_fumum', ['filter' => 'otentifikasi']);
 $routes->get('/petugas/fumum/edit/(:num)', 'PetugasController::tampiledit_fumum/$1', ['filter' => 'otentifikasi']);
-$routes->post('/petugas/fumum/update', 'PetugasController::edit_fumum', ['filter' => 'otentifikasi']);
+$routes->post('/petugas/fumum/update/(:num)', 'PetugasController::edit_fumum/$1', ['filter' => 'otentifikasi']);
+$routes->get('/petugas/fumum/hapus/(:num)', 'PetugasController::hapus_fumum/$1', ['filter' => 'otentifikasi']);
 
 
 /*

@@ -26,27 +26,9 @@
                                 foreach ($dataTypeKamar as $tk) : ?>
                                     <option value="<?= $tk['id_type_kamar']; ?>"><?= $tk['type_kamar']; ?> - Rp <?= number_format($tk['harga'], 0, ',', '.'); ?></option>
                                 <?php endforeach; ?>
-                                <!-- <option selected>Pilih tipe kamar</option>
-                                <option value="1">Standard Room - </option>
-                                <option value="2">Superior Room - </option>
-                                <option value="3">Deluxe Room - </option>
-                                <option value="4">Junior Suite Room - </option>
-                                <option value="5">Suite Room - </option>
-                                <option value="6">Presidential Room - </option> -->
                             </select>
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('type_kamar'); ?>
-                            </div>
-                        </div>
-                        <!-- </div> -->
-                        <div class="col-6">
-                            <label for="" class="form-label mt-3">Foto</label>
-                            <input type="file" onChange="previewImage" class="form-control <?= ($validasi->hasError('foto')) ? 'is-invalid' : ''; ?>" value="<?= old('foto'); ?>" name="foto" id="" placeholder="">
-                            <div class="invalid-feedback">
-                                <?= $validasi->getError('foto'); ?>
-                            </div>
-                            <div class="col-sm-4">
-                                <img src="/gambar/noimage.jpg" onChange="previewImage" alt="" class="img-thumbnail mt-1 img-preview">
                             </div>
                         </div>
 
@@ -61,10 +43,10 @@
                             </div>
                         </div> -->
 
-                        <div class="col-8 mt-3">
+                        <!-- <div class="col-8 mt-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
                             <textarea class="form-control" value="<?= old('deskripsi'); ?>" id="exampleFormControlTextarea1" rows="3" placeholder="Tambahkan deskripsi" name="deskripsi"></textarea>
-                        </div>
+                        </div> -->
                     </div>
                     <button type="submit" class="btn btn-primary my-3">Kirim</button>
                 </div>

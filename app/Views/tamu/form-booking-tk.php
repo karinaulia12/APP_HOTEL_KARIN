@@ -3,8 +3,27 @@
 <div class="container-lg">
     <div class="row">
         <div class="col">
-            <h1 class="display-6">Form Booking Tipe <?= $nama_tk['type_kamar']; ?></h1>
+            <h1 class="display-6">Tipe <span class="badge bg-info"> <?= $nama_tk['type_kamar']; ?></span></h1>
             <hr>
+            <?php if (session()->getFlashdata('pesan_kamar')) : ?>
+                <div class="alert alert-warning alert-dismissible fade show col-6" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <strong><?= (session()->getFlashdata('pesan_kamar')); ?></strong>
+                </div>
+            <?php endif; ?>
+
+            <?php if (session()->getFlashdata('gagal_rsv')) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <strong><?= session()->getFlashdata('gagal_rsv'); ?></strong>
+                </div>
+            <?php endif; ?>
+
+            <?php if (session()->getFlashdata('penuh')) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <strong><?= session()->getFlashdata('penuh'); ?></strong>
+                </div>
+            <?php endif; ?>
+
         </div>
     </div>
     <div class="row">
@@ -12,7 +31,7 @@
             <form action="/booking/type" method="post">
                 <div class="mb-3">
                     <label class="form-label">NIK</label>
-                    <input type="text" class="form-control" name="nik" id="exampleFormControlInput1" placeholder="Contoh: Nomor Induk Kependudukan">
+                    <input type="text" class="form-control" name="nik" id="exampleFormControlInput1" placeholder="Nomor Induk Kependudukan">
                     <input type="hidden" name="id_tk" value="<?= $nama_tk['id_type_kamar']; ?>">
                 </div>
 
@@ -59,16 +78,33 @@
 
         <div class="col-md-6">
             <div class="card text-start">
-                <img class="card-img-top" src="/gambar/<?= $kamar[0]['foto']; ?>" alt="">
+                <img class="card-img-top" src="/gambar/<?= $nama_tk['foto']; ?>" alt="">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h4 class="card-title"><?= $kamar[0]['type_kamar']; ?></h4>
-                            <p class="card-text"><span class="badge bg-success">Rp <?= number_format($kamar[0]['harga'], 0, ',', '.'); ?></span></p>
+                            <h4 class="card-title"><?= $nama_tk['type_kamar']; ?></h4>
+                            <p class="card-text"><span class="badge bg-success">Rp <?= number_format($nama_tk['harga'], 0, ',', '.'); ?></span>
+                                <span class="badge bg-info"><?= count($kmr_tersedia); ?> kamar tersedia</span>
+                            </p>
                         </div>
                         <div class="col-sm-6">
                             <h4 class="card-title">Fasilitas: </h4>
-                            <p class="card-text"><span class="badge bg-primary"><?= $kamar[0]['nama_fkamar']; ?></span></p>
+                            <div class="row">
+                                <div class="col-6 ">
+                                    <?php foreach ($fkamar as $row) : ?>
+                                        <!-- <div class="text-center"> -->
+                                        <!-- <div class="grid"> -->
+                                        <!-- <div class="row-lg-5"> -->
+                                        <p class="card-text">
+                                            <span class="badge bg-primary"><?= $row['nama_fkamar']; ?></span>
+                                        </p>
+                                        <!-- </div> -->
+                                        <!-- </div> -->
+                                        <!-- </div> -->
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

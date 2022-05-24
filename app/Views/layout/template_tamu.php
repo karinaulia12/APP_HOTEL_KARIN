@@ -51,16 +51,14 @@
 
             <div class="logo me-auto">
                 <h1><a href="index.html">AuHotelia</a></h1>
-                <!-- Uncomment below if you prefer to use an image logo -->
-                <!-- <a href="index.html"><img src="/template_tamu/assets/img/logo.png" alt="" class="img-fluid"></a>-->
             </div>
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                     <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
                     <li><a class="nav-link scrollto" href="#specials">Fasilitas Hotel</a></li>
-                    <li><a class="nav-link scrollto" href="#menu">Fasilitas Kamar</a></li>
-                    <li><a class="nav-link scrollto" href="#specials">Harga</a></li>
+                    <li><a class="nav-link scrollto" href="#why-us">Fasilitas Kamar</a></li>
+                    <li><a class="nav-link scrollto" href="#events">Price</a></li>
                     <!-- <li><a class="nav-link scrollto" href="#events">Book Now</a></li> -->
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
@@ -81,47 +79,39 @@
                 <div class="carousel-inner" role="listbox">
 
                     <!-- Slide 1 -->
-                    <div class="carousel-item active" style="background-image: url(/template_tamu/assets/img/slide/slide-1.jpg);">
+                    <div class="carousel-item active" style="background-image: url(/template_tamu/assets/img/1.jpg);">
                         <div class="carousel-container">
                             <div class="carousel-content">
                                 <h2 class="animate__animated animate__fadeInDown"><span>AuHotelia</span></h2>
+                                <div class="row justify-content-center">
+                                    <?php if (session()->getFlashdata('pesan_kamar')) : ?>
+                                        <div class="alert alert-warning alert-dismissible fade show col-6" role="alert">
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            <strong><?= (session()->getFlashdata('pesan_kamar')); ?></strong>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if (session()->getFlashdata('gagal_rsv')) : ?>
+                                        <div class="alert alert-danger" role="alert">
+                                            <strong><?= session()->getFlashdata('gagal_rsv'); ?></strong>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if (session()->getFlashdata('penuh')) : ?>
+                                        <div class="alert alert-danger" role="alert">
+                                            <strong><?= session()->getFlashdata('penuh'); ?></strong>
+                                        </div>
+                                    <?php endif; ?>
+
+                                </div>
                                 <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
                                 <div>
-                                    <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
+                                    <!-- <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto my-2">Our Menu</a> -->
                                     <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Slide 2 -->
-                    <div class="carousel-item" style="background-image: url(/template_tamu/assets/img/slide/slide-2.jpg);">
-                        <div class="carousel-container">
-                            <div class="carousel-content">
-                                <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
-                                <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                                <div>
-                                    <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
-                                    <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 3 -->
-                    <div class="carousel-item" style="background-image: url(/template_tamu/assets/img/slide/slide-3.jpg);">
-                        <div class="carousel-container">
-                            <div class="carousel-content">
-                                <h2 class="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
-                                <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                                <div>
-                                    <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
-                                    <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
                 <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
@@ -160,10 +150,10 @@
                     <div class="col-lg-9 mt-4 mt-lg-0">
                         <div class="tab-content">
                             <?php foreach ($data_fumum as $fu) : ?>
-                                <div class="tab-pane active show" id="tab-<?= $fu['id_fumum'] ?>">
+                                <div class="tab-pane <?= $data_fumum[0]['id_fumum'] == $fu['id_fumum'] ? 'active show' : ''; ?>" id="tab-<?= $fu['id_fumum'] ?>">
                                     <div class="row">
                                         <div class="col-lg-8 details order-2 order-lg-1">
-                                            <h3><?= $fu['nama_fumum'] ?></h3>
+                                            <h3 class="mt-3"><?= $fu['nama_fumum'] ?></h3>
                                             <p class="fst-italic"><?= $fu['deskripsi'] ?></p>
                                         </div>
                                         <div class="col-lg-4 text-center order-1 order-lg-2">
@@ -191,10 +181,11 @@
                 <div class="row">
                     <?php $no = 1;
                     foreach ($data_fkamar as $row) : ?>
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 my-2">
                             <div class="box">
-                                <span>0<?= $no++; ?></span>
+                                <span><?= $no++; ?></span>
                                 <h4><?= $row['type_kamar']; ?></h4>
+                                <!-- <p><?= implode(', ', $row); ?></p> -->
                                 <p><?= $row['nama_fkamar']; ?></p>
                             </div>
                         </div>
@@ -215,20 +206,17 @@
 
                 <div class="events-slider swiper">
                     <div class="swiper-wrapper">
-                        <?php foreach ($data_fkamar as $row) : ?>
+                        <?php foreach ($data_tk2 as $row) : ?>
                             <div class="swiper-slide">
                                 <div class="row event-item">
-                                    <!-- <div class="col-lg-6">
-                                        <img src="assets/img/event-birthday.jpg" class="img-fluid" alt="">
-                                    </div> -->
+                                    <div class="col-lg-6">
+                                        <img src="/gambar/<?= $row['foto']; ?>" class="img-fluid" alt="">
+                                    </div>
                                     <div class="col-lg-6 pt-4 pt-lg-0 content">
                                         <h3><?= $row['type_kamar']; ?></h3>
                                         <div class="price">
                                             <p><span>Rp <?= number_format($row['harga'], '0', ',', '.'); ?></span></p>
                                         </div>
-                                        <p class="fst-italic">
-                                            <?= $row['nama_fkamar']; ?>
-                                        </p>
                                         <ul>
                                             <li><i class="bi bi-check-circle"></i> <?= $row['nama_fkamar']; ?></li>
                                         </ul>
@@ -315,87 +303,6 @@
 
             </div>
         </section><!-- End Book A Table Section -->
-
-        <!-- ======= Gallery Section ======= -->
-        <section id="gallery" class="gallery">
-            <div class="container-fluid">
-
-                <div class="section-title">
-                    <h2>Some photos from <span>Our Restaurant</span></h2>
-                    <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
-                </div>
-
-                <div class="row g-0">
-
-                    <div class="col-lg-3 col-md-4">
-                        <div class="gallery-item">
-                            <a href="/template_tamu/assets/img/gallery/gallery-1.jpg" class="gallery-lightbox">
-                                <img src="/template_tamu/assets/img/gallery/gallery-1.jpg" alt="" class="img-fluid">
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4">
-                        <div class="gallery-item">
-                            <a href="/template_tamu/assets/img/gallery/gallery-2.jpg" class="gallery-lightbox">
-                                <img src="/template_tamu/assets/img/gallery/gallery-2.jpg" alt="" class="img-fluid">
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4">
-                        <div class="gallery-item">
-                            <a href="/template_tamu/assets/img/gallery/gallery-3.jpg" class="gallery-lightbox">
-                                <img src="/template_tamu/assets/img/gallery/gallery-3.jpg" alt="" class="img-fluid">
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4">
-                        <div class="gallery-item">
-                            <a href="/template_tamu/assets/img/gallery/gallery-4.jpg" class="gallery-lightbox">
-                                <img src="/template_tamu/assets/img/gallery/gallery-4.jpg" alt="" class="img-fluid">
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4">
-                        <div class="gallery-item">
-                            <a href="/template_tamu/assets/img/gallery/gallery-5.jpg" class="gallery-lightbox">
-                                <img src="/template_tamu/assets/img/gallery/gallery-5.jpg" alt="" class="img-fluid">
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4">
-                        <div class="gallery-item">
-                            <a href="/template_tamu/assets/img/gallery/gallery-6.jpg" class="gallery-lightbox">
-                                <img src="/template_tamu/assets/img/gallery/gallery-6.jpg" alt="" class="img-fluid">
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4">
-                        <div class="gallery-item">
-                            <a href="/template_tamu/assets/img/gallery/gallery-7.jpg" class="gallery-lightbox">
-                                <img src="/template_tamu/assets/img/gallery/gallery-7.jpg" alt="" class="img-fluid">
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4">
-                        <div class="gallery-item">
-                            <a href="/template_tamu/assets/img/gallery/gallery-8.jpg" class="gallery-lightbox">
-                                <img src="/template_tamu/assets/img/gallery/gallery-8.jpg" alt="" class="img-fluid">
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section><!-- End Gallery Section -->
-
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->

@@ -14,7 +14,7 @@ class FKamar extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_fkamar', 'nama_fkamar', 'id_type_kamar'];
+    protected $allowedFields    = ['id_fkamar', 'nama_fkamar', 'id_type_kamar', 'deskripsi'];
 
     // Dates
     protected $useTimestamps = false;
@@ -52,8 +52,6 @@ class FKamar extends Model
             ->select('*')
             ->join('type_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')
             ->orderBy('harga', 'asc')
-            // ->like('nama_fkamar', $keyword)
-            // ->orLike('type_kamar', $keyword)
             ->get()->getResultArray();
     }
 

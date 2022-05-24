@@ -14,7 +14,7 @@ class Kamar extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_kamar', 'no_kamar', 'id_type_kamar', 'foto', 'harga', 'deskripsi'];
+    protected $allowedFields    = ['id_kamar', 'no_kamar', 'id_type_kamar', 'foto', 'harga', 'deskripsi', 'status_kmr'];
 
     // Dates
     protected $useTimestamps = false;
@@ -51,7 +51,7 @@ class Kamar extends Model
             ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
             ->like('no_kamar', $keyword)
             ->orLike('type_kamar', $keyword)
-            ->orLike('deskripsi', $keyword)
+            // ->orLike('deskripsi', $keyword)
             ->orLike('harga', $keyword)
             ->get()->getResultArray();
     }
@@ -63,7 +63,7 @@ class Kamar extends Model
             ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
             ->join('fasilitas_kamar', 'fasilitas_kamar.id_type_kamar = type_kamar.id_type_kamar')
             ->orderBy('type_kamar.id_type_kamar', 'asc')
-            ->like('no_kamar')
+            // ->like('no_kamar')
             ->get()->getResultArray();
         // return $join->paginate(9, 'kamar');
     }
@@ -77,5 +77,13 @@ class Kamar extends Model
             ->get()
             ->getResultArray();
         // return $this->db->table('kamar')->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')->where('id_kamar', $id_kamar)->get()->getResult();
+    }
+
+    public function get_idkmr_tersedia()
+    {
+        return $this->db->table('kamar')
+            ->select('id_kamar, no_kamar')
+            ->where('status_kmr', 'tersedia')
+            ->get()->getFieldCount();
     }
 }

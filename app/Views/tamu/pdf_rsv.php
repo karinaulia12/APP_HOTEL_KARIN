@@ -29,7 +29,7 @@
                 <a class="btn btn-success btn-lg mb-2" href="<?= base_url('PdfController/generate/' . $reservasi['id_reservasi']) ?>">
                     Download PDF
                 </a>
-                <a class="btn btn-warning mx-2 mb-2" href="<?= base_url('') ?>">
+                <a class="btn btn-warning mx-2 mb-2" href="<?= site_url('') ?>">
                     <i class="fa fa-home" aria-hidden="true"></i> Kembali
                 </a>
                 <table class="table table-striped table-bordered">
@@ -37,23 +37,24 @@
                         <tr align=center>
                             <td>NIK</td>
                             <td>Nama Tamu</td>
-                            <td>No. Kamar</td>
+                            <!-- <td>No. Kamar</td> -->
                             <td>Tipe Kamar</td>
                             <td>Jumlah Kamar</td>
                             <td>Check-In</td>
                             <td>Check-Out</td>
-                            <!-- <td>Total</td> -->
+                            <td>Jumlah Hari</td>
                         </tr>
                     </thead>
                     <tbody class="text-center">
                         <tr align=center>
                             <td><?= $reservasi['nik']; ?></td>
                             <td><?= $reservasi['nama_tamu']; ?></td>
-                            <td><?= $reservasi['no_kamar']; ?></td>
+                            <!-- <td><?= $reservasi['no_kamar']; ?></td> -->
                             <td><?= $reservasi['type_kamar']; ?></td>
-                            <td><?= $reservasi['jml_kamar']; ?></td>
-                            <td><?= $reservasi['checkin']; ?></td>
-                            <td><?= $reservasi['checkout']; ?></td>
+                            <td><?= $reservasi['jml_kamar']; ?> kamar</td>
+                            <td><?= date('l, d-m-Y', strtotime($reservasi['checkin'])); ?></td>
+                            <td><?= date('l, d-m-Y', strtotime($reservasi['checkout'])); ?></td>
+                            <td><?= $reservasi['jmlHari']; ?> hari</td>
                         </tr>
                     </tbody>
                 </table>

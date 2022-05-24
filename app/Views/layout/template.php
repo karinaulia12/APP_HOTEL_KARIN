@@ -62,8 +62,11 @@
                                         <li class="nav-item">
                                             <a class="nav-link" aria-current="page" href="/petugas/kamar">Kamar</a>
                                         </li>
-                                        <li class="nav-item">
+                                        <!-- <li class="nav-item">
                                             <a class="nav-link" href="/petugas/fkamar">Fasilitas Kamar</a>
+                                        </li> -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/petugas/tkamar">Tipe Kamar</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="/petugas/fumum">Fasilitas Hotel</a>
@@ -73,11 +76,14 @@
                                         </li>
                                     <?php } elseif (session()->get('level') == 'resepsionis') { ?>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/resepsionis/reservasi">Reservasi</a>
+                                            <a class="nav-link active" href="/resepsionis/reservasi">Reservasi</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/resepsionis/tamu">Tamu</a>
+                                            <a class="nav-link" href="/resepsionis/type-kamar">Tipe Kamar</a>
                                         </li>
+                                        <!-- <li class="nav-item">
+                                            <a class="nav-link" href="/resepsionis/tamu">Tamu</a>
+                                        </li> -->
                                         <li class="nav-item">
                                             <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modelLogout">Logout</a>
                                         </li>

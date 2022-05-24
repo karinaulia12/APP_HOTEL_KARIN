@@ -14,7 +14,7 @@ class TypeKamar extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_type_kamar', 'type_kamar', 'harga', 'stok_kamar'];
+    protected $allowedFields    = ['id_type_kamar', 'type_kamar', 'harga', 'stok_kamar', 'foto'];
 
     // Dates
     protected $useTimestamps = false;
@@ -52,5 +52,14 @@ class TypeKamar extends Model
             ->where('id_kamar', $id_kamar)
             ->join('kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
             ->get();
+    }
+
+    public function search($keyword)
+    {
+        return $this->db->table('type_kamar')
+            ->join('fasilitas_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')
+            ->like('type_kamar', $keyword)
+            ->orLike('harga', $keyword)
+            ->orLike('nama_fkamar', $keyword);
     }
 }

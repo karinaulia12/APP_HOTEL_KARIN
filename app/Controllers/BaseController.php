@@ -13,7 +13,6 @@ use App\Models\Kamar;
 use App\Models\FKamar;
 use App\Models\FUmum;
 use App\Models\Reservasi;
-use App\Models\ReservasiKamar;
 use App\Models\TypeKamar;
 
 /**
@@ -58,7 +57,6 @@ class BaseController extends Controller
         $this->reservasiModel = new Reservasi;
         $this->fKamarModel = new FKamar;
         $this->fUmumModel = new FUmum;
-        $this->reservasiKamarModel = new ReservasiKamar;
         $this->typeKamarModel = new TypeKamar;
 
 

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\Kamar;
 
 class PetugasController extends BaseController
 {
@@ -89,13 +90,13 @@ class PetugasController extends BaseController
 
         $data = [
             'title' => 'Detail Kamar AuHotelia',
-            'dataKamar' => $this->kamarModel->where('id_kamar', $id_kamar)->findAll(),
-            // 'data_typeKamar' => $this->typeKamarModel->join_kamar_utkDetail(),
+            'dataKamar' => $this->kamarModel->where('id_kamar', $id_kamar)
+                ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+                ->join('fasilitas_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')
+                ->findAll(),
             'data_typeKamar' => $this->kamarModel->typeKamar_detailKamar($id_kamar),
-            // 'data_namaFkamar' => $this->kamarModel->namaFasilitas_detailKamar(),
             'nama_fasilitas' => $this->fKamarModel->typeKamar_inDetail($id_kamar)
         ];
-        session()->set($data);
         return view('petugas/detail-kamar', $data);
     }
 
@@ -103,12 +104,15 @@ class PetugasController extends BaseController
     {
         $data = [
             'title' => 'Edit Kamar AuHotelia',
-            'dataKamar' => $this->kamarModel->where('id_kamar', $id_kamar)->findAll(),
+            'dataKamar' => $this->kamarModel
+                ->where('id_kamar', $id_kamar)
+                ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+                ->findAll(),
             'data_typekamar' => $this->typeKamarModel->findAll(),
             'data_typeKamar' => $this->kamarModel->join_typeKamar(),
             'validasi' => \Config\Services::validation()
         ];
-
+        // dd($data);
         return view('petugas/edit-kamar', $data);
     }
 
@@ -224,6 +228,32 @@ class PetugasController extends BaseController
         return view('petugas/edit-fumum', $data);
     }
 
+    public function tampiltambah_tkamar()
+    {
+        $data = [
+            'title' => 'Tambah Tipe Kamar AuHotelia',
+            'validasi' => \Config\Services::validation(),
+            'dataTypeKamar' => $this->typeKamarModel->findAll()
+            // 'data_typeKamar' => $this->fKamarModel->findAll()
+        ];
+        // dd($data);
+        return view('petugas/tambah-tkamar', $data);
+    }
+
+    public function tampiledit_tkamar($id_tkamar)
+    {
+        $syarat = ['type_kamar.id_type_kamar' => $id_tkamar];
+        $data = [
+            'title' => 'Edit Tipe Kamar AuHotelia',
+            'data_tk' => $this->typeKamarModel
+                ->join('fasilitas_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')
+                ->where($syarat)->find(),
+            'validasi' => \Config\Services::validation()
+        ];
+        // dd($data);
+        return view('petugas/edit-tkamar', $data);
+    }
+
     // crud kamar
     public function tampilKamar()
     {
@@ -231,7 +261,10 @@ class PetugasController extends BaseController
         if ($keyword) {
             $kamar = $this->kamarModel->search($keyword);
         } else {
-            $kamar = $this->kamarModel->join_typeKamar();
+            $kamar = $this->kamarModel
+                ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+                ->orderBy('no_kamar', 'asc')
+                ->get()->getResultArray();
         }
 
         $data = [
@@ -242,7 +275,7 @@ class PetugasController extends BaseController
             'pager' => $this->kamarModel->pager,
             'keyword' => $keyword
         ];
-
+        // dd($data);
         return view('petugas/tampil-kamar', $data);
     }
 
@@ -257,14 +290,6 @@ class PetugasController extends BaseController
                     'max_length' => 'Nomor Kamar terlalu panjang',
                     'is_unique' => 'Nomor Kamar sudah terdaftar.'
                 ]
-            ],
-            'foto' => [
-                'rules' => 'uploaded[foto]|is_image[foto]|mime_in[foto,image/jpg,image/png,image/jpeg]',
-                'errors' => [
-                    'uploaded' => 'Foto harus diisi.',
-                    'is_image' => 'File yang Anda pilih bukan gambar.',
-                    'mime_in' => 'Foto yang Anda pilih harus memiliki ekstensi .jpg, .png, atau .jpeg.'
-                ]
             ]
         ])) {
             $validation = \Config\Services::validation();
@@ -272,19 +297,19 @@ class PetugasController extends BaseController
         }
 
         helper(['form']);
-        //  ambil gambar
-        $fileFoto = $this->request->getFile('foto');
-        //  ambil nama file
-        $namaFoto = $fileFoto->getRandomName();
-        // pindahkan file ke folder public/gambar
-        $fileFoto->move(WRITEPATH . '../public/gambar', $namaFoto);
+        // //  ambil gambar
+        // $fileFoto = $this->request->getFile('foto');
+        // //  ambil nama file
+        // $namaFoto = $fileFoto->getRandomName();
+        // // pindahkan file ke folder public/gambar
+        // $fileFoto->move(WRITEPATH . '../public/gambar', $namaFoto);
 
         $inputdata = [
             'no_kamar' => $this->request->getPost('no_kamar'),
             // 'type_kamar' => $this->request->getPost('type_kamar'),
             'id_type_kamar' => $this->request->getPost('id_type_kamar'),
-            'foto' => $namaFoto,
-            'deskripsi' => $this->request->getPost('deskripsi'),
+            // 'foto' => $namaFoto,
+            // 'deskripsi' => $this->request->getPost('deskripsi'),
             // 'harga' => $this->request->getPost('harga')
         ];
 
@@ -296,43 +321,46 @@ class PetugasController extends BaseController
 
     public function editKamar1()
     {
+        $id_kamar = $this->request->getPost('id_kamar');
         $no_kamar = $this->request->getPost('no_kamar');
         $nama_foto_lama = $this->request->getPost('nama_foto');
-
-        $file = $this->request->getFile('foto');
-        if ($file->isValid() && !$file->hasMoved()) {
-            if (file_exists('gambar/' . $nama_foto_lama)) {
-                unlink('gambar/' . $nama_foto_lama);
-            }
-            $nama_foto = $file->getRandomName();
-            $file->move(WRITEPATH . '../public/gambar', $nama_foto);
-        } else {
-            $nama_foto = $nama_foto_lama;
-        }
+        $syarat = ['id_kamar' => $id_kamar];
+        // $file = $this->request->getFile('foto');
+        // if ($file->isValid() && !$file->hasMoved()) {
+        //     if (file_exists('gambar/' . $nama_foto_lama)) {
+        //         unlink('gambar/' . $nama_foto_lama);
+        //     }
+        //     $nama_foto = $file->getRandomName();
+        //     $file->move(WRITEPATH . '../public/gambar', $nama_foto);
+        // } else {
+        //     $nama_foto = $nama_foto_lama;
+        // }
         $data = [
+            'no_kamar' => $no_kamar,
             'id_type_kamar' => $this->request->getPost('type_kamar'),
-            'foto' => $nama_foto,
-            'deskripsi' => $this->request->getPost('deskripsi')
+            // 'deskripsi' => $this->request->getPost('deskripsi')
         ];
         // dd($data);
-        $this->kamarModel->update($no_kamar, $data);
+        $this->kamarModel->where($syarat)->set($data)->update();
         return redirect()->to('/petugas/kamar')->with('editKamar', 'Data kamar berhasil diupdate');
     }
 
     public function hapusKamar($id_kamar)
     {
         $syarat = ['id_kamar' => $id_kamar];
-        $dataKamar = $this->kamarModel->where($syarat)->find();
+        $dataKamar = $this->kamarModel->where($syarat)
+            // ->join('type_kamar', 'type_kamar.id_type_kamar =')
+            ->find();
 
-        $file = $dataKamar[0]['foto'];
-        // if ($file->isValid() && !$file->hasMoved()) {
-        if (file_exists('gambar/' . $file)) {
-            unlink('gambar/' . $file);
-        }
+        // $file = $dataKamar[0]['foto'];
+        // // if ($file->isValid() && !$file->hasMoved()) {
+        // if (file_exists('gambar/' . $file)) {
+        //     unlink('gambar/' . $file);
+        // }
         // }
         // hapus foto
         // unlink('gambar/' . $dataKamar[0]['foto']);
-        $this->kamarModel->where('id_kamar', $id_kamar)->delete();
+        $this->kamarModel->where($syarat)->delete();
         session()->setFlashdata('hapusKamar', 'Data Kamar berhasil dihapus');
         return redirect()->to('/petugas/kamar');
     }
@@ -451,10 +479,13 @@ class PetugasController extends BaseController
         return redirect()->to('/petugas/fumum');
     }
 
-    public function edit_fumum()
+    public function edit_fumum($id_fumum)
     {
         helper(['form']);
         $id_fumum = $this->request->getPost('id_fumum');
+        $syarat = [
+            'id_fumum' => $id_fumum
+        ];
         $nama_foto_lama = $this->request->getPost('nama_foto_fumum');
 
         $file = $this->request->getFile('foto');
@@ -468,15 +499,13 @@ class PetugasController extends BaseController
             $nama_foto_fumum = $nama_foto_lama;
         }
 
-        if ($id_fumum) {
-            $data = [
-                'nama_fumum' => $this->request->getPost('nama_fumum'),
-                'foto' => $nama_foto_fumum,
-                'deskripsi' => $this->request->getPost('deskripsi')
-            ];
-        }
-        // dd($data);
-        $this->fUmumModel->update($id_fumum, $data);
+        $data = [
+            'nama_fumum' => $this->request->getPost('nama_fumum'),
+            'foto' => $nama_foto_fumum,
+            'deskripsi' => $this->request->getPost('deskripsi')
+        ];
+        // d($data);
+        $this->fUmumModel->where($syarat)->set($data)->update();
         session()->setFlashdata('edit_fumum', 'Data fasilitas hotel berhasil diupdate');
         return redirect()->to('/petugas/fumum');
     }
@@ -486,8 +515,155 @@ class PetugasController extends BaseController
         helper(['form']);
         $syarat = ['id_fumum' => $id_fumum];
         $data_fumum = $this->fUmumModel->where($syarat)->find();
-        unlink('gambar/', $data_fumum[0]['foto']);
+        unlink('gambar/' . $data_fumum[0]['foto']);
         $this->fUmumModel->where('id_fumum', $id_fumum)->delete();
         session()->setFlashdata('hapus_fumum', 'Data fasilitas hotel berhasil dihapus');
+        return redirect()->to('/petugas/fumum');
+    }
+
+    // crud type_kamar
+    public function tampiltypekamar()
+    {
+        $keyword = $this->request->getVar('keyword');
+        if ($keyword) {
+            $fkamar = $this->fKamarModel->search($keyword);
+        } else {
+            $fkamar = $this->fKamarModel->get_typeKamar();
+        }
+
+        $data = [
+            'title' => 'Tipe Kamar AuHotelia',
+            'fkamar' => $fkamar,
+            'data_tk' => $this->fKamarModel->get_typeKamar(),
+            'keyword' => $keyword
+        ];
+
+        return view('petugas/type-kamar', $data);
+    }
+
+    public function tambah_tkamar()
+    {
+        // // pengkondisian untuk validasi
+        if (!$this->validate([
+            'type_kamar' => [
+                'rules' => 'required|max_length[100]|is_unique[kamar.no_kamar]',
+                'errors' => [
+                    'required' => 'Nomor Kamar harus diisi.',
+                    'max_length' => 'Nomor Kamar terlalu panjang',
+                    'is_unique' => 'Nomor Kamar sudah terdaftar.'
+                ]
+            ],
+            'harga' => [
+                'rules' => 'required|numeric',
+                'errors' => [
+                    'required' => 'Harga harus diisi.',
+                    'numeric' => 'Yang Anda masukkan bukan angka.',
+                ]
+            ],
+            'foto' => [
+                'rules' => 'uploaded[foto]|is_image[foto]|mime_in[foto,image/jpg,image/png,image/jpeg]',
+                'errors' => [
+                    'uploaded' => 'Foto harus diisi.',
+                    'is_image' => 'File yang Anda pilih bukan gambar.',
+                    'mime_in' => 'Foto yang Anda pilih harus memiliki ekstensi .jpg, .png, atau .jpeg.'
+                ]
+            ]
+        ])) {
+            $validation = \Config\Services::validation();
+            return redirect()->to('/petugas/tkamar/tambah')->withInput('validation', $validation);
+        }
+
+        helper(['form']);
+        $tk = $this->request->getPost('type_kamar');
+        $hrg = $this->request->getPost('harga');
+        $fkamar = $this->request->getPost('nama_fkamar');
+        $deskripsi = $this->request->getPost('deskripsi');
+
+        //  ambil gambar
+        $fileFoto = $this->request->getFile('foto');
+        //  ambil nama file
+        $namaFoto = $fileFoto->getRandomName();
+        // pindahkan file ke folder public/gambar
+        $fileFoto->move(WRITEPATH . '../public/gambar/', $namaFoto);
+
+        $input_tk = [
+            'type_kamar' => $tk,
+            'harga' => $hrg,
+            'foto' => $namaFoto
+        ];
+        $this->typeKamarModel->insert($input_tk);
+
+        $input_fkamar = [
+            'id_type_kamar' => $this->typeKamarModel->getInsertId(),
+            'nama_fkamar' => $fkamar,
+            'deskripsi' => $deskripsi,
+        ];
+        $this->fKamarModel->insert($input_fkamar);
+
+        session()->setFlashdata('tambah_tkamar', 'Data tipe kamar berhasil ditambahkan');
+        return redirect()->to('/petugas/tkamar');
+    }
+
+    public function edit_tkamar()
+    {
+        helper(['form']);
+        $id_tk = $this->request->getPost('id_type_kamar');
+        $id_fk = $this->request->getPost('id_fkamar');
+        $tk = $this->request->getPost('type_kamar');
+        $hrg = $this->request->getPost('harga');
+        $fkamar = $this->request->getPost('nama_fkamar');
+        $deskripsi = $this->request->getPost('deskripsi');
+        $nama_foto_lama = $this->request->getPost('nama_foto');
+        $file = $this->request->getFile('foto');
+
+        if ($file->isValid() && !$file->hasMoved()) {
+            if (file_exists('gambar/' . $nama_foto_lama)) {
+                unlink('gambar/' . $nama_foto_lama);
+            }
+            $nama_foto = $file->getRandomName();
+            $file->move(WRITEPATH . '../public/gambar', $nama_foto);
+        } else {
+            $nama_foto = $nama_foto_lama;
+        }
+
+        if ($this->request->getPost('id_fkamar')) {
+            $input_tk = [
+                'type_kamar' => $tk,
+                'harga' => $hrg,
+                'foto' => $nama_foto
+            ];
+            $input_fk = [
+                'nama_fkamar' => $fkamar,
+                'deskripsi' => $deskripsi,
+            ];
+
+            $db = \config\Database::connect();
+            // update type_kamar
+            $db->table('type_kamar as tk')
+                ->where('id_type_kamar', $id_tk)
+                ->update($input_tk);
+
+            // update fasilitas_kamar
+            $db->table('fasilitas_kamar as fk')
+                ->where('id_fkamar', $id_fk)
+                ->update($input_fk);
+
+            session()->setFlashdata('edit_tkamar', 'Data tipe kamar berhasil diupdate');
+            return redirect()->to('/petugas/tkamar');
+        }
+    }
+
+    public function hapus_tkamar($id_tkamar)
+    {
+        $syarat = ['id_type_kamar' => $id_tkamar];
+
+        $data_tk = $this->typeKamarModel->where($syarat)->find();
+        $this->typeKamarModel->where('id_type_kamar', $id_tkamar)->delete();
+        // $file = $data_tk[0]['foto'];
+        // if (file_exists('gambar/' . $file)) {
+        //     unlink('gambar/' . $file);
+        // }
+        session()->setFlashdata('hapus_tkamar', 'Data tipe kamar berhasil dihapus');
+        return redirect()->to('/petugas/tkamar');
     }
 }

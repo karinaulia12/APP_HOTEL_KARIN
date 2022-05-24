@@ -97,7 +97,7 @@
                                         <a class="dropdown-item <?= $row['status'] == 2 ? 'disabled' : ''; ?> " href="/resepsionis/reservasi/checkin/<?= $row['id_reservasi']; ?>">Check-in</a>
                                         <a class="dropdown-item <?= $row['status'] == 3 ? 'disabled' : ''; ?> " href="/resepsionis/reservasi/checkout/<?= $row['id_reservasi']; ?>">Check-out</a>
                                     </div>
-                                    <a class="btn btn-danger" href="/resepsionis/reservasi/hapus/<?= $row['id_reservasi']; ?>"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    <a class="btn btn-danger <?= $row['status'] != 3 ? 'disabled' : ''; ?>" href="/reservasi/pdf/<?= $row['id_reservasi']; ?>"><i class="fa-solid fa-file-pdf"></i></a>
                                     <!-- </div> -->
                                 </td>
                             </tr>
