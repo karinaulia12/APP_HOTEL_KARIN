@@ -112,6 +112,16 @@ class Reservasi extends Model
             ->join('kamar', 'kamar.id_type_kamar = type_kamar.id_type_kamar')
             ->get()->getResultArray();
     }
+    public function get_id_kamar_batal($id_reservasi)
+    {
+        return $this->db->table('reservasi')
+            ->select('id_kamar, id_reservasi, jml_kamar, no_kamar')
+            ->where('id_reservasi', $id_reservasi)
+            ->where('status_kmr', 'dipesan')
+            ->join('type_kamar', 'type_kamar.id_type_kamar = reservasi.id_type_kamar')
+            ->join('kamar', 'kamar.id_type_kamar = type_kamar.id_type_kamar')
+            ->get()->getResultArray();
+    }
     public function get_id_kamar_checkout($id_reservasi)
     {
         return $this->db->table('reservasi')

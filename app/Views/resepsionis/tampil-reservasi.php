@@ -60,7 +60,7 @@
                             <th>Check-Out</th>
                             <th>Tipe Kamar</th>
                             <th width="50px">Jumlah Kamar</th>
-                            <th>Nama Pemesan</th>
+                            <!-- <th>Nama Pemesan</th> -->
                             <th>Total</th>
                             <th>Status</th>
                             <th>Aksi</th>
@@ -72,13 +72,13 @@
                             <tr class="text-center">
                                 <td><?= $no++; ?></td>
                                 <td>
-                                    <h5><span class="badge bg-info"><?= $row['nama_tamu']; ?></span></h5>
+                                    <span class="badge bg-info"><?= $row['nama_tamu']; ?></span>
                                 </td>
                                 <td><?= date('d-m-Y', strtotime($row['checkin'])); ?></td>
                                 <td><?= date('d-m-Y', strtotime($row['checkout'])); ?></td>
                                 <td><?= $row['type_kamar']; ?></td>
                                 <td><?= $row['jml_kamar']; ?></td>
-                                <td><?= $row['nama_pemesan']; ?></td>
+                                <!-- <td><?= $row['nama_pemesan']; ?></td> -->
                                 <td>Rp <?= number_format($row['total'], '0', ',', '.'); ?></td>
                                 <td><?php if ($row['status'] == '1') { ?>
                                         <!-- pending -->
@@ -111,8 +111,9 @@
                                         <a class="dropdown-item <?= $row['status'] == 1 ? 'disabled' : ''; ?> " href="/resepsionis/reservasi/pending/<?= $row['id_reservasi']; ?>">Pending</a>
                                         <a class="dropdown-item <?= $row['status'] == 2 ? 'disabled' : ''; ?> " href="/resepsionis/reservasi/checkin/<?= $row['id_reservasi']; ?>">Check-in</a>
                                         <a class="dropdown-item <?= $row['status'] == 3 ? 'disabled' : ''; ?> " href="/resepsionis/reservasi/checkout/<?= $row['id_reservasi']; ?>">Check-out</a>
+                                        <a class="dropdown-item <?= $row['status'] != 1 ? 'disabled' : ''; ?> " href="/resepsionis/reservasi/batal/<?= $row['id_reservasi']; ?>" onclick="return confirm('Apakah Anda yakin akan dibatalkan?')">Batal</a>
                                     </div>
-                                    <a class="btn btn-danger <?= $row['status'] != 3 ? 'disabled' : ''; ?>" href="/reservasi/pdf/<?= $row['id_reservasi']; ?>"><i class="fa-solid fa-file-pdf"></i></a>
+                                    <a class="btn btn-danger my-1 <?= $row['status'] == 1 ? 'disabled' : ''; ?>" href="/reservasi/pdf/<?= $row['id_reservasi']; ?>"><i class="fa-solid fa-file-pdf"></i></a>
                                     <!-- </div> -->
                                 </td>
                             </tr>

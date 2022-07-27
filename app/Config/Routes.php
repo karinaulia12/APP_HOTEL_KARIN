@@ -63,9 +63,7 @@ $routes->get('/resepsionis/tamu', 'ResepsionisController::tampil_tamu', ['filter
 $routes->get('/resepsionis/reservasi/checkin/(:num)', 'ResepsionisController::checkin/$1', ['filter' => 'otentifikasi']);
 $routes->get('/resepsionis/reservasi/checkout/(:num)', 'ResepsionisController::checkout/$1', ['filter' => 'otentifikasi']);
 $routes->get('/resepsionis/reservasi/pending/(:num)', 'ResepsionisController::pending/$1', ['filter' => 'otentifikasi']);
-$routes->get('/resepsionis/reservasi/terima/(:num)', 'ResepsionisController::terima/$1', ['filter' => 'otentifikasi']);
-$routes->get('/resepsionis/reservasi/tolak/(:num)', 'ResepsionisController::tolak/$1', ['filter' => 'otentifikasi']);
-$routes->get('/resepsionis/reservasi/hapus/(:num)', 'ResepsionisController::hapusdatareservasi/$1', ['filter' => 'otentifikasi']);
+$routes->get('/resepsionis/reservasi/batal/(:num)', 'ResepsionisController::batal/$1', ['filter' => 'otentifikasi']);
 
 // crud kamar
 $routes->get('/petugas/kamar', 'PetugasController::tampilKamar', ['filter' => 'otentifikasi']);

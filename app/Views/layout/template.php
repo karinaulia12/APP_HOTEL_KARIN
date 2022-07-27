@@ -134,6 +134,7 @@
     <script src="/js/bootstrap.bundle.js"></script>
     <script src="/js/jquery-3.6.0.js"></script>
     <script src="/font-awesome/js/all.js"></script>
+    <script src="/js/script.js"></script>
     <script>
         function previewImage() {
             const foto = document.querySelector('foto');

@@ -33,6 +33,7 @@
                                 <a class="dropdown-item <?= $reservasi['status'] == 1 ? 'disabled' : ''; ?>" href="/resepsionis/reservasi/pending/<?= $reservasi['id_reservasi']; ?>">Pending</a>
                                 <a class="dropdown-item <?= $reservasi['status'] == 2 ? 'disabled' : ''; ?>" href="/resepsionis/reservasi/checkin/<?= $reservasi['id_reservasi']; ?>">Check-in</a>
                                 <a class="dropdown-item <?= $reservasi['status'] == 3 ? 'disabled' : ''; ?>" href="/resepsionis/reservasi/checkout/<?= $reservasi['id_reservasi']; ?>">Check-out</a>
+                                <a class="dropdown-item <?= $reservasi['status'] != 1 ? 'disabled' : ''; ?> " href="/resepsionis/reservasi/batal/<?= $reservasi['id_reservasi']; ?>" onclick="return confirm('Apakah Anda yakin akan dibatalkan?')">Batal</a>
                             </div>
                             <a href="/resepsionis/reservasi/edit/<?= $reservasi['id_reservasi']; ?>" title="Edit" class="btn btn-warning"><i class="fa fa-pen" aria-hidden="true"></i></a>
                             <a class="btn btn-danger <?= $reservasi['status'] != 3 ? 'disabled' : ''; ?>" href="/reservasi/pdf/<?= $reservasi['id_reservasi']; ?>"><i class="fa-solid fa-file-pdf"></i></a>

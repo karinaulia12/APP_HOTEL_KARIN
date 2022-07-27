@@ -189,6 +189,23 @@ class ResepsionisController extends BaseController
         return redirect()->to('/resepsionis/reservasi');
     }
 
+    public function batal($id_reservasi)
+    {
+        $syarat = ['reservasi.id_reservasi' => $id_reservasi];
+        $id_kamar = $this->reservasiModel->get_id_kamar_batal($id_reservasi);
+        $id_kmr = ['id_kamar' => $id_kamar];
+        foreach ($id_kamar as $value) {
+            $data[] = [
+                'id_kamar' => $value['id_kamar'],
+                'status_kmr' => 'dipesan'
+            ];
+        }
+
+        $this->reservasiModel->where($syarat)->delete();
+        $this->kamarModel->updateBatch($data, 'id_kamar');
+        return redirect()->to('/resepsionis/reservasi');
+    }
+
     public function tampil_tk()
     {
         $tersedia = $this->kamarModel->select('*')->where('status_kmr', 'tersedia')->get()->getResultArray();
