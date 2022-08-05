@@ -23,10 +23,6 @@ class ResepsionisController extends BaseController
             exit;
         }
     }
-    public function index()
-    {
-        return view('petugas/v_login');
-    }
 
     public function dashboard()
     {

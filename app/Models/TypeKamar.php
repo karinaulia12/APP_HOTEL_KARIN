@@ -42,7 +42,7 @@ class TypeKamar extends Model
 
     public function join_fasilitas()
     {
-        return $this->db->table('type_kamar')->join('fasilitas_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')->get()->getResultArray();
+        return $this->join('fasilitas_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')->get()->getResultArray();
     }
 
     public function join_kamar_utkDetail($id_kamar)
@@ -56,10 +56,15 @@ class TypeKamar extends Model
 
     public function search($keyword)
     {
-        return $this->db->table('type_kamar')
-            ->join('fasilitas_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')
-            ->like('type_kamar', $keyword)
+        return $this
+            ->join('fasilitas_kamar', "{$this->table}.id_type_kamar = fasilitas_kamar.id_type_kamar")
+            ->like("{$this->table}", $keyword)
             ->orLike('harga', $keyword)
             ->orLike('nama_fkamar', $keyword);
+    }
+
+    public function countTipeKamar()
+    {
+        return $this->countAll();
     }
 }

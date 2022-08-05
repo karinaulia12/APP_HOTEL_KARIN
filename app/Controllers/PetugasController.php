@@ -64,11 +64,18 @@ class PetugasController extends BaseController
     {
         $data = [
             'title' => 'Dashboard Petugas | AuHotelia',
+            'judul' => 'Dashboard ' . session()->get('level'),
             'hitung_kamar' => $this->kamarModel->hitung_kamar(),
             'hitung_fkamar' => $this->fKamarModel->hitung_fkamar(),
-            'hitung_fumum' => $this->fUmumModel->hitung_fumum()
+            'hitung_fumum' => $this->fUmumModel->hitung_fumum(),
+            'hitung_tkamar' => $this->typeKamarModel->countTipeKamar()
         ];
         return view('petugas/dashboard', $data);
+    }
+
+    public function argon()
+    {
+        return view('argon/card');
     }
 
     // function tampilan
@@ -81,7 +88,7 @@ class PetugasController extends BaseController
             'validasi' => \Config\Services::validation()
         ];
         session()->set($data);
-        return view('petugas/tambah-kamar', $data);
+        return view('kamar/tambah-kamar', $data);
     }
 
     public function tampildetailkamar($id_kamar)
@@ -90,6 +97,7 @@ class PetugasController extends BaseController
 
         $data = [
             'title' => 'Detail Kamar AuHotelia',
+            'judul' => 'Detail Kamar',
             'dataKamar' => $this->kamarModel->where('id_kamar', $id_kamar)
                 ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
                 ->join('fasilitas_kamar', 'type_kamar.id_type_kamar = fasilitas_kamar.id_type_kamar')
@@ -97,13 +105,14 @@ class PetugasController extends BaseController
             'data_typeKamar' => $this->kamarModel->typeKamar_detailKamar($id_kamar),
             'nama_fasilitas' => $this->fKamarModel->typeKamar_inDetail($id_kamar)
         ];
-        return view('petugas/detail-kamar', $data);
+        return view('kamar/detail-kamar', $data);
     }
 
     public function tampileditkamar($id_kamar)
     {
         $data = [
             'title' => 'Edit Kamar AuHotelia',
+            'judul' => 'Edit Kamar',
             'dataKamar' => $this->kamarModel
                 ->where('id_kamar', $id_kamar)
                 ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
@@ -113,17 +122,7 @@ class PetugasController extends BaseController
             'validasi' => \Config\Services::validation()
         ];
         // dd($data);
-        return view('petugas/edit-kamar', $data);
-    }
-
-    public function tampileditfotokamar($id_kamar)
-    {
-        $data = [
-            'title' => 'Edit Foto Kamar AuHotelia',
-            'dataKamar' => $this->kamarModel->where('id_kamar', $id_kamar)->find()
-        ];
-
-        return view('petugas/editFoto-kamar', $data);
+        return view('kamar/edit-kamar', $data);
     }
 
     public function tampilfasilitaskamar()
@@ -145,7 +144,7 @@ class PetugasController extends BaseController
             'keyword' => $keyword
         ];
 
-        return view('petugas/fasilitas-kamar', $data);
+        return view('fkamar/fasilitas-kamar', $data);
     }
 
     public function tampildetail_fkamar($id_fkamar)
@@ -156,7 +155,7 @@ class PetugasController extends BaseController
             'dataFkamar' => $this->fKamarModel->detail_fkamar($id_fkamar)
         ];
 
-        return view('petugas/detail-fkamar', $data);
+        return view('fkamar/detail-fkamar', $data);
     }
 
     public function tampiltambah_fkamar()
@@ -167,7 +166,7 @@ class PetugasController extends BaseController
             'dataTypeKamar' => $this->typeKamarModel->findAll()
             // 'data_typeKamar' => $this->fKamarModel->findAll()
         ];
-        return view('petugas/tambah-fkamar', $data);
+        return view('fkamar/tambah-fkamar', $data);
     }
 
     public function tampiledit_fkamar($id_fkamar)
@@ -185,7 +184,7 @@ class PetugasController extends BaseController
             'validasi' => \Config\Services::validation()
         ];
 
-        return view('petugas/edit-fkamar', $data);
+        return view('fkamar/edit-fkamar', $data);
     }
 
     public function tampil_fumum()
@@ -204,7 +203,7 @@ class PetugasController extends BaseController
             'pager' => $this->fUmumModel->pager,
             'keyword' => $keyword
         ];
-        return view('petugas/fasilitas-umum', $data);
+        return view('fumum/fasilitas-umum', $data);
     }
 
     public function tampiltambah_fumum()
@@ -214,7 +213,7 @@ class PetugasController extends BaseController
             'title' => 'Tambah Fasilitas Hotel AuHotelia',
             'validasi' => \Config\Services::validation()
         ];
-        return view('petugas/tambah-fumum', $data);
+        return view('fumum/tambah-fumum', $data);
     }
 
     public function tampiledit_fumum($id_fumum)
@@ -225,7 +224,7 @@ class PetugasController extends BaseController
             'validasi' => \Config\Services::validation()
         ];
 
-        return view('petugas/edit-fumum', $data);
+        return view('fumum/edit-fumum', $data);
     }
 
     public function tampiltambah_tkamar()
@@ -237,7 +236,7 @@ class PetugasController extends BaseController
             // 'data_typeKamar' => $this->fKamarModel->findAll()
         ];
         // dd($data);
-        return view('petugas/tambah-tkamar', $data);
+        return view('tkamar/tambah-tkamar', $data);
     }
 
     public function tampiledit_tkamar($id_tkamar)
@@ -251,7 +250,7 @@ class PetugasController extends BaseController
             'validasi' => \Config\Services::validation()
         ];
         // dd($data);
-        return view('petugas/edit-tkamar', $data);
+        return view('tkamar/edit-tkamar', $data);
     }
 
     // crud kamar
@@ -262,21 +261,24 @@ class PetugasController extends BaseController
             $kamar = $this->kamarModel->search($keyword);
         } else {
             $kamar = $this->kamarModel
-                ->join('type_kamar', 'type_kamar.id_type_kamar = kamar.id_type_kamar')
+                ->join("{$this->typeKamarModel->table}", "{$this->typeKamarModel->table}.id_type_kamar = kamar.id_type_kamar")
                 ->orderBy('no_kamar', 'asc')
                 ->get()->getResultArray();
         }
 
         $data = [
             'title' => 'Kamar AuHotelia',
-            // 'dataKamar' => $this->kamarModel->findAll(),
-            // 'dataKamar' => $kamar->orderBy('no_kamar', 'asc')->paginate(9, 'kamar'),
-            'dataKamar' => $kamar,
+            'judul' => 'Data Kamar',
+            'kamar' => $kamar,
             'pager' => $this->kamarModel->pager,
-            'keyword' => $keyword
+            'keyword' => $keyword,
+            'dataKamar' => $this->kamarModel->findAll(),
+            'dataTypeKamar' => $this->typeKamarModel->findAll(),
+            'validasi' => \Config\Services::validation(),
+            'action' => site_url('PetugasController/tampilKamar'),
         ];
         // dd($data);
-        return view('petugas/tampil-kamar', $data);
+        return view('kamar/tampil-kamar', $data);
     }
 
     public function tambahKamar()
@@ -297,20 +299,9 @@ class PetugasController extends BaseController
         }
 
         helper(['form']);
-        // //  ambil gambar
-        // $fileFoto = $this->request->getFile('foto');
-        // //  ambil nama file
-        // $namaFoto = $fileFoto->getRandomName();
-        // // pindahkan file ke folder public/gambar
-        // $fileFoto->move(WRITEPATH . '../public/gambar', $namaFoto);
-
         $inputdata = [
             'no_kamar' => $this->request->getPost('no_kamar'),
-            // 'type_kamar' => $this->request->getPost('type_kamar'),
             'id_type_kamar' => $this->request->getPost('id_type_kamar'),
-            // 'foto' => $namaFoto,
-            // 'deskripsi' => $this->request->getPost('deskripsi'),
-            // 'harga' => $this->request->getPost('harga')
         ];
 
         session()->set($inputdata);
@@ -526,19 +517,20 @@ class PetugasController extends BaseController
     {
         $keyword = $this->request->getVar('keyword');
         if ($keyword) {
-            $fkamar = $this->fKamarModel->search($keyword);
+            $tkamar = $this->typeKamarModel->search($keyword);
         } else {
-            $fkamar = $this->fKamarModel->get_typeKamar();
+            $tkamar = $this->typeKamarModel->join_fasilitas();
         }
 
         $data = [
             'title' => 'Tipe Kamar AuHotelia',
-            'fkamar' => $fkamar,
-            'data_tk' => $this->fKamarModel->get_typeKamar(),
-            'keyword' => $keyword
+            'judul' => 'Tipe Kamar',
+            'tkamar' => $tkamar,
+            // 'data_tk' => $this->fKamarModel->get_typeKamar(),
+            'keyword' => $keyword,
         ];
-
-        return view('petugas/type-kamar', $data);
+        // dd($data);
+        return view('tkamar/type-kamar', $data);
     }
 
     public function tambah_tkamar()
