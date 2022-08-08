@@ -73,7 +73,7 @@
                                             <td>
                                                 <div class="text-center">
                                                     <p class="text-xs font-weight-bold mb-0">Aksi:</p>
-                                                    <a href="/petugas/tkamar/edit/<?= $row['id_type_kamar']; ?>" class="btn btn-warning btn-sm mx-1 my-1">Edit</a>
+                                                    <a href="/petugas/tkamar/edit/<?= $row['id_type_kamar']; ?>" class="btn btn-warning btn-sm">Edit</a>
                                                     <a href="/petugas/tkamar/hapus/<?= $row['id_type_kamar']; ?>" type="button" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin akan menghapusnya?')">Hapus</a>
                                                 </div>
                                             </td>

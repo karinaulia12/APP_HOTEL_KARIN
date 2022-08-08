@@ -1,4 +1,4 @@
-<?= $this->extend('layout/template'); ?>
+<?= $this->extend('argon/argon-dsb'); ?>
 
 <?= $this->section('content'); ?>
 
@@ -8,8 +8,6 @@
             <form action="/petugas/tkamar/update" method="post" enctype="multipart/form-data">
                 <?= csrf_field(); ?>
                 <div class="form-group">
-                    <h1 class="display-6"><i class="fa fa-pen text-primary" aria-hidden="true"></i> Edit Tipe Kamar</h1>
-                    <hr>
                     <div class="row">
                         <div class="col-6">
                             <label for="NoKamar" class="form-label">Nama Tipe Kamar</label>
