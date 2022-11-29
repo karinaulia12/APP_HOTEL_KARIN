@@ -57,29 +57,29 @@
                                 <ul class="navbar-nav">
                                     <?php if (session()->get('level') == 'admin') { ?>
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="/petugas/dashboard">Home</a>
+                                            <a class="nav-link <?= url_is('/petugas/dashboard') == site_url('/petugas/dashboard') ? 'active' : ''; ?>" aria-current="page" href="/petugas/dashboard">Home</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" aria-current="page" href="/petugas/kamar">Kamar</a>
+                                            <a class="nav-link <?= url_is('/petugas/kamar') == site_url('/petugas/kamar') ? 'active' : ''; ?>" aria-current="page" href="/petugas/kamar">Kamar</a>
                                         </li>
                                         <!-- <li class="nav-item">
                                             <a class="nav-link" href="/petugas/fkamar">Fasilitas Kamar</a>
                                         </li> -->
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/petugas/tkamar">Tipe Kamar</a>
+                                            <a class="nav-link <?= url_is('/petugas/tkamar') == site_url('/petugas/tkamar') ? 'active' : ''; ?>" href="/petugas/tkamar">Tipe Kamar</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/petugas/fumum">Fasilitas Hotel</a>
+                                            <a class="nav-link <?= url_is('/petugas/fumum') == site_url('/petugas/fumum') ? 'active' : ''; ?>" href="/petugas/fumum">Fasilitas Hotel</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modelLogout">Logout</a>
                                         </li>
                                     <?php } elseif (session()->get('level') === 'resepsionis') { ?>
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="/resepsionis/reservasi">Reservasi</a>
+                                            <a class="nav-link  <?= url_is('/resepsionis/reservasi') == site_url('/resepsionis/reservasi') ? 'active' : ''; ?>" href="/resepsionis/reservasi">Reservasi</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/resepsionis/type-kamar">Tipe Kamar</a>
+                                            <a class="nav-link  <?= url_is('/resepsionis/type-kamar') == site_url('/resepsionis/type-kamar') ? 'active' : ''; ?>" href="/resepsionis/type-kamar">Tipe Kamar</a>
                                         </li>
                                         <!-- <li class="nav-item">
                                             <a class="nav-link" href="/resepsionis/tamu">Tamu</a>
@@ -90,7 +90,7 @@
 
                                     <?php } else { ?>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/form-booking">Form Booking</a>
+                                            <a class="nav-link active" href="/form-booking">Form Booking</a>
                                         </li>
                                     <?php } ?>
                                 </ul>

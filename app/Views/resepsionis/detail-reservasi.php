@@ -21,7 +21,7 @@
                                                                 echo 'bg-primary';
                                                             } else {
                                                                 echo 'bg-success';
-                                                            } ?>"><?= $status[0]['status_txt'] ?></span></h5>
+                                                            } ?>"><?= $status[0]['status'] ?></span></h5>
 
                         </div>
 
